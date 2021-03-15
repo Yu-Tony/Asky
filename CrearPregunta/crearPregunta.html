@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASKY</title>
+  <link rel="shortcut icon" type="image/x-icon" href="conversation.png" />
+
+
+<!--FONT AWESOME-->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!--FONTS-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" />
+
+<!--CSS-->
+<link rel="stylesheet" href="/NavBar/NavBar.css" />
+<link rel="stylesheet" href="/Paginacion/paginacion1.css">
+<link rel="stylesheet" href="/Sidebar/sidebar.css">
+<link rel="stylesheet" href="/CrearPregunta/crearpregunta.css">
+
+<!--JS-->
+<script src="/NavBar/NavBar.js"></script>
+<script src="/Sidebar/sidebar.js"></script>
+
+<!--FUNCTIONS TO LOAD-->
+<script>
+   $(function(){
+    $("#includeNavBar").load("/NavBar/NavBar.html"); 
+  });
+
+  $(function(){
+    $("#includeFooter").load("/Footer/Footer.html"); 
+  });
+
+  $(function(){
+    $("#includePagination").load("/Paginacion/Paginacion1.html"); 
+  });
+
+  $(function(){
+    $("#includeSideBar").load("/Sidebar/sidebar.html"); 
+  });
+
+  $(function(){
+    $("#includeRightSideBar").load("/Sidebar/rightsidebar.html"); 
+  });
+
+
+</script>
+
+</head>
+
+<body style="background-color: #F1F1F1;">
+
+    <!--NAVBAR-->
+    <div id="includeNavBar"></div>
+  
+    <div class="container">
+      <div class="row">
+     
+          <div class="col-sm-3">
+  
+         <!--SIDE BAR-->
+         <div id="includeSideBar"></div>
+  
+          </div>
+  
+          <div class="col-sm-1">
+  
+          </div>
+  
+          <!--QUIESTIONS-->
+          <div class="col-sm-7">
+       
+            <form class="modal-content animate" action="UserControllerLogIn" method="POST">
+    
+                <div class="container" style="background-color: white;">
+          
+                  <div class="row">
+                   
+      
+          
+                    <div class="col-12" style="display: inline-block;">
+            
+                     Realiza una pregunta.
+                    <hr>
+                        
+                        <label for="titulo" style="  display: inline-block;">Titulo de la pregunta</label>
+                          <input class="form-control input" name="titulo" required autocomplete="off" /> 
+
+                          <label for="pregunta" style="  display: inline-block;">Descripción</label>
+                          <textarea class="form-control" rows="5" id="pregunta" required></textarea>
+
+                          <label for="tags" style="  display: inline-block;">Tags</label>
+                          <input  class="form-control input" name="tags" required /> 
+        
+
+                          <label for="sel1">Categoria </label>
+                          <select class="form-control" id="sel1" required>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                          </select>
+
+                          
+                            <label style="  display: inline-block;">Subir imagen</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="customFile">
+                                <label class="custom-file-label" for="customFile">Choose file</label>
+                              </div>
+
+                              <div class="container">
+                                  <div class="row">
+
+                                    <div class="col-sm-2">
+                                        <div class="img-wrap">
+                                            <span class="close">&times;</span>
+                                            <img src="https://placehold.it/80x80">
+                                          </div>
+                                      </div>
+
+                                      <div class="col-sm-2">
+                                        <div class="img-wrap">
+                                            <span class="close">&times;</span>
+                                            <img src="https://placehold.it/80x80">
+                                          </div>
+                                      </div>
+
+                                  </div>
+                              </div>
+                           
+                              
+                        
+
+                          <div class="container" style="text-align: center;">
+                            <button  type="submit"  class="btn btn-primary">Publicar Pregunta</button>
+                          </div>
+                  
+          
+                    </div>
+          
+                    
+                  </div>
+          
+                </div>
+          
+          
+      
+          
+              </form>
+
+          </div>
+  
+          
+  
+          <div class="col-sm-1">
+            <div id="includeRightSideBar"></div>
+          </div>
+      </div>
+  
+  
+
+  
+  </div>
+  
+  
+
+  
+  
+  <!--FOOTER-->
+  <div id="includeFooter"></div>
+  
+  </body>
+
+
+</html>

@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<!--REF NAVBAR https://epicbootstrap.com/snippets/header-blue -->
+<!--DROPDOWN https://www.w3schools.com/bootstrap/tryit.asp?filename=trybs_ref_js_dropdown_multilevel_css&stacked=h -->
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ASKY</title>
+  <link rel="shortcut icon" type="image/x-icon" href="conversation.png" />
+
+  <!--FONT AWESOME-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  
+  
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <!--FONTS-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700" />
+
+  <!--CSS-->
+  <link rel="stylesheet" href="/NavBar/NavBar.css" />
+  <link rel="stylesheet" href="/Paginacion/paginacion1.css">
+  <link rel="stylesheet" href="/Sidebar/sidebar.css">
+  <link rel="stylesheet" href="/Pregunta/pregunta.css">
+
+  <!--JS-->
+  <script src="/NavBar/NavBar.js"></script>
+  <script src="/Sidebar/sidebar.js"></script>
+
+<!--FUNCTIONS TO LOAD-->
+<script>
+     $(function(){
+      $("#includeNavBar").load("/NavBar/NavBar.html"); 
+    });
+
+    $(function(){
+      $("#includeFooter").load("/Footer/Footer.html"); 
+    });
+
+    $(function(){
+      $("#includePagination").load("/Paginacion/Paginacion1.html"); 
+    });
+
+    $(function(){
+      $("#includeSideBar").load("/Sidebar/sidebar.html"); 
+    });
+
+    $(function(){
+      $("#includeRightSideBar").load("/Sidebar/rightsidebar.html"); 
+    });
+
+
+</script>
+
+</head>
+
+<body style="background-color: #F1F1F1;">
+
+  <!--NAVBAR-->
+  <div id="includeNavBar"></div>
+
+  <div class="container">
+    <div class="row">
+   
+        <div class="col-sm-3">
+
+       <!--SIDE BAR-->
+       <div id="includeSideBar"></div>
+
+        </div>
+
+        <div class="col-sm-1">
+
+        </div>
+
+        <!--QUIESTIONS-->
+        <div class="col-sm-7">
+          <div class="container question" style="background-color: #ffffff; margin-bottom: 2%;">
+            <!--NAME-->
+            <div class="row">
+              <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
+              <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
+              <div class="col-5"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
+              <div class="col-1"><i class="far fa-star" ></i></div>
+            </div>
+            <!--TITLE-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-8">
+                <h3>Titulo de la pregunta</h3>
+              </div>
+              <div class="col-2">
+                  <h6 >Editada</h6>
+              </div>
+            </div>
+            <!--DESCRIPTION-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-10">
+                <h6>Descripcion de la pregunta</h6>
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-10">
+                </div>
+                <div class="col-2"><button  type="button" class="btn btn-outline-primary">Editar</button></div>
+              </div>
+            <!--SEPARADOR 1-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-10">
+               <hr>
+              </div>
+            </div>
+            <!--LIKES-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-3">
+                <i class="far fa-thumbs-up"></i>
+                5
+                <i class="far fa-thumbs-down"></i>
+              </div>
+              <div class="col-3">
+                <i class="far fa-comment"></i>
+                2
+              </div>
+              <div class="col-4">
+                TAGS
+              </div>
+            </div>
+
+            <hr>
+          </div>
+        </div>
+
+        
+
+        <div class="col-sm-1">
+          <div id="includeRightSideBar"></div>
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-4"> </div>
+        <div class="col-7" > <h5>RESPUESTAS</h5></div>
+        <div class="col-1" > </div>
+    </div>
+
+ <!--ANSWERS-->
+    <div class="row">
+    
+      <div class="col-sm-3"></div>
+
+        <div class="col-sm-1">
+
+        </div>
+
+    
+        <div class="col-sm-7">
+          <div class="container" style="background-color: #ffffff;">
+            <!--NAME-->
+            <div class="row">
+              <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
+              <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
+              <div class="col-5"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
+              <i class="fas fa-check"></i>
+            </div>
+            <!--TITLE-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-10">
+               
+              </div>
+            </div>
+            <!--DESCRIPTION-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-8">
+                <h6>Respuesta</h6>
+              </div>
+              <div class="col-2">
+                  <h6>Editado</h6>
+              </div>
+            </div>
+
+            <div class="row">
+                <div class="col-10"></div>
+              
+                    <div class="col-2"><button  type="button" class="btn btn-outline-primary">Editar</button></div>
+                
+            </div>
+            <!--SEPARADOR 1-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-10">
+               <hr>
+              </div>
+            </div>
+            <!--LIKES-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-3">
+                <i class="far fa-thumbs-up"></i>
+                5
+                <i class="far fa-thumbs-down"></i>
+              </div>
+              <div class="col-3">
+                <i class="far fa-comment"></i>
+                2
+              </div>
+             
+            </div>
+
+            <hr>
+          </div>
+
+          <div class="container" style="background-color: #ffffff;">
+            <!--NAME-->
+            <div class="row">
+              <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
+              <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
+              <div class="col-5"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
+           
+            </div>
+            <!--TITLE-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-10">
+               
+              </div>
+            </div>
+            <!--DESCRIPTION-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-10">
+                <h6>Respuesta</h6>
+              </div>
+            </div>
+            <!--SEPARADOR 1-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-10">
+               <hr>
+              </div>
+            </div>
+            <!--LIKES-->
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-3">
+                <i class="far fa-thumbs-up"></i>
+                5
+                <i class="far fa-thumbs-down"></i>
+              </div>
+              <div class="col-3">
+                <i class="far fa-comment"></i>
+                2
+              </div>
+             
+            </div>
+
+            <hr>
+          </div>
+
+                <!--PAGINACION-->
+            <div id="includePagination" style="margin-top: 5%;"></div>
+          
+        </div>
+
+        
+
+        <div class="col-sm-1">
+
+        </div>
+    </div>
+
+
+
+
+<!--LEAVE A COMMENT-->
+    <div class="row">
+
+        <div class="col-4"> </div>
+        <div class="col-7" > 
+            <div id="respond">
+
+                <h3>Leave a Comment</h3>
+              
+                <form action="post_comment.php" method="post" id="commentform">
+              
+                  <label for="comment" class="required">Your message</label>
+                  <textarea name="comment" id="comment" rows="10" tabindex="4"  required="required"></textarea>
+              
+                  <!-- <--!comment_post_ID value hard-coded as 1--> 
+                  <input type="hidden" name="comment_post_ID" value="1" id="comment_post_ID" />
+                  <input name="submit" type="submit" value="Submit comment" />
+                  <input name="submit" type="submit" value="Subir Imagen" />
+              
+                </form>
+              
+              </div>
+        </div>
+        <div class="col-1" > </div>
+
+    
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+<!--FOOTER-->
+<div id="includeFooter"></div>
+
+</body>
+
+</html>
