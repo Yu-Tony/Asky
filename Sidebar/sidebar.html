@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--https://codepen.io/alexuain/pen/JjdQBVm-->
+  
   <title>Document</title>
 
     <!--BOOTSTRAP
@@ -63,13 +66,24 @@
   </div>
 -->
 
-<div class="container-fluid">
-  <div class="row d-flex d-md-block flex-nowrap wrapper">
+<div class="container-fluid" >
+  <div class="row d-flex d-md-block flex-nowrap wrapper" >
       <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
           <div class="list-group border-0 text-center text-md-left">
 
-              <a href="#" class="list-group-item d-inline-block collapsed"><i class="fa fa-film"></i> <span class="d-none d-md-inline">Item 2</span></a>
-              <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fa fa-book"></i> <span class="d-none d-md-inline">Item 3 </span></a>
+              <a href="#menu2" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fas fa-book-open"></i> <span class="d-none d-md-inline">Categorias </span></a>
+              <div class="collapse" id="menu2" data-parent="#sidebar">
+                  <a href="#" class="list-group-item" data-parent="#menu2">3.1</a>
+                  <a href="#menu2sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">3.2 </a>
+                  <div class="collapse" id="menu2sub2">
+                      <a href="#" class="list-group-item" data-parent="#menu2ub2">3.2 a</a>
+                      <a href="#" class="list-group-item" data-parent="#menu2ub2">3.2 b</a>
+                      <a href="#" class="list-group-item" data-parent="#menu2ub2">3.2 c</a>
+                  </div>
+                  <a href="#" class="list-group-item" data-parent="#menu2">3.3</a>
+              </div>
+
+              <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fas fa-question"></i> <span class="d-none d-md-inline">Preguntas </span></a>
               <div class="collapse" id="menu3" data-parent="#sidebar">
                   <a href="#" class="list-group-item" data-parent="#menu3">3.1</a>
                   <a href="#menu3sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">3.2 </a>
@@ -80,15 +94,22 @@
                   </div>
                   <a href="#" class="list-group-item" data-parent="#menu3">3.3</a>
               </div>
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-heart"></i> <span class="d-none d-md-inline">Item 4</span></a>
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-list"></i> <span class="d-none d-md-inline">Item 5</span></a>
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-clock-o"></i> <span class="d-none d-md-inline">Link</span></a>
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-th"></i> <span class="d-none d-md-inline">Link</span></a>
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-gear"></i> <span class="d-none d-md-inline">Link</span></a>
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-calendar"></i> <span class="d-none d-md-inline">Link</span></a>
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-envelope"></i> <span class="d-none d-md-inline">Link</span></a>
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-bar-chart-o"></i> <span class="d-none d-md-inline">Link</span></a>
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fa fa-star"></i> <span class="d-none d-md-inline">Link</span></a>
+
+              <a href="#menu4" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fas fa-tags"></i><span class="d-none d-md-inline">Tags </span></a>
+              <div class="collapse" id="menu4" data-parent="#sidebar">
+                  <a href="#" class="list-group-item" data-parent="#menu4">3.1</a>
+                  <a href="#menu4sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">3.2 </a>
+                  <div class="collapse" id="menu4sub2">
+                      <a href="#" class="list-group-item" data-parent="#menu4sub2">3.2 a</a>
+                      <a href="#" class="list-group-item" data-parent="#menu4sub2">3.2 b</a>
+                      <a href="#" class="list-group-item" data-parent="#menu4sub2">3.2 c</a>
+                  </div>
+                  <a href="#" class="list-group-item" data-parent="#menu4">3.3</a>
+              </div>
+
+              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fas fa-users"></i> <span class="d-none d-md-inline">Usuarios</span></a>
+              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fas fa-info-circle"></i><span class="d-none d-md-inline">Ayuda</span></a>
+             
           </div>
       </div>
      
