@@ -8,7 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASKY</title>
-  <link rel="shortcut icon" type="image/x-icon" href="/Asky/conversation.png" />
+  
+  <link rel="shortcut icon" type="image/x-icon" href="conversation.png" />
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
@@ -21,24 +22,15 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
 
-  <!--BOOTSTRAP
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"crossorigin="anonymous"></script>
-  -->
 
-    <!--BOOTSTRAP
-      <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-      
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"crossorigin="anonymous"></script>
-    -->
 
   <!--CSS-->
-  <link rel="stylesheet" href="/Asky/NavBar/NavBar.css" />
-  <script src="/Asky/NavBar/NavBar.js"></script>
+  <link rel="stylesheet" href="NavBar/NavBar.css" />
+  <link rel="stylesheet" href="Home.css">
+
+    <!--JS-->
+  <script src="NavBar/NavBar.js"></script>
+  <script src="/Asky/Home.js"></script>
 
 
     <!--FONT AWESOME  -->
@@ -53,17 +45,84 @@
 
   <script>
     
+    $(document).ready(function() {
+      $('.like').click(function() 
+    {
+      var val = parseInt($(this).text(), 10);
+      var val2= parseInt( $(this).siblings("i").text(), 10);
+  
+
+      if (($(this).hasClass('likeup'))) 
+      {
+
+        if(($(this).siblings("i").hasClass('is-liked')))
+        {
+          $(this).siblings("i").toggleClass('is-liked');
+
+          if ($(this).siblings("i").hasClass('is-liked')) 
+          {
+            val2++;
+          } else 
+          {
+            if(val2 > 0)
+            val2--;
+          }
+          
+          $(this).siblings("i").text(" " + val2);
+
+        }
+      }
+
+      if (($(this).hasClass('likedown'))) 
+      {
+
+        if(($(this).siblings("i").hasClass('is-liked')))
+        {
+          $(this).siblings("i").toggleClass('is-liked');
+
+          if ($(this).siblings("i").hasClass('is-liked')) 
+          {
+            val2++;
+          } else 
+          {
+            if(val2 > 0)
+            val2--;
+          }
+          
+          $(this).siblings("i").text(" " + val2);
+
+        }
+      }
+
+
+      $(this).toggleClass('is-liked');
+
+      if ($(this).hasClass('is-liked')) 
+      {
+        val++;
+      } else 
+      {
+        val--;
+      }
+
+      $(this).text(" " + val);
+     
+    });
+});
+
     $(function(){
-      $("#includeFooter").load("/Asky/Footer/Footer.html"); 
+      $("#includeFooter").load("Footer/Footer.html"); 
     });
 
     $(function(){
-      $("#includePagination").load("/Asky/Paginacion/paginacion1.html"); 
+      $("#includePagination").load("Paginacion/paginacion1.html"); 
     });
 
     $(function(){
-      $("#includeSidebar").load("/Asky/Sidebar/sidebar.html"); 
+      $("#includeSidebar").load("Sidebar/sidebar.html"); 
     });
+
+
 
   </script>
 
@@ -74,13 +133,13 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation" style="background-color: #82B7DC;">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#" style="color: whitesmoke;">  <img src = '/Asky/conversation.png' style="height: 30px; margin-right: 5px;" /> ASKY</a>
+    <a class="navbar-brand" href="#" style="color: whitesmoke;">  <img src = 'conversation.png' style="height: 30px; margin-right: 5px;" /> ASKY</a>
   
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         
       
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width:400px">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width:400px" ">
         <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         
       </ul>
@@ -260,7 +319,7 @@
 
                               <div class="container" >
                                 <div class="row">
-                                    <div class="col-md-4 col-sm-12 text-center">https://www.youtube.com/watch?v=H0_HrmPljVU</div>
+                                    <div class="col-md-4 col-sm-12 text-center" style="visibility: hidden;">https://www.youtube.com/watch?v=H0_HrmPljVU</div>
                                     <div class="col-md-4 col-sm-12 text-center" > <button id = "buttonSignUp" type="submit" onclick="hideSignLog()" class="btn btn-outline-primary" style="align-self: center;">Sign In</button></div>
                                     <div class="col-md-4 col-sm-12 text-center"> <label style="float: right;"> <input type="checkbox" checked="checked" name="remember" /> Remember me </label>
                                     </div>
@@ -533,9 +592,9 @@
             <div class="row">
               <div class="col-2"></div>
               <div class="col-3">
-                <i class="far fa-thumbs-up"></i>
-                5
-                <i class="far fa-thumbs-down"></i>
+
+                <i class="far fa-thumbs-up like likeup"> 0</i>
+                <i class="far fa-thumbs-down like likedown"> 0</i>
               </div>
               <div class="col-3">
                 <i class="far fa-comment"></i>
@@ -599,9 +658,8 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-3">
-              <i class="far fa-thumbs-up"></i>
-              5
-              <i class="far fa-thumbs-down"></i>
+              <i class="far fa-thumbs-up like likeup"> 0</i>
+                <i class="far fa-thumbs-down like likedown"> 0</i>
             </div>
             <div class="col-3">
               <i class="far fa-comment"></i>
@@ -665,9 +723,8 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-3">
-              <i class="far fa-thumbs-up"></i>
-              5
-              <i class="far fa-thumbs-down"></i>
+              <i class="far fa-thumbs-up like likeup"> 0</i>
+                <i class="far fa-thumbs-down like likedown"> 0</i>
             </div>
             <div class="col-3">
               <i class="far fa-comment"></i>
@@ -731,9 +788,8 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-3">
-              <i class="far fa-thumbs-up"></i>
-              5
-              <i class="far fa-thumbs-down"></i>
+              <i class="far fa-thumbs-up like likeup"> 0</i>
+                <i class="far fa-thumbs-down like likedown"> 0</i>
             </div>
             <div class="col-3">
               <i class="far fa-comment"></i>
@@ -796,9 +852,8 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-3">
-              <i class="far fa-thumbs-up"></i>
-              5
-              <i class="far fa-thumbs-down"></i>
+              <i class="far fa-thumbs-up like likeup"> 0</i>
+                <i class="far fa-thumbs-down like likedown"> 0</i>
             </div>
             <div class="col-3">
               <i class="far fa-comment"></i>
@@ -862,9 +917,8 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-3">
-              <i class="far fa-thumbs-up"></i>
-              5
-              <i class="far fa-thumbs-down"></i>
+              <i class="far fa-thumbs-up like likeup"> 0</i>
+                <i class="far fa-thumbs-down like likedown"> 0</i>
             </div>
             <div class="col-3">
               <i class="far fa-comment"></i>
@@ -928,9 +982,8 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-3">
-              <i class="far fa-thumbs-up"></i>
-              5
-              <i class="far fa-thumbs-down"></i>
+              <i class="far fa-thumbs-up like likeup"> 0</i>
+                <i class="far fa-thumbs-down like likedown"> 0</i>
             </div>
             <div class="col-3">
               <i class="far fa-comment"></i>
@@ -994,9 +1047,8 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-3">
-              <i class="far fa-thumbs-up"></i>
-              5
-              <i class="far fa-thumbs-down"></i>
+              <i class="far fa-thumbs-up like likeup"> 0</i>
+                <i class="far fa-thumbs-down like likedown"> 0</i>
             </div>
             <div class="col-3">
               <i class="far fa-comment"></i>
@@ -1060,9 +1112,8 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-3">
-              <i class="far fa-thumbs-up"></i>
-              5
-              <i class="far fa-thumbs-down"></i>
+              <i class="far fa-thumbs-up like likeup"> 0</i>
+                <i class="far fa-thumbs-down like likedown"> 0</i>
             </div>
             <div class="col-3">
               <i class="far fa-comment"></i>
@@ -1126,9 +1177,8 @@
           <div class="row">
             <div class="col-2"></div>
             <div class="col-3">
-              <i class="far fa-thumbs-up"></i>
-              5
-              <i class="far fa-thumbs-down"></i>
+              <i class="far fa-thumbs-up like likeup"> 0</i>
+                <i class="far fa-thumbs-down like likedown"> 0</i>
             </div>
             <div class="col-3">
               <i class="far fa-comment"></i>
