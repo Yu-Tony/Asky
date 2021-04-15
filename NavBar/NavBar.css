@@ -1,3 +1,27 @@
+a:hover{
+  text-decoration: none;  
+}
+
+.navbar-brand
+{
+ color: whitesmoke !important;
+ font-family: 'Lobster', cursive !important;
+}
+
+h6
+{
+  font-family: 'Raleway', sans-serif !important;
+}
+
+h3
+{
+  font-family: 'Open Sans', sans-serif !important;
+}
+
+input[type=text]{
+  font-family: 'Raleway', sans-serif !important;
+}
+
 .modal-backdrop {
   z-index: 0;
 }
@@ -26,15 +50,15 @@ input[type="number"] {
 }
 
 .btn-outline-primary {
-  color: #82B7DC;
-  border-color: #82B7DC;
+  color: #82b7dc;
+  border-color: #82b7dc;
   margin-left: 5px;
   margin-right: 5px;
 }
 .btn-outline-primary:hover {
   color: #fff;
-  background-color: #3466AA;
-  border-color: #3466AA;
+  background-color: #3466aa;
+  border-color: #3466aa;
 }
 .btn-outline-primary.focus,
 .btn-outline-primary:focus {
@@ -42,18 +66,54 @@ input[type="number"] {
 }
 .btn-outline-primary.disabled,
 .btn-outline-primary:disabled {
-  color: #3466AA;
+  color: #3466aa;
   background-color: transparent;
 }
 .btn-outline-primary:not(:disabled):not(.disabled).active,
 .btn-outline-primary:not(:disabled):not(.disabled):active,
 .show > .btn-outline-primary.dropdown-toggle {
   color: #fff;
-  background-color: #3466AA;
-  border-color: #3466AA;
+  background-color: #3466aa;
+  border-color: #3466aa;
 }
 .btn-outline-primary:not(:disabled):not(.disabled).active:focus,
 .btn-outline-primary:not(:disabled):not(.disabled):active:focus,
 .show > .btn-outline-primary.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #3466AA;
+
+}
+.btn-primary:hover {
+  color: #fff;
+  background-color: #82B7DC;
+  border-color: #0062cc;
+}
+.btn-primary.focus,
+.btn-primary:focus {
+  color: #fff;
+  background-color: #0069d9;
+  border-color: #0062cc;
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+.btn-primary.disabled,
+.btn-primary:disabled {
+  color: #fff;
+  background-color: #114084;
+  border-color: #007bff;
+}
+.btn-primary:not(:disabled):not(.disabled).active,
+.btn-primary:not(:disabled):not(.disabled):active,
+.show > .btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #114084;
+  border-color: #005cbf;
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.show > .btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
 }

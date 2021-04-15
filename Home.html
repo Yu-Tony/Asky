@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
   
+    
 
 
 </head>
@@ -45,70 +46,92 @@
 
   <script>
     
-    $(document).ready(function() {
-      $('.like').click(function() 
+    $(document).ready(function() 
     {
-      var val = parseInt($(this).text(), 10);
-      var val2= parseInt( $(this).siblings("i").text(), 10);
-  
-
-      if (($(this).hasClass('likeup'))) 
+      /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
+      $('.like').click(function() 
       {
-
-        if(($(this).siblings("i").hasClass('is-liked')))
+        var val = parseInt($(this).text(), 10);
+        var val2= parseInt( $(this).siblings("i").text(), 10);
+    
+        /*REVISA SI ALGO MÁS YA ESTÁ SELECCIONADO*/
+        if (($(this).hasClass('likeup'))) 
         {
-          $(this).siblings("i").toggleClass('is-liked');
 
-          if ($(this).siblings("i").hasClass('is-liked')) 
+          if(($(this).siblings("i").hasClass('is-liked')))
           {
-            val2++;
-          } else 
-          {
-            if(val2 > 0)
-            val2--;
+            $(this).siblings("i").toggleClass('is-liked');
+
+            if ($(this).siblings("i").hasClass('is-liked')) 
+            {
+              val2++;
+            } else 
+            {
+              if(val2 > 0)
+              val2--;
+            }
+            
+            $(this).siblings("i").text(" " + val2);
+
           }
-          
-          $(this).siblings("i").text(" " + val2);
-
         }
-      }
 
-      if (($(this).hasClass('likedown'))) 
-      {
-
-        if(($(this).siblings("i").hasClass('is-liked')))
+        if (($(this).hasClass('likedown'))) 
         {
-          $(this).siblings("i").toggleClass('is-liked');
 
-          if ($(this).siblings("i").hasClass('is-liked')) 
+          if(($(this).siblings("i").hasClass('is-liked')))
           {
-            val2++;
-          } else 
-          {
-            if(val2 > 0)
-            val2--;
+            $(this).siblings("i").toggleClass('is-liked');
+
+            if ($(this).siblings("i").hasClass('is-liked')) 
+            {
+              val2++;
+            } else 
+            {
+              if(val2 > 0)
+              val2--;
+            }
+            
+            $(this).siblings("i").text(" " + val2);
+
           }
-          
-          $(this).siblings("i").text(" " + val2);
-
         }
-      }
 
+        /*APLICA EL TOGGLE AL QUE SE CLICKEO Y AUMENTA EL NUMERO*/
+        $(this).toggleClass('is-liked');
 
-      $(this).toggleClass('is-liked');
+        if ($(this).hasClass('is-liked')) 
+        {
+          val++;
+        } else 
+        {
+          val--;
+        }
 
-      if ($(this).hasClass('is-liked')) 
+        $(this).text(" " + val);
+      
+      });
+
+      /*-----------------TOOGLE FAV CON NUMERO---------------------*/
+      $('.fav').click(function()
       {
-        val++;
-      } else 
-      {
-        val--;
-      }
+        
+        var val = parseInt($(this).text(), 10);
+        $(this).toggleClass('is-fav');
+        if ($(this).hasClass('is-fav')) 
+        {
+          val++;
+        } else 
+        {
+          val--;
+        }
 
-      $(this).text(" " + val);
-     
+        $(this).text( val);
+      });
+      
     });
-});
+
+
 
     $(function(){
       $("#includeFooter").load("Footer/Footer.html"); 
@@ -183,7 +206,7 @@
                       <div class="container-fluid">
                         <div class="row"  >
                           <div class="col-image col-lg-6">
-                            <img src="https://i.pinimg.com/originals/97/77/4b/97774b381943e06f38abced86a009fef.jpg" class="img-fluid" alt="Responsive image">
+                            <img src="/Asky/Assets/login.jpg" class="img-fluid" alt="Responsive image">
                           </div>
                 
                           <div class="col-sm-12 col-md-12 col-lg-6">
@@ -244,7 +267,7 @@
                       <div class="container-fluid">
                         <div class="row"  >
                           <div class="col-image col-lg-6">
-                            <img src="https://i.pinimg.com/originals/97/77/4b/97774b381943e06f38abced86a009fef.jpg" class="img-fluid" alt="Responsive image">
+                            <img src="/Asky/Assets/signin.jpg" class="img-fluid" alt="Responsive image">
                           </div>
 
                           <div class="col-lg-6 col-md-12 col-sm-12 col-12">
@@ -565,7 +588,7 @@
               <div class="col-2 "> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
               <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
               <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-              <div class="col-1"><i class="far fa-star" ></i></div>
+              <div class="col-1"> <i class="far fa-star fav">0</i></div>
             </div>
             <!--TITLE-->
             <div class="row">
@@ -631,7 +654,7 @@
             <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
             <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
             <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-            <div class="col-1"><i class="far fa-star" ></i></div>
+            <div class="col-1"> <i class="far fa-star fav">0</i></div>
           </div>
           <!--TITLE-->
           <div class="row">
@@ -696,7 +719,7 @@
             <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
             <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
             <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-            <div class="col-1"><i class="far fa-star" ></i></div>
+            <div class="col-1"> <i class="far fa-star fav">0</i></div>
           </div>
           <!--TITLE-->
           <div class="row">
@@ -761,7 +784,7 @@
             <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
             <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
             <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-            <div class="col-1"><i class="far fa-star" ></i></div>
+            <div class="col-1"> <i class="far fa-star fav">0</i></div>
           </div>
           <!--TITLE-->
           <div class="row">
@@ -825,7 +848,7 @@
             <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
             <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
             <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-            <div class="col-1"><i class="far fa-star" ></i></div>
+            <div class="col-1"> <i class="far fa-star fav">0</i></div>
           </div>
           <!--TITLE-->
           <div class="row">
@@ -890,7 +913,7 @@
             <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
             <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
             <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-            <div class="col-1"><i class="far fa-star" ></i></div>
+            <div class="col-1"> <i class="far fa-star fav">0</i></div>
           </div>
           <!--TITLE-->
           <div class="row">
@@ -955,7 +978,7 @@
             <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
             <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
             <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-            <div class="col-1"><i class="far fa-star" ></i></div>
+            <div class="col-1"> <i class="far fa-star fav">0</i></div>
           </div>
           <!--TITLE-->
           <div class="row">
@@ -1020,7 +1043,7 @@
             <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
             <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
             <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-            <div class="col-1"><i class="far fa-star" ></i></div>
+            <div class="col-1"> <i class="far fa-star fav">0</i></div>
           </div>
           <!--TITLE-->
           <div class="row">
@@ -1085,7 +1108,7 @@
             <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
             <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
             <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-            <div class="col-1"><i class="far fa-star" ></i></div>
+            <div class="col-1"> <i class="far fa-star fav">0</i></div>
           </div>
           <!--TITLE-->
           <div class="row">
@@ -1150,7 +1173,7 @@
             <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
             <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
             <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-            <div class="col-1"><i class="far fa-star" ></i></div>
+            <div class="col-1"> <i class="far fa-star fav">0</i></div>
           </div>
           <!--TITLE-->
           <div class="row">
