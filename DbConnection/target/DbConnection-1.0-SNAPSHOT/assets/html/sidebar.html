@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!--https://codepen.io/alexuain/pen/JjdQBVm-->
+  
+  <title>Document</title>
+
+    <!--BOOTSTRAP
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"crossorigin="anonymous"></script>
+  -->
+  
+    <link rel="stylesheet" href="assets/css/sidebar.css">
+
+  <!--<script src="/Asky/Sidebar/sidebar.js"></script>-->
+  
+</head>
+<body>
+
+
+	<!-- Contenedor 
+  <div class="sidenav">
+    <ul id="accordion" class="accordion">
+      <li>
+        <div class="link"><i class="fa fa-paint-brush"></i>Diseño web<i class="fa fa-chevron-down"></i></div>
+        <ul class="submenu">
+          <li><a href="#">Photoshop</a></li>
+          <li><a href="#">HTML</a></li>
+          <li><a href="#">CSS</a></li>
+          <li><a href="#">Maquetacion web</a></li>
+        </ul>
+      </li>
+      <li class="default open">
+        <div class="link"><i class="fa fa-code"></i>Desarrollo front-end<i class="fa fa-chevron-down"></i></div>
+        <ul class="submenu">
+          <li><a href="#">Javascript</a></li>
+          <li><a href="#">jQuery</a></li>
+          <li><a href="#">Frameworks javascript</a></li>
+        </ul>
+      </li>
+      <li>
+        <div class="link"><i class="fa fa-mobile"></i>Diseño responsive<i class="fa fa-chevron-down"></i></div>
+        <ul class="submenu">
+          <li><a href="#">Tablets</a></li>
+          <li><a href="#">Dispositivos mobiles</a></li>
+          <li><a href="#">Medios de escritorio</a></li>
+          <li><a href="#">Otros dispositivos</a></li>
+        </ul>
+      </li>
+      <li><div class="link"><i class="fa fa-globe"></i>Posicionamiento web<i class="fa fa-chevron-down"></i></div>
+        <ul class="submenu">
+          <li><a href="#">Google</a></li>
+          <li><a href="#">Bing</a></li>
+          <li><a href="#">Yahoo</a></li>
+          <li><a href="#">Otros buscadores</a></li>
+        </ul>
+      </li>
+    </ul>
+  
+  </div>
+-->
+
+<div class="container-fluid" >
+  <div class="row d-flex d-md-block flex-nowrap wrapper" >
+      <div class="col-md-3 float-left col-1 pl-0 pr-0 collapse width show" id="sidebar">
+          <div class="list-group border-0 text-center text-md-left">
+
+              <a href="#menu2" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fas fa-book-open"></i> <span class="d-none d-md-inline">Categorias </span></a>
+              <div class="collapse" id="menu2" data-parent="#sidebar">
+                  <a href="#" class="list-group-item" data-parent="#menu2">Comida</a>
+                  <a href="#" class="list-group-item" data-parent="#menu2">Educación</a>
+                  <a href="#" class="list-group-item" data-parent="#menu2">Mascotas</a>
+                  <a href="#" class="list-group-item" data-parent="#menu2">Peliculas</a>
+                  <a href="#" class="list-group-item" data-parent="#menu2">Videojuegos</a>
+
+
+              </div>
+
+              <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fas fa-question"></i> <span class="d-none d-md-inline">Preguntas </span></a>
+              <div class="collapse" id="menu3" data-parent="#sidebar">
+                  <a href="#" class="list-group-item" data-parent="#menu3">3.1</a>
+                  <a href="#menu3sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">3.2 </a>
+                  <div class="collapse" id="menu3sub2">
+                      <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 a</a>
+                      <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 b</a>
+                      <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 c</a>
+                  </div>
+                  <a href="#" class="list-group-item" data-parent="#menu3">3.3</a>
+              </div>
+
+              <a href="#menu4" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fas fa-tags"></i><span class="d-none d-md-inline">Tags </span></a>
+              <div class="collapse" id="menu4" data-parent="#sidebar">
+                  <a href="#" class="list-group-item" data-parent="#menu4">3.1</a>
+                  <a href="#menu4sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">3.2 </a>
+                  <div class="collapse" id="menu4sub2">
+                      <a href="#" class="list-group-item" data-parent="#menu4sub2">3.2 a</a>
+                      <a href="#" class="list-group-item" data-parent="#menu4sub2">3.2 b</a>
+                      <a href="#" class="list-group-item" data-parent="#menu4sub2">3.2 c</a>
+                  </div>
+                  <a href="#" class="list-group-item" data-parent="#menu4">3.3</a>
+              </div>
+
+              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fas fa-users"></i> <span class="d-none d-md-inline">Usuarios</span></a>
+              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fas fa-info-circle"></i><span class="d-none d-md-inline">Ayuda</span></a>
+             
+          </div>
+      </div>
+     
+  </div>
+</div>
+
+
+</body>
+</html>
