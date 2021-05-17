@@ -1,4 +1,5 @@
 
+
     <body>
           <!--NAVBAR-->
   
@@ -101,9 +102,18 @@
 
             <form action="./UsersController" method="POST" id="ModalRegistrarse" enctype="multipart/form-data">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-outline-primary" data-toggle="modal" id="btnRegistrarse" data-target="#modalRegistrarse">
-                Registrarse
-              </button>
+      
+              <c:forEach var ="a" items="${user}">
+ 
+                     <button type="button" class="btn btn-outline-primary" data-toggle="modal" id="btnRegistrarse" data-target="#modalRegistrarse">
+                        Registrarse ${a}
+                     </button>
+            
+     
+             
+              </c:forEach>
+              
+       
 
               <!-- Modal -->
               <div class="modal fade" id="modalRegistrarse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -197,7 +207,7 @@
                               <div class="container" >
                                 <div class="row">
                                     <div class="col-md-4 col-sm-12 text-center" style="visibility: hidden;">https://www.youtube.com/watch?v=H0_HrmPljVU</div>
-                                    <div class="col-md-4 col-sm-12 text-center" > <button id = "buttonSignUp" type="submit" onclick="LoggedIn()" value="Registrarse" class="btn btn-outline-primary" style="align-self: center;">Sign In</button></div>
+                                    <div class="col-md-4 col-sm-12 text-center" > <button id = "buttonSignUp" type="submit" value="Registrarse" class="btn btn-outline-primary" style="align-self: center;">Sign In</button></div>
                                     <div class="col-md-4 col-sm-12 text-center"> <label style="float: right;"> <input type="checkbox" checked="checked" name="remember" /> Remember me </label>
                                     </div>
                                 </div>
@@ -221,8 +231,8 @@
 
 
 
-            <div class="dropdown" id="ProfileDropdown" >
-              <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">
+            <div class="dropdown" id="ProfileDropdown" style="visibility: hidden">
+                <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >
                   <img id="ImageDropPerfil" src="https://64.media.tumblr.com/0ec4ce1891988685d8e0fde02613e879/360aba19a5843b67-af/s640x960/eb66bc39b8a25fefb7b489237fccd01fb6bdc297.jpg" style="max-width: 25px;">
                  <span class="caret"></span>
               </button>

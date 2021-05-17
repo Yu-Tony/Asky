@@ -119,16 +119,7 @@ function LoggedIn()
      
 }
 
-function LoggedOut()
-{
-     $("#ProfileDropdown").css("visibility", "hidden");
-}
 
-function ChngProfilePicDrop()
-{
-     $('#ImageDropPerfil').attr('src', $('#imagen_perfil').attr);
-    
-}
 
 
 /*

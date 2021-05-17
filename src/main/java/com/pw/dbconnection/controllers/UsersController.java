@@ -1,6 +1,9 @@
 package com.pw.dbconnection.controllers;
 
+import com.mysql.cj.log.Log;
+import com.pw.dbconnection.dao.PreguntaDAO;
 import com.pw.dbconnection.dao.UserDAO;
+import com.pw.dbconnection.models.PreguntaModel;
 import com.pw.dbconnection.models.UserModel;
 import com.pw.dbconnection.utils.FileUtils;
 import java.io.File;
@@ -24,6 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.text.SimpleDateFormat;  
+import javax.servlet.http.HttpSession;
 
 /**
  * Este servlet controlara los Usuarios, verifiquen el web.xml
@@ -35,7 +39,8 @@ import java.text.SimpleDateFormat;
  */
 @WebServlet(name = "UsersController", urlPatterns = {"/UsersController"})
 @MultipartConfig(maxFileSize = 1000 * 1000 * 5, maxRequestSize = 1000 * 1000 * 25, fileSizeThreshold = 1000 * 1000)
-public class UsersController extends HttpServlet {
+public class UsersController extends HttpServlet 
+{
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -48,10 +53,32 @@ public class UsersController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+         System.out.println("Entro a doget qwq");
+        HttpSession MomoSession = request.getSession(false);
+        String a=null;
+        String b=null;
+        if(MomoSession!=null){
+          a = (String)MomoSession.getAttribute("username");
+          b = (String)MomoSession.getAttribute("contraseña");
+          request.setAttribute("user", a);
+          request.setAttribute("pass",  b);
+        System.out.println(a);
+        }
+        else{
+            MomoSession = request.getSession(true);
+            request.setAttribute("userSession", a);
+            request.setAttribute("pass",  b);
+            System.out.println(a);
+
+        }
+        
         // Obtenemos los usuarios del DAO
-        List<UserModel> users = UserDAO.getUsers();
+        List<PreguntaModel> Preguntas = PreguntaDAO.getPreguntas();
+       
         // Lo agregamos como atributo al request
-        request.setAttribute("users", users);
+        request.setAttribute("preguntasDB", Preguntas);
+  
+       
         // Enviamos el request a index.jsp con la informacion
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
@@ -67,7 +94,7 @@ public class UsersController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                     
+                      System.out.println("Entro a doPost");
         // Obtenemos el nombre debe coincidir con el name del input
         //1
         String nombre = request.getParameter("nombre");
@@ -96,6 +123,7 @@ public class UsersController extends HttpServlet {
         // Remplazamos el nombre que tiene para que no existan duplicados
         String profile_pic = file.getName() + System.currentTimeMillis() + FileUtils.GetExtension(contentType);
         String fullPath = path + FileUtils.RUTE_USER_IMAGE + "/" + profile_pic;
+        //C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\Proyecto_PW1\DbConnection\target\DbConnection-1.0-SNAPSHOT\assets\Images
         // Copiamos la imagen en la ruta especificada
         file.write(fullPath);
         
@@ -112,7 +140,23 @@ public class UsersController extends HttpServlet {
         UserModel user = new UserModel(nombre, apellidos,fecha_nac,correo, estado, FileUtils.RUTE_USER_IMAGE + "/" + profile_pic, username, contrasena, fecha_crea);
         UserDAO.insertUser(user);
         // Retornamos al index
-        response.sendRedirect("index.jsp");
+        
+        HttpSession MomoSession = request.getSession();
+        if(MomoSession!=null){
+            MomoSession.setAttribute("username", username);
+            MomoSession.setAttribute("contraseña", contrasena);
+            System.out.println("dopost session !=null");
+          
+        }else{
+            MomoSession = request.getSession(true);
+            MomoSession.setAttribute("username", username);
+            MomoSession.setAttribute("contraseña", contrasena);
+            System.out.println("dopost session==null");
+           
+        }
+        
+        
+        response.sendRedirect("UsersController");
     }
 
     /**

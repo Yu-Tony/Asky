@@ -17,7 +17,7 @@ import java.util.List;
 
 /**
  *
- * @author magoc
+ * @author teb
  */
 public class UserDAO {
 
@@ -62,9 +62,11 @@ public class UserDAO {
         return 0;
     }
 
+    
     public static List<UserModel> getUsers() {
         List<UserModel> users = new ArrayList<>();
-        try {
+        try 
+        {
             Connection con = DbConnection.getConnection();
             CallableStatement statement = con.prepareCall("SELECT * FROM Usuario");
             ResultSet resultSet = statement.executeQuery();
@@ -87,9 +89,11 @@ public class UserDAO {
                 // Agregamos el usuario a la lista
                 users.add(new UserModel(nombre, apellidos, fecha_nac, correo, estado, profile_pic, username, contrasena));
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex) 
+        {
             System.out.println(ex.getMessage());
-        } finally {
+        } finally 
+        {
             return users;
         }
     }

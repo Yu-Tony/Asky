@@ -11,7 +11,8 @@ import java.sql.Date;
  *
  * @author teb
  */
-public class UserModel {
+public class UserModel 
+{
 
     private String nombre;
     private String apellidos;
@@ -130,3 +131,5 @@ public class UserModel {
 
 
 }
+
+
