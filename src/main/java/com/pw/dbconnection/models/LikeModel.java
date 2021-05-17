@@ -11,8 +11,14 @@ package com.pw.dbconnection.models;
  */
 public class LikeModel {
 
+    private String usuario;
+    private int pregunta;
+    private boolean util;
+    
     public LikeModel(String usuario, int pregunta, boolean util) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.usuario=usuario;
+        this.pregunta=pregunta;
+        this.util=util;
     }
 
     public String getUsuario() {
@@ -39,9 +45,7 @@ public class LikeModel {
         this.util = util;
     }
     
-    private String usuario;
-    private int pregunta;
-    private boolean util;
+
   
     
     

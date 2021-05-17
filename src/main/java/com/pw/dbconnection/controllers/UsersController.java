@@ -61,7 +61,7 @@ public class UsersController extends HttpServlet
         if(MomoSession!=null){
           a = (String)MomoSession.getAttribute("username");
           b = (String)MomoSession.getAttribute("contraseña");
-          request.setAttribute("user", a);
+           request.setAttribute("userSession", a);
           request.setAttribute("pass",  b);
           //SrchResult = (List<PreguntaModel>)MomoSession.getAttribute("srchResult");
             System.out.println(a);

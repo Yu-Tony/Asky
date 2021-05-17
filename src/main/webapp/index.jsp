@@ -53,22 +53,24 @@
     $(document).ready(function() 
     {
         
-       $("#ProfileDropdown").css("visibility", "hidden");
+
       /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
       $('.like').click(function() 
       {
         var val = parseInt($(this).text(), 10);
-        var val2= parseInt( $(this).siblings("i").text(), 10);
+               var val3 =  parseInt($(this).parent().parent().find(".idPregunta").text(), 10); 
     
         /*REVISA SI ALGO MÁS YA ESTÁ SELECCIONADO*/
         if (($(this).hasClass('likeup'))) 
         {
+            var val2= parseInt( $(this).parent().parent().find(".likedown").text(), 10);
+           
+         if(($(this).parent().parent().find(".likedown").hasClass('is-liked')))
 
-          if(($(this).siblings("i").hasClass('is-liked')))
           {
-            $(this).siblings("i").toggleClass('is-liked');
+              $(this).parent().parent().find(".likedown").toggleClass('is-liked');
 
-            if ($(this).siblings("i").hasClass('is-liked')) 
+            if ($(this).parent().parent().find(".likedown").hasClass('is-liked')) 
             {
               val2++;
             } else 
@@ -77,19 +79,19 @@
               val2--;
             }
             
-            $(this).siblings("i").text(" " + val2);
+            $(this).parent().parent().find(".likedown").text(" " + val2);
 
           }
         }
 
         if (($(this).hasClass('likedown'))) 
         {
-
-          if(($(this).siblings("i").hasClass('is-liked')))
+            var val2= parseInt( $(this).parent().parent().find(".likeup").text(), 10);
+          if(($(this).parent().parent().find(".likeup").hasClass('is-liked')))
           {
-            $(this).siblings("i").toggleClass('is-liked');
+           $(this).parent().parent().find(".likeup").toggleClass('is-liked');
 
-            if ($(this).siblings("i").hasClass('is-liked')) 
+            if ($(this).parent().parent().find(".likeup").hasClass('is-liked')) 
             {
               val2++;
             } else 
@@ -98,7 +100,7 @@
               val2--;
             }
             
-            $(this).siblings("i").text(" " + val2);
+           $(this).parent().parent().find(".likeup").text(" " + val2);
 
           }
         }
@@ -191,7 +193,8 @@
   <div class="container" style="margin-top: 2%;">
 
 
-
+      <!--https://flylib.com/books/en/1.177.1.20/1/-->
+ <c:set var = "NombreUsuario" scope = "application" value = "${userSession}"/>
     
     <c:forEach var ="preguntas" items="${preguntasDB}">
         <div class="row">
@@ -236,9 +239,12 @@
                 <div class="row">
                   <div class="col-2"></div>
                   <div class="col-3">
-                      <form name="formLike" method="post">
-                    <i class="far fa-thumbs-up like likeup" name="like" onclick="callServlet();" > ${preguntas.util}</i>
-                    </form>
+                     <div class="idPregunta" style="display: none">${preguntas.id}</div>
+                       <div name="nombrePersona" style="display: none">${NombreUsuario}</div>
+                       
+                       <form name="formLike" method="post" action="./LikeController">
+                            <i class="far fa-thumbs-up like likeup" name="like"   > ${preguntas.util}</i>
+                       </form>
                       <i class="far fa-thumbs-down like likedown" name="dislike"> 0</i>
                
                   </div>

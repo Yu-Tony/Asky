@@ -24,7 +24,7 @@ public class LikeDAO {
             // No llamadas directas como esta
             // Esta linea prepara la llamada a la base de datos para insertar
             // Cada ? significa un valor a ser remplazado
-            CallableStatement statement = con.prepareCall("util_pregunta(usuario, pregunta, util) VALUES (?,?,?)");
+            CallableStatement statement = con.prepareCall("insert into util_pregunta(usuario, pregunta, util) VALUES (?,?,?)");
             
             statement.setString(1, like.getUsuario());
             statement.setInt(2, like.getPregunta());

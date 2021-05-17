@@ -6,7 +6,7 @@
 
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-    <body>
+   <body onload="loadAgeSelector()">
           <!--NAVBAR-->
   
 
@@ -47,9 +47,11 @@
 
             <form class="nav-item active" method="POST">
               <!-- Button trigger modal -->
-              <button type="button" class="btn btn-outline-primary" data-toggle="modal" id="btnIniciarSesion" data-target="#modalIniciar">
-                Iniciar sesión
+                       <c:if test = "${NombreUsuario == null}">
+                      <button type="button" class="btn btn-outline-primary" data-toggle="modal" id="btnIniciarSesion" data-target="#modalIniciar">
+                Iniciar sesion
               </button>
+              </c:if>
 
               <!-- Modal -->
               <div class="modal fade" id="modalIniciar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -109,16 +111,11 @@
             <form action="./UsersController" method="POST" id="ModalRegistrarse" enctype="multipart/form-data">
               <!-- Button trigger modal -->
       
- <c:set var = "a" scope = "session" value = "${userSession}"/>
-     
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" id="btnRegistrarse" data-target="#modalRegistrarse">
-                        Registrarse qwq   <c:out value = "${a}"/>
+ <c:if test = "${NombreUsuario == null}">
+                       <button type="button" class="btn btn-outline-primary" data-toggle="modal" id="btnRegistrarse" data-target="#modalRegistrarse">
+                        Registrarse
                      </button>
-             
-              
-       
-              
-       
+</c:if>
 
               <!-- Modal -->
               <div class="modal fade" id="modalRegistrarse" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
@@ -197,13 +194,24 @@
                                 <div class="form-group col-md-4">
                                   <div class="form-group">
                           
-                                    <select class="form-control" style="margin-top: 8px;">
-                                      <!--NOTA HACERLO CON JS--->
-                                      <option> 1998</option>
-                                      <option> 1999</option>
-                                      <option> 2000</option>
+                                     <select class="form-control" style="margin-top: 8px;" id="yearDrowpdown">
+                                    
                       
                                     </select>
+
+                                      <script>
+                                        let dateDropdown = document.getElementById('yearDrowpdown'); 
+
+                                        let currentYear = new Date().getFullYear();    
+                                        let earliestYear = 1970;     
+                                        while (currentYear >= earliestYear) {      
+                                          let dateOption = document.createElement('option');          
+                                          dateOption.text = currentYear;      
+                                          dateOption.value = currentYear;        
+                                          dateDropdown.add(dateOption);      
+                                          currentYear -= 1;    
+                                        }
+                                      </script>
                                   </div>
                                 </div>
                       
@@ -234,9 +242,8 @@
                     
             </form>
 
-
-
-            <div class="dropdown" id="ProfileDropdown" style="visibility: hidden">
+            <c:if test = "${NombreUsuario != null}">
+                 <div class="dropdown" id="ProfileDropdown" style="visibility: hidden">
                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >
                   <img id="ImageDropPerfil" src="https://64.media.tumblr.com/0ec4ce1891988685d8e0fde02613e879/360aba19a5843b67-af/s640x960/eb66bc39b8a25fefb7b489237fccd01fb6bdc297.jpg" style="max-width: 25px;">
                  <span class="caret"></span>
@@ -248,7 +255,11 @@
                 <a href="#" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
 
               </ul>
-            </div>
+            </div> 
+                
+            </c:if>
+
+          
             
           </ul>
         </span>

@@ -42,17 +42,23 @@ import java.text.SimpleDateFormat;
 @MultipartConfig(maxFileSize = 1000 * 1000 * 5, maxRequestSize = 1000 * 1000 * 25, fileSizeThreshold = 1000 * 1000)
 public class LikeController extends HttpServlet {
     
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException 
+    {
+        System.out.println("SAD");
+        String usuario = request.getParameter("nombrePersona");
+        //usuario =request.getParameter("nomberPersona");
+        int pregunta = 1;
+        boolean util=  true; 
         
-        String usuario = request.getParameter("usuario");
-        int pregunta = Integer.parseInt(request.getParameter("pregunta"));
-        boolean util=  Boolean.parseBoolean(request.getParameter("util")); 
-        
-	LikeModel like = new LikeModel(usuario,pregunta,util);
-        LikeDAO.insertLike(like);
-        
-        response.sendRedirect("index.jsp");
-        
+      
+            //LikeModel like = new LikeModel(usuario,pregunta,util);
+            //LikeDAO.insertLike(like);
+            //System.out.println("user"  + like.getUsuario());
+
+       
+     
+         response.sendRedirect("UsersController");
     }
     
 }
