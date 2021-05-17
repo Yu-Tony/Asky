@@ -57,12 +57,14 @@ public class UsersController extends HttpServlet
         HttpSession MomoSession = request.getSession(false);
         String a=null;
         String b=null;
+        //List<PreguntaModel> SrchResult = null;
         if(MomoSession!=null){
           a = (String)MomoSession.getAttribute("username");
           b = (String)MomoSession.getAttribute("contraseña");
           request.setAttribute("user", a);
           request.setAttribute("pass",  b);
-        System.out.println(a);
+          //SrchResult = (List<PreguntaModel>)MomoSession.getAttribute("srchResult");
+            System.out.println(a);
         }
         else{
             MomoSession = request.getSession(true);
@@ -77,8 +79,7 @@ public class UsersController extends HttpServlet
        
         // Lo agregamos como atributo al request
         request.setAttribute("preguntasDB", Preguntas);
-  
-       
+       // request.setAttribute("srchResult", SrchResult);
         // Enviamos el request a index.jsp con la informacion
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }

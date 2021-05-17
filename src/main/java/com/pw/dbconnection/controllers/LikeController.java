@@ -50,7 +50,7 @@ public class LikeController extends HttpServlet {
         
 	LikeModel like = new LikeModel(usuario,pregunta,util);
         LikeDAO.insertLike(like);
-
+        
         response.sendRedirect("index.jsp");
         
     }

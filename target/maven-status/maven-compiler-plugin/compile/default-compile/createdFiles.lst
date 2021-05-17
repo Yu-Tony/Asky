@@ -1,5 +1,14 @@
 com\pw\dbconnection\utils\FileUtils.class
 com\pw\dbconnection\controllers\UsersController.class
-com\pw\dbconnection\dao\UserDAO.class
 com\pw\dbconnection\models\UserModel.class
+com\pw\dbconnection\dao\PreguntaDAO.class
+com\pw\dbconnection\models\PreguntaModel.class
+com\pw\dbconnection\models\CategoriaModel.class
+com\pw\dbconnection\dao\UserDAO.class
+com\pw\dbconnection\models\FavModel.class
+com\pw\dbconnection\controllers\LikeController.class
+com\pw\dbconnection\models\LikeModel.class
+com\pw\dbconnection\models\RespuestaModel.class
 com\pw\dbconnection\utils\DbConnection.class
+com\pw\dbconnection\dao\LikeDAO.class
+com\pw\dbconnection\controllers\SearchController.class

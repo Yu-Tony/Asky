@@ -12,4 +12,9 @@
     <welcome-file-list>
         <welcome-file>UsersController</welcome-file>
     </welcome-file-list>
+    <servlet>
+        <servlet-name>SearchController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.SearchController</servlet-class>
+    </servlet>
+    
 </web-app>
