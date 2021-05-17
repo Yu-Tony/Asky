@@ -1,8 +1,10 @@
 package com.pw.dbconnection.controllers;
 
 import com.mysql.cj.log.Log;
+import com.pw.dbconnection.dao.CategoriaDAO;
 import com.pw.dbconnection.dao.PreguntaDAO;
 import com.pw.dbconnection.dao.UserDAO;
+import com.pw.dbconnection.models.CategoriaModel;
 import com.pw.dbconnection.models.PreguntaModel;
 import com.pw.dbconnection.models.UserModel;
 import com.pw.dbconnection.utils.FileUtils;
@@ -57,29 +59,30 @@ public class UsersController extends HttpServlet
         HttpSession MomoSession = request.getSession(false);
         String a=null;
         String b=null;
-        //List<PreguntaModel> SrchResult = null;
         if(MomoSession!=null){
           a = (String)MomoSession.getAttribute("username");
           b = (String)MomoSession.getAttribute("contraseña");
            request.setAttribute("userSession", a);
           request.setAttribute("pass",  b);
-          //SrchResult = (List<PreguntaModel>)MomoSession.getAttribute("srchResult");
-            System.out.println(a);
+           System.out.println(a);
+         
+        System.out.println(a);
         }
         else{
             MomoSession = request.getSession(true);
-            request.setAttribute("userSession", a);
-            request.setAttribute("pass",  b);
-            System.out.println(a);
-
+             request.setAttribute("userSession", a);
+          request.setAttribute("pass",  b);
+           System.out.println(a);
+           
         }
         
-        // Obtenemos los usuarios del DAO
+        // Obtenemos las Preguntas del DAO
         List<PreguntaModel> Preguntas = PreguntaDAO.getPreguntas();
-       
+        List<CategoriaModel> Categorias = CategoriaDAO.getCategorias();
         // Lo agregamos como atributo al request
         request.setAttribute("preguntasDB", Preguntas);
-       // request.setAttribute("srchResult", SrchResult);
+        request.setAttribute("categoriasDB", Categorias);
+        
         // Enviamos el request a index.jsp con la informacion
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }

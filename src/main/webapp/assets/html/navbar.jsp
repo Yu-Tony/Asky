@@ -6,6 +6,32 @@
 
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
+<script>
+    function daysInMonth(month, year) {
+  return new Date(year, month, 0).getDate();
+}
+
+$('#yearDropdown, #monthDropdown').change(function() {
+
+  if ($('#yearDropdown').val().length > 0 && $('#monthDropdown').val().length > 0) {
+    $('#dayDropdown').prop('disabled', false);
+    $('#dayDropdown').find('option').remove();
+
+    //var days = new Date($('#monthDropdown').val(), $('#yearDropdown').val(), 0).getDate();
+    var daysInSelectedMonth = daysInMonth($('#monthDropdown').val(), $('#yearDropdown').val());
+
+    for (var i = 1; i <= daysInSelectedMonth; i++) {
+      $('#dayDropdown').append($("<option></option>").attr("value", i).text(i));
+    }
+
+
+  } else {
+    $('#dayDropdown').prop('disabled', true);
+  }
+
+});
+</script>
+
    <body onload="loadAgeSelector()">
           <!--NAVBAR-->
   
@@ -153,54 +179,20 @@
                               <input id="username" type="text" class="form-control input-sm" placeholder="Enter Username" name="username" autocomplete="off" required/> 
                               <input id="contrasena" type="password" class="form-control input-sm" placeholder="Enter Password" name="contrasena" required oninput="validatePassword();" /> 
                               <input id="pw2SU" type="password" class="form-control input-sm" placeholder="Confirm Password" name="pw2" required  oninput="validatePassword();"/>  
-                              <label for="Birthday"><b>Birthday</b></label>
+                              <label for="Birthday"><b>Fecha de nacimiento</b></label>
                               <div class="form-row">
                                  
+                                                  
                                 <div class="form-group col-md-4">
                                   <div class="form-group">
                           
-                                    <select class="form-control"  style="margin-top: 8px;">
-                                      <!--NOTA HACERLO CON JS--->
-                                      <option> 1</option>
-                                      <option> 2</option>
-                                      <option> 3</option>
-                      
-                                    </select>
-                                  </div>
-                                </div>
-                      
-                                <div class="form-group col-md-4">
-                                  <div class="form-group">
-                          
-                                    <select class="form-control"  style="margin-top: 8px;">
-                      
-                                      <option> Jan</option>
-                                      <option> Feb</option>
-                                      <option> Mar</option>
-                                      <option> Apr</option>
-                                      <option> May</option>
-                                      <option> Jun</option>
-                                      <option> Jul</option>
-                                      <option> Aug</option>
-                                      <option> Sep</option>
-                                      <option> Oct</option>
-                                      <option> Nov</option>
-                                      <option> Dec</option>
-                      
-                                    </select>
-                                  </div>
-                                </div>
-                      
-                                <div class="form-group col-md-4">
-                                  <div class="form-group">
-                          
-                                     <select class="form-control" style="margin-top: 8px;" id="yearDrowpdown">
-                                    
+                                     <select class="form-control" style="margin-top: 8px;" id="yearDropdown">
+                                     <option value="">Seleccionar año</option>
                       
                                     </select>
 
                                       <script>
-                                        let dateDropdown = document.getElementById('yearDrowpdown'); 
+                                        let dateDropdown = document.getElementById('yearDropdown'); 
 
                                         let currentYear = new Date().getFullYear();    
                                         let earliestYear = 1970;     
@@ -214,6 +206,42 @@
                                       </script>
                                   </div>
                                 </div>
+                                  
+                                <div class="form-group col-md-4">
+                                  <div class="form-group">
+                          
+                                    <select class="form-control"  style="margin-top: 8px;" id="monthDropdown">
+                                        <option value="">Seleccionar mes</option>
+                                     <option value="1">January</option>
+                                        <option value="2">February</option>
+                                        <option value="3">March</option>
+                                        <option value="4">April</option>
+                                        <option value="5">May</option>
+                                        <option value="6">June</option>
+                                        <option value="7">July</option>
+                                        <option value="8">August</option>
+                                        <option value="9">September</option>
+                                        <option value="10">October</option>
+                                        <option value="11">Novermber</option>
+                                        <option value="12">December</option>
+                      
+                                    </select>
+                                  </div>
+                                </div>
+      
+                                  
+                                <div class="form-group col-md-4">
+                                  <div class="form-group">
+                          
+                                    <select class="form-control"  style="margin-top: 8px;" id="dayDropdown" disabled>
+                                              <option value="">Seleccionar dia</option>      
+                                    </select>
+                                      
+                   
+                                  </div>
+                                </div>
+                      
+                          
                       
                               </div>
 
@@ -243,7 +271,7 @@
             </form>
 
             <c:if test = "${NombreUsuario != null}">
-                 <div class="dropdown" id="ProfileDropdown" style="visibility: hidden">
+                 <div class="dropdown" id="ProfileDropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >
                   <img id="ImageDropPerfil" src="https://64.media.tumblr.com/0ec4ce1891988685d8e0fde02613e879/360aba19a5843b67-af/s640x960/eb66bc39b8a25fefb7b489237fccd01fb6bdc297.jpg" style="max-width: 25px;">
                  <span class="caret"></span>

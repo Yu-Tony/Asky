@@ -29,7 +29,7 @@ public class PreguntaDAO {
         try 
         {
             Connection con = DbConnection.getConnection();
-            CallableStatement statement = con.prepareCall("SELECT * FROM Pregunta");
+            CallableStatement statement = con.prepareCall("select * from Pregunta limit 10");
             ResultSet resultSet = statement.executeQuery();
             // Si el resultSet tiene resultados lo recorremos
 
@@ -107,7 +107,7 @@ public class PreguntaDAO {
              System.out.println(aBuscar);
              String pstmt;
             
-            CallableStatement statement = con.prepareCall("select * from pregunta where contenido like ?");
+            CallableStatement statement = con.prepareCall("select * from pregunta where contenido like ? limit 10");
             statement.setString(1,  "%" + aBuscar + "%");
             ResultSet resultSet = statement.executeQuery();
            

@@ -30,7 +30,8 @@
   <!--CSS-->
   <link rel="stylesheet" href="./assets/css/navbar.css" />
   <link rel="stylesheet" href="./assets/css/Home.css">
-
+  <link rel="stylesheet" href="./assets/css/sidebar.css">
+     <link rel="stylesheet" href="./assets/css/paginacion.css">
     <!--JS-->
   <script src="./assets/js/NavBar.js"></script>
 
@@ -58,8 +59,12 @@
       $('.like').click(function() 
       {
         var val = parseInt($(this).text(), 10);
-               var val3 =  parseInt($(this).parent().parent().find(".idPregunta").text(), 10); 
+        var val3 =  parseInt($(this).parent().parent().find(".idPregunta").text(), 10); 
     
+        $(this).parent().parent().find(".IDthisPregunta").text(val3);
+        var val4 =  parseInt($(this).parent().parent().find(".IDthisPregunta").text(), 10);
+         var val5 =  $(this).parent().parent().find(".nombrePersona").text(); 
+  
         /*REVISA SI ALGO MÁS YA ESTÁ SELECCIONADO*/
         if (($(this).hasClass('likeup'))) 
         {
@@ -82,6 +87,10 @@
             $(this).parent().parent().find(".likedown").text(" " + val2);
 
           }
+
+         
+           
+    
         }
 
         if (($(this).hasClass('likedown'))) 
@@ -115,8 +124,45 @@
         {
           val--;
         }
-
+        
         $(this).text(" " + val);
+           
+        if($(this).hasClass('likeup'))
+        {
+             if($(this).hasClass('is-liked'))
+            {
+                $.post(
+                 "./LikeController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: true, tipoLike:1} 
+                 );
+            }
+            else
+            {
+              //https://stackoverflow.com/questions/31168646/how-to-send-data-to-servlet-using-ajax-without-a-submitting-form/31175969
+          
+                $.post(
+                 "./LikeController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: true, tipoLike:2}
+                 );
+            }
+        }
+        else
+        {         
+            if($(this).hasClass('is-liked'))
+            {
+              $.post(
+                 "./LikeController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: false, tipoLike:3});
+            }
+            else
+            {
+                $.post(
+                 "./LikeController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: false, tipoLike:4});
+            }
+        }
+
+     
       
       });
 
@@ -125,13 +171,25 @@
       {
         
         var val = parseInt($(this).text(), 10);
+         var val3 =  parseInt($(this).parent().parent().parent().find(".idPregunta").text(), 10); 
+    
+        $(this).parent().parent().parent().find(".IDthisPregunta").text(val3);
+        var val4 =  parseInt($(this).parent().parent().parent().find(".IDthisPregunta").text(), 10);
+         var val5 =  $(this).parent().parent().parent().find(".nombrePersona").text(); 
+         
         $(this).toggleClass('is-fav');
         if ($(this).hasClass('is-fav')) 
         {
           val++;
+          $.post(
+                 "./FavController", 
+                 {usuarioPreguntaFav: val5, idPreguntaFav: val4, utilPreguntaFav: true, tipoFav: 1});
         } else 
         {
           val--;
+          $.post(
+                 "./FavController", 
+                 {usuarioPreguntaFav: val5, idPreguntaFav:val4, utilPreguntaFav: false, tipoFav:2});
         }
 
         $(this).text( val);
@@ -155,17 +213,10 @@
 		});
     
     });
-     /*--------------LIKE FUNCTION-------------------*/
-      function callServlet() {
-          alert("likey");
-               /* document.forms[0].action = "Welcome";
-                document.forms[0].submit();*/
-        
-            }
 
 
     $(function(){
-      $("#includeFooter").load("assets/html/footer.html"); 
+      $("#includeFooter").load("assets/html/footer.jsp"); 
     });
 
     $(function(){
@@ -173,7 +224,7 @@
     });
 
     $(function(){
-      $("#includeSidebar").load("assets/html/sidebar.html"); 
+      $("#includeSidebar").load("assets/html/sidebar.jsp"); 
     });
 
     $(function(){
@@ -195,6 +246,7 @@
 
       <!--https://flylib.com/books/en/1.177.1.20/1/-->
  <c:set var = "NombreUsuario" scope = "application" value = "${userSession}"/>
+  <c:set var = "categorias" scope = "application" value = "${categoriasDB}"/>
     
     <c:forEach var ="preguntas" items="${preguntasDB}">
         <div class="row">
@@ -239,12 +291,17 @@
                 <div class="row">
                   <div class="col-2"></div>
                   <div class="col-3">
-                     <div class="idPregunta" style="display: none">${preguntas.id}</div>
-                       <div name="nombrePersona" style="display: none">${NombreUsuario}</div>
+                      
+                     
                        
-                       <form name="formLike" method="post" action="./LikeController">
+                       
+                            <div class="idPregunta" style="display: none">${preguntas.id}</div>
+                           <div class="nombrePersona" name="nombrePersona" style="display: none">${NombreUsuario}</div>
+                           <div class="IDthisPregunta" name="preguntaID" style="display: none" ></div>
                             <i class="far fa-thumbs-up like likeup" name="like"   > ${preguntas.util}</i>
-                       </form>
+                          
+                    
+                       
                       <i class="far fa-thumbs-down like likedown" name="dislike"> 0</i>
                
                   </div>

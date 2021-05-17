@@ -39,6 +39,7 @@ public class SearchController extends HttpServlet {
 	LikeModel like = new LikeModel(usuario,pregunta,util);
         LikeDAO.insertLike(like);
         */
+        
         String nombre = request.getParameter("busqueda");
         System.out.println(nombre);
         List<PreguntaModel> Preguntas = PreguntaDAO.buscarPregunta(nombre);

@@ -12,6 +12,10 @@ package com.pw.dbconnection.models;
 public class CategoriaModel {
     private String nombre;
 
+    public CategoriaModel(String contenido) {
+        this.nombre=contenido;
+    }
+
     public String getNombre() {
         return nombre;
     }
