@@ -1,14 +1,18 @@
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\controllers\UsersController.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\models\PreguntaModel.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\models\RespuestaModel.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\dao\LikeDAO.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\dao\UserDAO.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\models\LikeModel.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\models\CategoriaModel.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\models\FavModel.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\controllers\SearchController.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\dao\PreguntaDAO.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\models\UserModel.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\controllers\LikeController.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\utils\FileUtils.java
-C:\Users\Nahom\OneDrive\Escritorio\PrograWeb\Proyecto\DbConnection\src\main\java\com\pw\dbconnection\utils\DbConnection.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\models\UserModel.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\models\RespuestaModel.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\dao\CategoriaDAO.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\models\FavModel.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\utils\DbConnection.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\dao\FavDAO.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\controllers\UsersController.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\utils\FileUtils.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\models\PreguntaModel.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\dao\PreguntaDAO.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\controllers\LikeController.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\controllers\ProfileController.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\models\CategoriaModel.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\controllers\FavController.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\models\LikeModel.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\dao\LikeDAO.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\controllers\SearchController.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\dao\UserDAO.java

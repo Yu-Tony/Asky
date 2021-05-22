@@ -11,6 +11,28 @@
   return new Date(year, month, 0).getDate();
 }
 
+  /*$('ul').on('click', 'a',function() {
+      //if(this==$('#leEstaCosa'))
+        $.post("/ProfileController", {name : "Message from jsp"});
+   });*/
+    /*function PruebaServlet(){
+    $.ajax({
+            url:'/ProfileController',
+            data:{name : "Message from jsp"},
+            type:'post',
+            cache:false,
+            success:function(data){
+               alert(data); 
+            },
+            error:function(){
+              alert('error');
+            }
+        }}*/
+    function PruebaServlet(){
+         System.out.println("Message from jsp");
+        $.post("./ProfileController", {name : "Message from jsp"}, alert(""));
+       
+    }
 $('#yearDropdown, #monthDropdown').change(function() {
 
   if ($('#yearDropdown').val().length > 0 && $('#monthDropdown').val().length > 0) {
@@ -269,19 +291,20 @@ $('#yearDropdown, #monthDropdown').change(function() {
               </div>
                     
             </form>
-
+       
             <c:if test = "${NombreUsuario != null}">
                  <div class="dropdown" id="ProfileDropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >
                   <img id="ImageDropPerfil" src="https://64.media.tumblr.com/0ec4ce1891988685d8e0fde02613e879/360aba19a5843b67-af/s640x960/eb66bc39b8a25fefb7b489237fccd01fb6bdc297.jpg" style="max-width: 25px;">
                  <span class="caret"></span>
               </button>
+                
               <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
-                <a href="#" class="dropdown-item"><i class="fas fa-user"></i></i> Profile</a>
+                  
+                  <a onclick = "PruebaServlet()" id="leEstaCosa" href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>             
                 <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
                 <a href="#" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
-
               </ul>
             </div> 
                 

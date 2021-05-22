@@ -85,6 +85,7 @@ public class UsersController extends HttpServlet
         
         // Enviamos el request a index.jsp con la informacion
         request.getRequestDispatcher("index.jsp").forward(request, response);
+       //request.getRequestDispatcher("UserController");
     }
 
     /**
@@ -160,7 +161,7 @@ public class UsersController extends HttpServlet
         }
         
         
-        response.sendRedirect("UsersController");
+        response.sendRedirect("UserController");
     }
 
     /**

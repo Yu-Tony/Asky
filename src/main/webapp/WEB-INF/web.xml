@@ -29,5 +29,10 @@
     </servlet>
     
     
+    <servlet>
+        <servlet-name>ProfileController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.ProfileController</servlet-class>
+    </servlet>
+    
     
 </web-app>

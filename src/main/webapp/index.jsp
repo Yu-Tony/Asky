@@ -54,7 +54,7 @@
     $(document).ready(function() 
     {
         
-
+       
       /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
       $('.like').click(function() 
       {
@@ -214,7 +214,7 @@
     
     });
 
-
+  
     $(function(){
       $("#includeFooter").load("assets/html/footer.jsp"); 
     });
