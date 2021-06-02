@@ -97,4 +97,40 @@ public class UserDAO {
             return users;
         }
     }
+    
+    public static UserModel getUser(UserModel user)
+    {
+        UserModel userLogin = null;
+         try 
+        {
+            Connection con = DbConnection.getConnection();
+            CallableStatement statement = con.prepareCall("SELECT * FROM Usuario WHERE correo = ? AND contrasena = ?");
+            statement.setString(1, userLogin.getCorreo());
+            statement.setString(2, userLogin.getContrasena());
+            ResultSet resultSet = statement.executeQuery();
+            // Si el resultSet tiene resultados lo recorremos
+            while (resultSet.next()) {
+                // Obtenemos el valor del result set en base al nombre de la
+                // columna
+                String nombre = resultSet.getString("nombre");
+                String apellidos = resultSet.getString("apellidos");
+                Date fecha_nac = resultSet.getDate("fecha_nac");
+                String correo = resultSet.getString("correo");
+                Boolean estado = resultSet.getBoolean("estado");
+                String profile_pic = resultSet.getString("profile_pic");
+                String username = resultSet.getString("username");
+                String contrasena = resultSet.getString("contrasena");
+                
+                // Agregamos el usuario a la lista
+                userLogin = new UserModel(nombre, apellidos, fecha_nac, correo, estado, profile_pic, username, contrasena);
+            }
+        } catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        } finally 
+        {
+            return userLogin;
+        }
+        
+    }
 }

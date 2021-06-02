@@ -32,6 +32,11 @@
     <servlet>
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>com.pw.dbconnection.controllers.ProfileController</servlet-class>
+    </servlet> 
+    
+     <servlet>
+        <servlet-name>LoginController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.LoginController</servlet-class>
     </servlet>
     
     

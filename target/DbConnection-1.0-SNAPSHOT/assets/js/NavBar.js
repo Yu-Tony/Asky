@@ -77,7 +77,7 @@ function validateMail()
 
 }
 
-function existingUsername()
+/*function existingUsername()
 {
   //var re = /([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{1,64})@([a-zA-Z0-9-]{2,253})\.([a-zA-Z0-9-]{2,3})/;
   var email = document.getElementById("emailLI");
@@ -90,7 +90,7 @@ function existingUsername()
     email.setCustomValidity('');
   }
 
-}
+}*/
 
 //------------------------CHANGE NAVBAR
 

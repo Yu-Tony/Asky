@@ -55,6 +55,11 @@ public class UserModel
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    public UserModel(String emailLogin, String passLogin) {
+        this.correo=emailLogin;
+        this.contrasena=passLogin;
+    }
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

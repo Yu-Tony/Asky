@@ -31,27 +31,12 @@ import javax.servlet.http.Part;
 import java.text.SimpleDateFormat;  
 import javax.servlet.http.HttpSession;
 
-/**
- * Este servlet controlara los Usuarios, verifiquen el web.xml
- * este es el primer archivo en llamarse, alli exsite un apartado llamado
- * welcome file list donde pueden colocar que archivo quieren que sea el primero
- * en ser cargado
- * en este momento es este
- * @author magoc
- */
+
 @WebServlet(name = "UsersController", urlPatterns = {"/UsersController"})
 @MultipartConfig(maxFileSize = 1000 * 1000 * 5, maxRequestSize = 1000 * 1000 * 25, fileSizeThreshold = 1000 * 1000)
 public class UsersController extends HttpServlet 
 {
 
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,8 +44,9 @@ public class UsersController extends HttpServlet
         HttpSession MomoSession = request.getSession(false);
         String a=null;
         String b=null;
+       
         if(MomoSession!=null){
-          a = (String)MomoSession.getAttribute("username");
+          a = (String)MomoSession.getAttribute("correo");
           b = (String)MomoSession.getAttribute("contraseña");
            request.setAttribute("userSession", a);
           request.setAttribute("pass",  b);
@@ -88,14 +74,6 @@ public class UsersController extends HttpServlet
        //request.getRequestDispatcher("UserController");
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -148,20 +126,20 @@ public class UsersController extends HttpServlet
         
         HttpSession MomoSession = request.getSession();
         if(MomoSession!=null){
-            MomoSession.setAttribute("username", username);
+            MomoSession.setAttribute("correo", correo);
             MomoSession.setAttribute("contraseña", contrasena);
-            System.out.println("dopost session !=null");
+           // System.out.println("dopost session !=null");
           
         }else{
             MomoSession = request.getSession(true);
-            MomoSession.setAttribute("username", username);
+            MomoSession.setAttribute("correo", correo);
             MomoSession.setAttribute("contraseña", contrasena);
-            System.out.println("dopost session==null");
+            //System.out.println("dopost session==null");
            
         }
         
-        
-        response.sendRedirect("UserController");
+       
+        response.sendRedirect("DbConnection");
     }
 
     /**

@@ -33,25 +33,35 @@
         $.post("./ProfileController", {name : "Message from jsp"}, alert(""));
        
     }
-$('#yearDropdown, #monthDropdown').change(function() {
+    
+    $('#yearDropdown, #monthDropdown').change(function() {
 
-  if ($('#yearDropdown').val().length > 0 && $('#monthDropdown').val().length > 0) {
-    $('#dayDropdown').prop('disabled', false);
-    $('#dayDropdown').find('option').remove();
+      if ($('#yearDropdown').val().length > 0 && $('#monthDropdown').val().length > 0) {
+        $('#dayDropdown').prop('disabled', false);
+        $('#dayDropdown').find('option').remove();
 
-    //var days = new Date($('#monthDropdown').val(), $('#yearDropdown').val(), 0).getDate();
-    var daysInSelectedMonth = daysInMonth($('#monthDropdown').val(), $('#yearDropdown').val());
+        //var days = new Date($('#monthDropdown').val(), $('#yearDropdown').val(), 0).getDate();
+        var daysInSelectedMonth = daysInMonth($('#monthDropdown').val(), $('#yearDropdown').val());
 
-    for (var i = 1; i <= daysInSelectedMonth; i++) {
-      $('#dayDropdown').append($("<option></option>").attr("value", i).text(i));
+        for (var i = 1; i <= daysInSelectedMonth; i++) {
+          $('#dayDropdown').append($("<option></option>").attr("value", i).text(i));
+        }
+
+
+      } else {
+        $('#dayDropdown').prop('disabled', true);
+      }
+
+
+    });
+
+    function LogOut()
+    {
+        '${NombreUsuario}' = null;
+        alert('${NombreUsuario}');
     }
+  
 
-
-  } else {
-    $('#dayDropdown').prop('disabled', true);
-  }
-
-});
 </script>
 
    <body onload="loadAgeSelector()">
@@ -93,10 +103,10 @@ $('#yearDropdown, #monthDropdown').change(function() {
               <button class="btn btn-outline-primary my-2 my-sm-0">Preguntar  <i class="fas fa-question"></i></button>
             </li>
 
-            <form class="nav-item active" method="POST">
+            <form action="./LoginController" method="POST" id="ModalLogIn" enctype="multipart/form-data">
               <!-- Button trigger modal -->
-                       <c:if test = "${NombreUsuario == null}">
-                      <button type="button" class="btn btn-outline-primary" data-toggle="modal" id="btnIniciarSesion" data-target="#modalIniciar">
+              <c:if test = "${NombreUsuario == null}">
+              <button type="button" class="btn btn-outline-primary" data-toggle="modal" id="btnIniciarSesion" data-target="#modalIniciar">
                 Iniciar sesion
               </button>
               </c:if>
@@ -117,15 +127,15 @@ $('#yearDropdown, #monthDropdown').change(function() {
                           <div class="col-image col-lg-6">
                             <img src="assets/Images/login.jpg" class="img-fluid" alt="Responsive image">
                           </div>
-                
+
                           <div class="col-sm-12 col-md-12 col-lg-6">
                                                      
                               <div class="container">
                         
                                 <div class="text-center">
                                   <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" class="img-fluid rounded-circle" alt="Responsive image" style="margin-bottom: 30px;"/>
-                                  <input id="emailLI" type="text" class="form-control input-sm" placeholder="Enter Email" name="email" required autocomplete="off" required oninput="existingUsername();" /> 
-                                  <input id="ps1LI" type="password" class="form-control input-sm" placeholder="Enter Password" name="password" required /> 
+                                  <input id="emailLI" type="text" class="form-control input-sm" placeholder="Enter Email" name="correo" required autocomplete="off" required /> 
+                                  <input id="ps1LI" type="password" class="form-control input-sm" placeholder="Enter Password" name="contrasena" required /> 
                                 </div>
 
                 
@@ -304,7 +314,7 @@ $('#yearDropdown, #monthDropdown').change(function() {
                   <a onclick = "PruebaServlet()" id="leEstaCosa" href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>             
                 <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
-                <a href="#" class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                <a href="" onClick="LogOut(); class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
               </ul>
             </div> 
                 
