@@ -176,6 +176,28 @@ public class PreguntaDAO {
             return preguntas;
         }
       }
+      
+      public static int insertPregunta(PreguntaModel myPregunta){
+            
+          try{
+            Connection con = DbConnection.getConnection();
+            CallableStatement statement = con.prepareCall("insert into Pregunta(contenido, categoria, usuario, descripcion, fecha) values (?,?,?,?,?)");
+            statement.setString(1, myPregunta.getContenido());
+            statement.setInt(2, myPregunta.getCatId());
+            statement.setString(3, myPregunta.getUsuarioPregunta());
+            statement.setString(4, myPregunta.getDescripcion());
+            statement.setDate(5, myPregunta.getFecha_Pregunta());
+            return statement.executeUpdate();
+          }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+          } finally {
+              
+              
+          }
+            
+      
+        return 0;
+      }
 }
 
 

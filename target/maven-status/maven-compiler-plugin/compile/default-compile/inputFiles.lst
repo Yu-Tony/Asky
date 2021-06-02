@@ -1,4 +1,5 @@
 C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\models\UserModel.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\controllers\CreatePreguntaController.java
 C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\models\RespuestaModel.java
 C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\dao\CategoriaDAO.java
 C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\models\FavModel.java
@@ -15,4 +16,5 @@ C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\d
 C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\models\LikeModel.java
 C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\dao\LikeDAO.java
 C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\controllers\SearchController.java
+C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\controllers\LoginController.java
 C:\Users\molec\Documents\8o Semestre\progra web\Repo\Asky\src\main\java\com\pw\dbconnection\dao\UserDAO.java

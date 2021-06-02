@@ -25,6 +25,14 @@ public class PreguntaModel {
        this.util=util;
        this.comentarios = comentarios;
     }
+    
+    public PreguntaModel(String titulo, String contenido, String username, int categoria, java.util.Date fecha){
+        this.contenido = titulo;
+        this.descripcion = contenido;
+        this.usuarioPregunta = username;
+        this.categoria_id = categoria;
+        this.fecha_Pregunta = (Date) fecha;
+    }
 
     public int getComentarios() {
         return comentarios;
@@ -107,6 +115,14 @@ public class PreguntaModel {
         this.categoriaPregunta = categoriaPregunta;
     }
     
+    public int getCatId(){
+        return categoria_id;
+    }
+    
+    public void setCatId(int catid){
+        this.categoria_id = catid;
+    }
+    
     private String contenido;
     private int id;
     private String descripcion;
@@ -117,5 +133,6 @@ public class PreguntaModel {
     private int fav;
     private int util;
     private int comentarios;
+    private int categoria_id;
 
 }

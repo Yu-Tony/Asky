@@ -4,6 +4,7 @@ com\pw\dbconnection\models\UserModel.class
 com\pw\dbconnection\dao\CategoriaDAO.class
 com\pw\dbconnection\dao\PreguntaDAO.class
 com\pw\dbconnection\models\PreguntaModel.class
+com\pw\dbconnection\controllers\CreatePreguntaController.class
 com\pw\dbconnection\controllers\FavController.class
 com\pw\dbconnection\models\CategoriaModel.class
 com\pw\dbconnection\controllers\ProfileController.class
@@ -12,6 +13,7 @@ com\pw\dbconnection\models\FavModel.class
 com\pw\dbconnection\controllers\LikeController.class
 com\pw\dbconnection\models\LikeModel.class
 com\pw\dbconnection\models\RespuestaModel.class
+com\pw\dbconnection\controllers\LoginController.class
 com\pw\dbconnection\dao\FavDAO.class
 com\pw\dbconnection\utils\DbConnection.class
 com\pw\dbconnection\dao\LikeDAO.class

@@ -134,7 +134,7 @@
         <!--QUIESTIONS-->
         <div class="col-sm-7" style="margin-bottom: 5%;">
      
-          <form class="modal-content animate" action="UserControllerLogIn" method="POST">
+          <form class="modal-content animate" action="./CreatePreguntaController" method="POST">
   
               <div class="container" style="background-color: white;">
         
@@ -148,7 +148,7 @@
                   <hr>
                       
                       <label for="titulo" style="  display: inline-block;">Titulo de la pregunta</label>
-                        <input class="form-control input" name="titulo" required autocomplete="off" /> 
+                        <input id = "qTitulo" class="form-control input" name="titulo" required autocomplete="off" /> 
 
                         <label for="pregunta" style="  display: inline-block;">Descripción</label>
                         <textarea class="form-control" rows="5" id="pregunta" required></textarea>
@@ -163,10 +163,10 @@
                         <select class="form-control" id="sel1" required>
                             
                              <c:forEach var="categ" items="${categorias}">
-                            <li>
-                               <option>${categ.nombre}</option>
-                            </li>
-                        </c:forEach>
+                                <li>
+                                   <option>${categ.nombre}</option>
+                                </li>
+                            </c:forEach>
 
                         </select>
 
