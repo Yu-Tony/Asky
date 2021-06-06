@@ -20,8 +20,9 @@ import java.sql.SQLException;
  */
 public class LikeDAO {
     public static int insertLike(LikeModel like) {
+         Connection con =null;
         try {
-            Connection con = DbConnection.getConnection();
+            con = DbConnection.getConnection();
             // En el proyecto solo podran hacer uso de Store Procedures
             // No llamadas directas como esta
             // Esta linea prepara la llamada a la base de datos para insertar
@@ -63,14 +64,23 @@ public class LikeDAO {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
+              try
+            {
+                  con.close();
+            }
+            catch(SQLException e)
+            {
+                 System.out.println(e.getMessage());
+            }
         }
         return 0;
     }
 
     public static int deleteLike(LikeModel like)
     {
+         Connection con = null;
          try {
-            Connection con = DbConnection.getConnection();
+            con = DbConnection.getConnection();
             // En el proyecto solo podran hacer uso de Store Procedures
             // No llamadas directas como esta
             // Esta linea prepara la llamada a la base de datos para insertar
@@ -87,6 +97,14 @@ public class LikeDAO {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
+            try
+            {
+                  con.close();
+            }
+            catch(SQLException e)
+            {
+                 System.out.println(e.getMessage());
+            }
         }
         return 0;
         

@@ -34,7 +34,12 @@
        
     }
     
+    
+
+    
     $('#yearDropdown, #monthDropdown').change(function() {
+        
+      
 
       if ($('#yearDropdown').val().length > 0 && $('#monthDropdown').val().length > 0) 
       {
@@ -57,11 +62,9 @@
 
     });
 
-    function LogOut()
-    {
-        '${NombreUsuario}' = null;
-        alert('${NombreUsuario}');
-    }
+
+
+
     
   
   
@@ -218,11 +221,11 @@
                               <label for="Birthday"><b>Fecha de nacimiento</b></label>
                               <div class="form-row">
                                  
-                                                  
+                                                 
                                 <div class="form-group col-md-4">
                                   <div class="form-group">
                           
-                                     <select class="form-control" style="margin-top: 8px;" id="yearDropdown">
+                                     <select class="form-control" style="margin-top: 8px;" id="yearDropdown" name="YearSelected" required>
                                      <option value="">Seleccionar año</option>
                       
                                     </select>
@@ -232,7 +235,8 @@
 
                                         let currentYear = new Date().getFullYear();    
                                         let earliestYear = 1970;     
-                                        while (currentYear >= earliestYear) {      
+                                        while (currentYear >= earliestYear) 
+                                        {      
                                           let dateOption = document.createElement('option');          
                                           dateOption.text = currentYear;      
                                           dateOption.value = currentYear;        
@@ -246,9 +250,9 @@
                                 <div class="form-group col-md-4">
                                   <div class="form-group">
                           
-                                    <select class="form-control"  style="margin-top: 8px;" id="monthDropdown">
+                                    <select class="form-control"  style="margin-top: 8px;" id="monthDropdown" name="MonthSelected" required>
                                         <option value="">Seleccionar mes</option>
-                                     <option value="1">January</option>
+                                        <option value="1">January</option>
                                         <option value="2">February</option>
                                         <option value="3">March</option>
                                         <option value="4">April</option>
@@ -260,7 +264,6 @@
                                         <option value="10">October</option>
                                         <option value="11">Novermber</option>
                                         <option value="12">December</option>
-                      
                                     </select>
                                   </div>
                                 </div>
@@ -269,11 +272,10 @@
                                 <div class="form-group col-md-4">
                                   <div class="form-group">
                           
-                                    <select class="form-control"  style="margin-top: 8px;" id="dayDropdown" disabled>
+                                    <select class="form-control"  style="margin-top: 8px;" id="dayDropdown" disabled name="DaySelected" required>
                                               <option value="">Seleccionar dia</option>      
                                     </select>
                                       
-                   
                                   </div>
                                 </div>
                       

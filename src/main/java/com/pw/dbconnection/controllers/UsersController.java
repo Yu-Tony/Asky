@@ -84,8 +84,15 @@ public class UsersController extends HttpServlet
         //2
         String apellidos = request.getParameter("apellidos");
         //3
+        int year = Integer.parseInt(request.getParameter("YearSelected"));
+        int month = Integer.parseInt(request.getParameter("MonthSelected"));
+        int day = Integer.parseInt(request.getParameter("DaySelected"));
         
-        LocalDate date1 = LocalDate.of(2017, 1, 13); 
+        //String year = request.getParameter("YearSelected");
+        //String month = request.getParameter("MonthSelected");
+        //String day = request.getParameter("DaySelected");
+        
+        LocalDate date1 = LocalDate.of(year, month, day); 
         java.util.Date fecha_nac = java.sql.Date.valueOf(date1);
         
         //4
@@ -126,22 +133,52 @@ public class UsersController extends HttpServlet
         
         // Retornamos al index
         
-        HttpSession MomoSession = request.getSession();
-        if(MomoSession!=null){
-            MomoSession.setAttribute("correo", correo);
-            MomoSession.setAttribute("contraseña", contrasena);
-           // System.out.println("dopost session !=null");
-          
-        }else{
-            MomoSession = request.getSession(true);
-            MomoSession.setAttribute("correo", correo);
-            MomoSession.setAttribute("contraseña", contrasena);
-            //System.out.println("dopost session==null");
-           
-        }
+       if(result==1)
+       {
+            /*HttpSession MomoSession = request.getSession();
+            if(MomoSession!=null)
+            {
+                MomoSession.setAttribute("correo", correo);
+                MomoSession.setAttribute("contraseña", contrasena);
+               // System.out.println("dopost session !=null");
+
+            }
+            else
+            {
+                MomoSession = request.getSession(true);
+                MomoSession.setAttribute("correo", correo);
+                MomoSession.setAttribute("contraseña", contrasena);
+                //System.out.println("dopost session==null");
+
+            }*/
         
-       
-        response.sendRedirect("UsersController");
+             PrintWriter out = response.getWriter();  
+            response.setContentType("text/html");  
+            out.println("<script type=\"text/javascript\">");  
+            out.println("alert('Bienvenido');");  
+            out.println("</script>");
+            
+            response.setHeader("Refresh", "1; URL=UsersController");
+           //response.sendRedirect("UsersController");
+       }
+       else
+       {
+           //https://stackoverflow.com/questions/4064605/java-servlets-open-message-popup
+           //https://coderanch.com/t/357276/java/Servlet-Redirect-time-delay
+           PrintWriter out = response.getWriter();  
+            response.setContentType("text/html");  
+            out.println("<script type=\"text/javascript\">");  
+            out.println("alert('El nombre de usuario ya está en uso');");  
+            out.println("</script>");
+            
+            response.setHeader("Refresh", "1; URL=UsersController");
+            //response.sendRedirect("UsersController");
+       }
+             
+        
+ 
+  
+        
     }
 
     /**

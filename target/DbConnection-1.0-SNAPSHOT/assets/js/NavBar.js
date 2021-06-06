@@ -77,6 +77,11 @@ function validateMail()
 
 }
 
+function validateBirth()
+{
+    
+}
+
 /*function existingUsername()
 {
   //var re = /([a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]{1,64})@([a-zA-Z0-9-]{2,253})\.([a-zA-Z0-9-]{2,3})/;

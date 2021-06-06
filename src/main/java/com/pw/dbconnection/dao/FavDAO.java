@@ -21,8 +21,9 @@ public class FavDAO {
     
      public static int insertFav(FavModel fav)
      {
+         Connection con = null;
          try {
-            Connection con = DbConnection.getConnection();
+            con = DbConnection.getConnection();
             // En el proyecto solo podran hacer uso de Store Procedures
             // No llamadas directas como esta
             // Esta linea prepara la llamada a la base de datos para insertar
@@ -64,14 +65,23 @@ public class FavDAO {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
+            try
+            {
+                  con.close();
+            }
+            catch(SQLException e)
+            {
+                 System.out.println(e.getMessage());
+            }
         }
         return 0;
      }
      
      public static int deleteFav(FavModel fav)
      {
+         Connection con = null; 
           try {
-            Connection con = DbConnection.getConnection();
+            con = DbConnection.getConnection();
             // En el proyecto solo podran hacer uso de Store Procedures
             // No llamadas directas como esta
             // Esta linea prepara la llamada a la base de datos para insertar
@@ -88,6 +98,14 @@ public class FavDAO {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
+               try
+            {
+                  con.close();
+            }
+            catch(SQLException e)
+            {
+                 System.out.println(e.getMessage());
+            }
         }
         return 0;
      }

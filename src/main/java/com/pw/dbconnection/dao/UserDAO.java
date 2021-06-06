@@ -35,8 +35,9 @@ public class UserDAO {
      * @return
      */
     public static int insertUser(UserModel user) {
+        Connection con = null;
         try {
-            Connection con = DbConnection.getConnection();
+            con = DbConnection.getConnection();
             // En el proyecto solo podran hacer uso de Store Procedures
             // No llamadas directas como esta
             // Esta linea prepara la llamada a la base de datos para insertar
@@ -54,11 +55,19 @@ public class UserDAO {
             statement.setDate(9, user.getFecha_crea());
             // Ejecuta el Statement y retorna cuantos registros
             // fueron actualizados
-            return statement.executeUpdate();
-            
+              return statement.executeUpdate();
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {
+            try
+            {
+                  con.close();
+            }
+            catch(SQLException e)
+            {
+                 System.out.println(e.getMessage());
+            }
+           
         }
         return 0;
     }
@@ -125,6 +134,8 @@ public class UserDAO {
                 // Agregamos el usuario a la lista
                 userLogin = new UserModel(nombre, apellidos, fecha_nac, correo, estado, profile_pic, username, contrasena);
             }
+            
+            con.close();
         } catch (SQLException ex) 
         {
             System.out.println(ex.getMessage());
@@ -132,6 +143,11 @@ public class UserDAO {
         {
             return userLogin;
         }
+        
+    }
+    
+    public static void closeCon()
+    {
         
     }
 }
