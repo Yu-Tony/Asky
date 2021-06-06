@@ -122,7 +122,8 @@ public class UsersController extends HttpServlet
         
 
         UserModel user = new UserModel(nombre, apellidos,fecha_nac,correo, estado, FileUtils.RUTE_USER_IMAGE + "/" + profile_pic, username, contrasena, fecha_crea);
-        UserDAO.insertUser(user);
+        int result = UserDAO.insertUser(user);
+        
         // Retornamos al index
         
         HttpSession MomoSession = request.getSession();
