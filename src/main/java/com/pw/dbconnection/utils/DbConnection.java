@@ -24,7 +24,7 @@ public class DbConnection {
         // El nombre de usuario
         dataSource.setUsername("root");
         // La contraseña
-  dataSource.setPassword("tugfa123");
+  dataSource.setPassword("MySQL3696");
     }
 
     /**

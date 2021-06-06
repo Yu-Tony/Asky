@@ -25,10 +25,11 @@ public class PreguntaDAO {
     
      public static List<PreguntaModel> getPreguntas(){
          List<PreguntaModel> preguntas = new ArrayList<>();
+         Connection con=null;
          
         try 
         {
-            Connection con = DbConnection.getConnection();
+            con = DbConnection.getConnection();
             CallableStatement statement = con.prepareCall("select * from Pregunta limit 10");
             ResultSet resultSet = statement.executeQuery();
             // Si el resultSet tiene resultados lo recorremos
@@ -86,12 +87,19 @@ public class PreguntaDAO {
                 
                 // Agregamos el usuario a la lista
                 preguntas.add(new PreguntaModel(contenido, id, descripcion, imagenPregunta, usuarioPregunta, categoriaPregunta, fecha_Pregunta, fav, util,comentarios));
+                
+               
             }
-        } catch (SQLException ex) 
+            
+             con.close();
+        } 
+        
+        catch (SQLException ex) 
         {
             System.out.println(ex.getMessage());
         } finally 
         {
+            
             return preguntas;
         }
      }

@@ -55,6 +55,7 @@ public class UserDAO {
             // Ejecuta el Statement y retorna cuantos registros
             // fueron actualizados
             return statement.executeUpdate();
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         } finally {

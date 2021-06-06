@@ -36,7 +36,8 @@
     
     $('#yearDropdown, #monthDropdown').change(function() {
 
-      if ($('#yearDropdown').val().length > 0 && $('#monthDropdown').val().length > 0) {
+      if ($('#yearDropdown').val().length > 0 && $('#monthDropdown').val().length > 0) 
+      {
         $('#dayDropdown').prop('disabled', false);
         $('#dayDropdown').find('option').remove();
 
@@ -48,7 +49,8 @@
         }
 
 
-      } else {
+      } 
+      else {
         $('#dayDropdown').prop('disabled', true);
       }
 
@@ -60,6 +62,8 @@
         '${NombreUsuario}' = null;
         alert('${NombreUsuario}');
     }
+    
+  
   
 
 </script>
@@ -73,7 +77,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
       
-    <a class="navbar-brand" href="#" style="color: whitesmoke;">  <img src = 'assets/Images/conversation.png' style="height: 30px; margin-right: 5px;" /> ASKY</a>
+    <a class="navbar-brand" href="/DbConnection" style="color: whitesmoke;">  <img src = 'assets/Images/conversation.png' style="height: 30px; margin-right: 5px;" /> ASKY</a>
   
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -100,7 +104,7 @@
           <ul class="navbar-nav mr-auto">
           
             <li class="nav-item">
-              <button class="btn btn-outline-primary my-2 my-sm-0">Preguntar  <i class="fas fa-question"></i></button>
+              <button class="btn btn-outline-primary my-2 my-sm-0" id="btnPregunta" onclick="location.href = '/DbConnection/assets/html/CrearPreguntas.jsp';">Preguntar  <i class="fas fa-question"></i></button>
             </li>
 
             <form action="./LoginController" method="POST" id="ModalLogIn" enctype="multipart/form-data">
@@ -314,7 +318,7 @@
                   <a onclick = "PruebaServlet()" id="leEstaCosa" href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>             
                 <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
-                <a href="" onClick="LogOut(); class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                <a href=""  class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
               </ul>
             </div> 
                 

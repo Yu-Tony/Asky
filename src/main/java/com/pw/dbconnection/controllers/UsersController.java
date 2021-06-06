@@ -69,9 +69,9 @@ public class UsersController extends HttpServlet
         request.setAttribute("preguntasDB", Preguntas);
         request.setAttribute("categoriasDB", Categorias);
         
-        // Enviamos el request a index.jsp con la informacion
+    
         request.getRequestDispatcher("index.jsp").forward(request, response);
-       //request.getRequestDispatcher("UserController");
+      // request.getRequestDispatcher("UserController");
     }
 
     @Override
@@ -84,6 +84,7 @@ public class UsersController extends HttpServlet
         //2
         String apellidos = request.getParameter("apellidos");
         //3
+        
         LocalDate date1 = LocalDate.of(2017, 1, 13); 
         java.util.Date fecha_nac = java.sql.Date.valueOf(date1);
         
@@ -139,7 +140,7 @@ public class UsersController extends HttpServlet
         }
         
        
-        response.sendRedirect("DbConnection");
+        response.sendRedirect("UsersController");
     }
 
     /**

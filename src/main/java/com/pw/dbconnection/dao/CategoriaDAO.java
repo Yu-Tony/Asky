@@ -43,6 +43,8 @@ public class CategoriaDAO {
                 // Agregamos el usuario a la lista
                 categorias.add(new CategoriaModel(nombreCategoria));
             }
+            
+            con.close();
         } catch (SQLException ex) 
         {
             System.out.println(ex.getMessage());
