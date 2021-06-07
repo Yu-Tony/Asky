@@ -111,15 +111,16 @@ public class UserDAO {
     public static UserModel getUser(UserModel user)
     {
         UserModel userLogin = null;
+
          try 
         {
             Connection con = DbConnection.getConnection();
             CallableStatement statement = con.prepareCall("SELECT * FROM Usuario WHERE correo = ? AND contrasena = ?");
-            statement.setString(1, userLogin.getCorreo());
-            statement.setString(2, userLogin.getContrasena());
+            statement.setString(1, user.getCorreo());
+            statement.setString(2, user.getContrasena());
             ResultSet resultSet = statement.executeQuery();
             // Si el resultSet tiene resultados lo recorremos
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 // Obtenemos el valor del result set en base al nombre de la
                 // columna
                 String nombre = resultSet.getString("nombre");

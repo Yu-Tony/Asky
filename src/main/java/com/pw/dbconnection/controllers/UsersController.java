@@ -44,21 +44,25 @@ public class UsersController extends HttpServlet
         HttpSession MomoSession = request.getSession(false);
         String a=null;
         String b=null;
+        String c=null;
+        String d=null;
        
         if(MomoSession!=null){
           a = (String)MomoSession.getAttribute("correo");
-          b = (String)MomoSession.getAttribute("contraseña");
+          b = (String)MomoSession.getAttribute("contrasena");
+          c = (String)MomoSession.getAttribute("profile_pic");
            request.setAttribute("userSession", a);
           request.setAttribute("pass",  b);
-           System.out.println(a);
+          request.setAttribute("picture",  c);
+          
          
-        System.out.println(a);
         }
         else{
             MomoSession = request.getSession(true);
              request.setAttribute("userSession", a);
           request.setAttribute("pass",  b);
-           System.out.println(a);
+           request.setAttribute("picture",  c);
+           //System.out.println("session == null " + a);
            
         }
         
@@ -135,11 +139,12 @@ public class UsersController extends HttpServlet
         
        if(result==1)
        {
-            /*HttpSession MomoSession = request.getSession();
+            HttpSession MomoSession = request.getSession();
             if(MomoSession!=null)
             {
                 MomoSession.setAttribute("correo", correo);
-                MomoSession.setAttribute("contraseña", contrasena);
+                MomoSession.setAttribute("contrasena", contrasena);
+                 MomoSession.setAttribute("profile_pic", FileUtils.RUTE_USER_IMAGE + "/" + profile_pic);
                // System.out.println("dopost session !=null");
 
             }
@@ -147,18 +152,14 @@ public class UsersController extends HttpServlet
             {
                 MomoSession = request.getSession(true);
                 MomoSession.setAttribute("correo", correo);
-                MomoSession.setAttribute("contraseña", contrasena);
+                MomoSession.setAttribute("contrasena", contrasena);
+                MomoSession.setAttribute("profile_pic", FileUtils.RUTE_USER_IMAGE + "/" + profile_pic);
                 //System.out.println("dopost session==null");
 
-            }*/
+            }
         
-             PrintWriter out = response.getWriter();  
-            response.setContentType("text/html");  
-            out.println("<script type=\"text/javascript\">");  
-            out.println("alert('Bienvenido');");  
-            out.println("</script>");
             
-            response.setHeader("Refresh", "1; URL=UsersController");
+            response.sendRedirect("UsersController");
            //response.sendRedirect("UsersController");
        }
        else

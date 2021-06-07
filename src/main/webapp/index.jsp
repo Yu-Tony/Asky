@@ -246,7 +246,8 @@
 
       <!--https://flylib.com/books/en/1.177.1.20/1/-->
  <c:set var = "NombreUsuario" scope = "application" value = "${userSession}"/>
-  <c:set var = "categorias" scope = "application" value = "${categoriasDB}"/>
+ <c:set var = "ImagenUsuario" scope = "application" value = "${picture}"/>
+ <c:set var = "categorias" scope = "application" value = "${categoriasDB}"/>
     
     <c:forEach var ="preguntas" items="${preguntasDB}">
         <div class="row">

@@ -15,9 +15,12 @@ import com.pw.dbconnection.utils.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -40,6 +43,61 @@ public class LoginController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        //1
+        String correo = request.getParameter("correo");
+         //System.out.println("correo login " + correo);
+        //2
+        String contrasena = request.getParameter("contrasena");
+        // System.out.println("pass login " + contrasena);
+         
+        HttpSession MomoSession = request.getSession();
+
+        if(correo!=null)
+        {
+           UserModel user = new UserModel(correo, contrasena);
+           UserModel result = UserDAO.getUser(user);
+
+            // Retornamos al index
+            if(result!=null)
+            {
+               
+                if(MomoSession!=null){
+                    MomoSession.setAttribute("correo", result.getCorreo());
+                    MomoSession.setAttribute("contrasena", result.getContrasena());
+                     MomoSession.setAttribute("profile_pic", result.getProfile_pic());
+                    //System.out.println("dopost session !=null");
+
+                }
+                else
+                {
+                    MomoSession = request.getSession(true);
+                    MomoSession.setAttribute("correo", result.getCorreo());
+                    MomoSession.setAttribute("contrasena", result.getContrasena());
+                     MomoSession.setAttribute("profile_pic", result.getProfile_pic());
+                    //System.out.println("dopost session==null");
+
+                }
+                response.sendRedirect("UsersController");
+            }
+            else
+            {
+                     PrintWriter out = response.getWriter();  
+                response.setContentType("text/html");  
+                out.println("<script type=\"text/javascript\">");  
+                out.println("alert('Correo o contraseña incorrecta');");  
+                out.println("</script>");
+                 //messages.put("correo", "Correo o contraseña incorrecta");
+                 //request.setAttribute("correo", messages);
+                 //request.getRequestDispatcher("index.jsp").forward(request, response);
+                    response.setHeader("Refresh", "1; URL=UsersController");
+            }
+         }
+         else
+         {
+               System.out.println("logout ");
+            MomoSession.invalidate();  
+               response.sendRedirect("UsersController");
+         }
 
    
     }
@@ -56,37 +114,16 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-             //1
-        String correo = request.getParameter("correo");
-         System.out.println("correo login" + correo);
-        //2
-        String contrasena = request.getParameter("contrasena");
-         System.out.println("pass login" + contrasena);
-      
-        UserModel user = new UserModel(correo, contrasena);
-        UserDAO.getUser(user);
-        // Retornamos al index
-        
-        HttpSession MomoSession = request.getSession();
-        if(MomoSession!=null){
-            MomoSession.setAttribute("correo", correo);
-            MomoSession.setAttribute("contraseña", contrasena);
-            System.out.println("dopost session !=null");
-          
-        }else{
-            MomoSession = request.getSession(true);
-            MomoSession.setAttribute("correo", correo);
-            MomoSession.setAttribute("contraseña", contrasena);
-            System.out.println("dopost session==null");
-           
-        }
-        
+ 
 
+        doGet(request,response);
         
-        response.sendRedirect("UsersController");
+     
         
     }
 
+    
+    
     /**
      * Returns a short description of the servlet.
      *

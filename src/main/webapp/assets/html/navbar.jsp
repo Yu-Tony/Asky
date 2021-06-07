@@ -105,10 +105,12 @@
         <span class="navbar-text" style="margin-right: 2%">
          
           <ul class="navbar-nav mr-auto">
-          
-            <li class="nav-item">
-              <button class="btn btn-outline-primary my-2 my-sm-0" id="btnPregunta" onclick="location.href = '/DbConnection/assets/html/CrearPreguntas.jsp';">Preguntar  <i class="fas fa-question"></i></button>
-            </li>
+              <c:if test = "${NombreUsuario != null}">
+                <li class="nav-item">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" id="btnPregunta" onclick="location.href = '/DbConnection/assets/html/CrearPreguntas.jsp';">Preguntar  <i class="fas fa-question"></i></button>
+                </li>
+              </c:if>
+            
 
             <form action="./LoginController" method="POST" id="ModalLogIn" enctype="multipart/form-data">
               <!-- Button trigger modal -->
@@ -141,8 +143,8 @@
                         
                                 <div class="text-center">
                                   <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" class="img-fluid rounded-circle" alt="Responsive image" style="margin-bottom: 30px;"/>
-                                  <input id="emailLI" type="text" class="form-control input-sm" placeholder="Enter Email" name="correo" required autocomplete="off" required /> 
-                                  <input id="ps1LI" type="password" class="form-control input-sm" placeholder="Enter Password" name="contrasena" required /> 
+                                  <input style="margin-bottom: 10px"  id="emailLI" type="text" class="form-control input-sm" placeholder="Enter Email" name="correo" required autocomplete="off" required /> 
+                                  <input style="margin-bottom: 10px"  id="ps1LI" type="password" class="form-control input-sm" placeholder="Enter Password" name="contrasena" required /> 
                                 </div>
 
                 
@@ -150,9 +152,14 @@
                 
                         
                                 <div class="container text-center" >
-                                  <div class="col-4">  <span class="psw">Forgot <a href="https://www.youtube.com/watch?v=Fc-fa6cAe2c">password?</a></span></div>
+                                    <!--        <div class="col-4">  <span class="psw">Forgot <a href="https://www.youtube.com/watch?v=Fc-fa6cAe2c">password?</a></span></div>
                                   <div class="col-4"> <button  type="submit" class="btn btn-primary">Login</button></div>
                                   <div class="col-4">  <label style="float: right;"> <input type="checkbox" checked="checked" name="remember" /> Remember me </label></div>
+ -->
+                                    
+                                  <div class="col-4"> </div>
+                                  <div class="col-4"> <button  type="submit" class="btn btn-primary">Login</button></div>
+                                  <div class="col-4"></div>
 
                                 
                                  
@@ -206,19 +213,20 @@
                             <div class="text-center">
                               <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" id="imagen_perfil" class="img-fluid rounded-circle" alt="Imagen de perfil" style="margin-bottom: 30px; width: 300px;  "/>
                           
-                              <input type="file" name="profile_pic" id="profile_pic" hidden onchange="readURL(this);"  accept="image/x-png,image/jpeg" />
-                              <label for="profile_pic" class="btn btn-outline-primary center">Choose file</label>
+                              <input type="file" required name="profile_pic" id="profile_pic" onchange="readURL(this);"  accept="image/x-png,image/jpeg" style="margin-bottom: 20px" />
+                              <!--<label for="profile_pic" class="btn btn-outline-primary center">Choose file</label>-->
+                              
                               <div class="input-group" style="margin-bottom: 15px;"> 
                         
                                 <input id="nombre" type="text" class="form-control input-sm" placeholder="Nombres" name="nombre" required oninput="validateFName();" />
                                 <input id="apellidos" type="text" class="form-control input-sm" placeholder="Apellidos" name="apellidos" required oninput="validateLName();" /> 
                       
                               </div> 
-                              <input id="correo" type="text" class="form-control input-sm" placeholder="Enter Email" name="correo" autocomplete="off" required oninput="validateMail();"/> 
-                              <input id="username" type="text" class="form-control input-sm" placeholder="Enter Username" name="username" autocomplete="off" required/> 
-                              <input id="contrasena" type="password" class="form-control input-sm" placeholder="Enter Password" name="contrasena" required oninput="validatePassword();" /> 
-                              <input id="pw2SU" type="password" class="form-control input-sm" placeholder="Confirm Password" name="pw2" required  oninput="validatePassword();"/>  
-                              <label for="Birthday"><b>Fecha de nacimiento</b></label>
+                              <input style="margin-bottom: 10px"  id="correo" type="text" class="form-control input-sm" placeholder="Enter Email" name="correo" autocomplete="off" required oninput="validateMail();"/> 
+                              <input style="margin-bottom: 10px"  id="username" type="text" class="form-control input-sm" placeholder="Enter Username" name="username" autocomplete="off" required/> 
+                              <input style="margin-bottom: 10px"  id="contrasena" type="password" class="form-control input-sm" placeholder="Enter Password" name="contrasena" required oninput="validatePassword();" /> 
+                              <input style="margin-bottom: 10px"  id="pw2SU" type="password" class="form-control input-sm" placeholder="Confirm Password" name="pw2" required  oninput="validatePassword();"/>  
+                              <label style="margin-bottom: 10px"  for="Birthday"><b>Fecha de nacimiento</b></label>
                               <div class="form-row">
                                  
                                                  
@@ -311,7 +319,7 @@
             <c:if test = "${NombreUsuario != null}">
                  <div class="dropdown" id="ProfileDropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >
-                  <img id="ImageDropPerfil" src="https://64.media.tumblr.com/0ec4ce1891988685d8e0fde02613e879/360aba19a5843b67-af/s640x960/eb66bc39b8a25fefb7b489237fccd01fb6bdc297.jpg" style="max-width: 25px;">
+                  <img id="ImageDropPerfil" src= "${ImagenUsuario}" style="max-width: 25px;">
                  <span class="caret"></span>
               </button>
                 
@@ -320,7 +328,7 @@
                   <a onclick = "PruebaServlet()" id="leEstaCosa" href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>             
                 <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
-                <a href=""  class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                <a href="LoginController"  class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
               </ul>
             </div> 
                 
