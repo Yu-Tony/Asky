@@ -6,7 +6,9 @@
 package com.pw.dbconnection.controllers;
 
 import com.pw.dbconnection.dao.PreguntaDAO;
+import com.pw.dbconnection.dao.RespuestaDAO;
 import com.pw.dbconnection.models.PreguntaModel;
+import com.pw.dbconnection.models.RespuestaModel;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -35,8 +37,10 @@ public class ShowPreguntaController extends HttpServlet{
             a = (int)MomoSession.getAttribute("IdShowPregunta");
             System.out.println(MomoSession.getAttribute("IdShowPregunta"));
             PreguntaModel miPregunta = PreguntaDAO.idPregunta(a);
-        
+            List<RespuestaModel> misRespuestas = RespuestaDAO.getRespuestas(a);
+            System.out.println(misRespuestas.size());
             request.setAttribute("MostrarPregunta", miPregunta);
+            request.setAttribute("MostrarRespuestas", misRespuestas);
             System.out.println(miPregunta.getContenido());
         
        

@@ -12,7 +12,17 @@ import java.sql.Date;
  * @author teb
  */
 public class RespuestaModel {
-
+    
+    
+     public RespuestaModel(String contenido, int id, String imagen, String usuario, Boolean mejor, Date fecha){
+        this.contenido = contenido;
+        this.id = id;
+        this.imagen = imagen;
+        this.mejor = mejor;
+        this.fecha_Respuesta = fecha;
+        this.usuario = usuario;
+    }
+    
     public int getId() {
         return id;
     }
@@ -40,6 +50,14 @@ public class RespuestaModel {
     public boolean isMejor() {
         return mejor;
     }
+    
+    public void setUsuario(String usuario){
+        this.usuario = usuario;
+    }
+    
+    public String getUsuario(){
+        return usuario;
+    }
 
     public void setMejor(boolean mejor) {
         this.mejor = mejor;
@@ -55,9 +73,11 @@ public class RespuestaModel {
     
       private int id;
       private String contenido;
+      private String usuario;
       private String imagen;
       private boolean mejor;
       private Date fecha_Respuesta;
+     
 
     
 }
