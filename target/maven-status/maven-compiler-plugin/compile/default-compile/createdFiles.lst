@@ -11,10 +11,12 @@ com\pw\dbconnection\controllers\ProfileController.class
 com\pw\dbconnection\dao\UserDAO.class
 com\pw\dbconnection\models\FavModel.class
 com\pw\dbconnection\controllers\LikeController.class
+com\pw\dbconnection\controllers\ShowPreguntaController.class
 com\pw\dbconnection\models\LikeModel.class
 com\pw\dbconnection\models\RespuestaModel.class
 com\pw\dbconnection\controllers\LoginController.class
 com\pw\dbconnection\dao\FavDAO.class
+com\pw\dbconnection\dao\RespuestaDAO.class
 com\pw\dbconnection\utils\DbConnection.class
 com\pw\dbconnection\dao\LikeDAO.class
 com\pw\dbconnection\controllers\SearchController.class

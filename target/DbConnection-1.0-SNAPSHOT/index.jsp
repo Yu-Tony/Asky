@@ -24,7 +24,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
+ 
 
 
   <!--CSS-->
@@ -34,7 +34,18 @@
      <link rel="stylesheet" href="./assets/css/paginacion.css">
     <!--JS-->
   <script src="./assets/js/NavBar.js"></script>
-
+  
+  
+  
+    <script type="javascript">
+        $(document).ready(function() 
+        {   
+        function OpenPregunta(myId){
+          $.post("./ShowPreguntaController", {IdPregunta : myId});
+          //  onclick="location.href = '/DbConnection/assets/html/pregunta.jsp';" 
+        }
+        });
+    </script>
 
 
     <!--FONT AWESOME  -->
@@ -48,12 +59,22 @@
 
 <body style="background-color: #F1F1F1;">
 
+
     
   <script>
+     
     
     $(document).ready(function() 
     {
-        
+      $('.container').on('click', '.col-sm-8', function(){
+          //System.out.println($(this).children('.idPregunta').text());
+          $.post("./ShowPreguntaController", {IdPregunta : $(this).children('.IdMyPreg').text()});
+          //System.out.println("ESTO SALIO");
+          
+      });       
+       
+       
+
        
       /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
       $('.like').click(function() 
@@ -165,7 +186,7 @@
      
       
       });
-
+      
       /*-----------------TOOGLE FAV CON NUMERO---------------------*/
       $('.fav').click(function()
       {
@@ -213,7 +234,7 @@
 		});
     
     });
-
+  
   
     $(function(){
       $("#includeFooter").load("assets/html/footer.jsp"); 
@@ -249,7 +270,7 @@
   <c:set var = "categorias" scope = "application" value = "${categoriasDB}"/>
     
     <c:forEach var ="preguntas" items="${preguntasDB}">
-        <div class="row">
+        <div   class="row">
    
             <div class="col-sm-3">
                     
@@ -257,7 +278,8 @@
 
 
       <!--QUIESTIONS-->
-            <div class="col-sm-8" >
+            <div  onclick="location.href = '/DbConnection/assets/html/pregunta.jsp';"  class="col-sm-8" >
+              <div class="IdMyPreg" style="display: none">${preguntas.id}</div>
               <div class="container question" style="background-color: #ffffff; margin-bottom: 2%; padding: 5%;">
                 <!--NAME-->
                 <div class="row">
@@ -328,7 +350,7 @@
             </c:forEach>
 
 
-
+   
 
    <div id="includePagination"></div>
 

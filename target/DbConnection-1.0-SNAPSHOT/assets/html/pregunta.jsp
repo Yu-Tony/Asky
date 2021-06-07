@@ -3,7 +3,7 @@
     Created on : 6/06/2021, 01:14:01 AM
     Author     : teb - https://github.com/Yu-Tony
 --%>
-
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -63,11 +63,15 @@
 </head>
 
 <body style="background-color: #F1F1F1;">
-
+    
   <script>
 
 $(document).ready(function() 
-    {
+    {   
+        
+        $(function(){
+           // alert($('#blablabla').text());
+         });
       /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
       $('.like').click(function() 
       {
@@ -696,17 +700,17 @@ $(document).ready(function()
         <div class="col-sm-3">
 
         </div>
-
-
+       
+        <c:set var = "LaPregunta" scope = "application" value = "${MostrarPregunta}"/>
         <!--QUIESTIONS-->
         <div class="col-sm-8" >
           <div class="container question" style="background-color: #ffffff; margin-bottom: 2%; padding: 5%;">
             <!--NAME-->
             <div class="row MainRow">
               <div class="col-2 "> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
-              <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
+              <div  id="blablabla"class="col-4"> <h6 style="padding-top: 10%;">${LaPregunta.usuarioPregunta}</h6></div>
               <div class="col-3"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
-              <div class="col-1"> <i class="far fa-star fav">0</i></div>
+              <div class="col-1"> <i class="far fa-star fav">${LaPregunta.fav}</i></div>
               <div class="col-1" id="delete-post">
 
                  <!-- Button trigger modal -->
@@ -742,7 +746,7 @@ $(document).ready(function()
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-8">
-                  <h3>Titulo de la pregunta</h3>
+                  <h3>${LaPregunta.contenido}</h3>
                 </div>
                 <div class="col-2">
                     <h6 >Editada</h6>
@@ -752,7 +756,7 @@ $(document).ready(function()
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-10">
-                  <h6>Descripcion de la pregunta</h6>
+                  <h6>${LaPregunta.descripcion}</h6>
                 </div>
               </div>
               <div class="row">
