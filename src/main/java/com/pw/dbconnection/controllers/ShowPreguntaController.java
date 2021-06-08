@@ -39,8 +39,8 @@ public class ShowPreguntaController extends HttpServlet{
             PreguntaModel miPregunta = PreguntaDAO.idPregunta(a);
             List<RespuestaModel> misRespuestas = RespuestaDAO.getRespuestas(a);
             System.out.println(misRespuestas.size());
-            request.setAttribute("MostrarPregunta", miPregunta);
-            request.setAttribute("MostrarRespuestas", misRespuestas);
+            MomoSession.setAttribute("MostrarPregunta", miPregunta);
+            MomoSession.setAttribute("MostrarRespuestas", misRespuestas);
             System.out.println(miPregunta.getContenido());
         
        

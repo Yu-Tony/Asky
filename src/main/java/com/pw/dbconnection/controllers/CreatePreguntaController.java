@@ -34,14 +34,16 @@ public class CreatePreguntaController extends HttpServlet{
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        String Titulo = request.getParameter("qTitulo");
+        System.out.println("minimo entro al controller");
+        String Titulo = request.getParameter("pTitulo");
         //2
-        String Contenido = request.getParameter("pregunta");      
+        String Contenido = request.getParameter("pContenido");      
         //7
         String username = "bernabe4";    
         //8
         int categoria = 1;
+        
+        
         //9
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         LocalDate localDate = LocalDate.now();
@@ -50,6 +52,6 @@ public class CreatePreguntaController extends HttpServlet{
         PreguntaModel pregunta = new PreguntaModel(Titulo, Contenido, username, categoria, fecha_crea);
         PreguntaDAO.insertPregunta(pregunta);
         
-        response.sendRedirect("assets/html/CrearPreguntas.jsp");        
+        response.sendRedirect("UsersController");        
     }
 }

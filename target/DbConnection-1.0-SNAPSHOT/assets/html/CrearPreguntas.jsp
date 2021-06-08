@@ -3,7 +3,7 @@
     Created on : 1/06/2021, 11:55:44 PM
     Author     : teb - https://github.com/Yu-Tony
 --%>
-
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -45,15 +45,24 @@
 
 </head>
 
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 
 <body style="background-color: #F1F1F1;">
 
   <script>
-    
-  
+
     /*-----------------UPLOAD IMAGE------------*/
     $(document).ready(function() {
+        
+        
+         $('.row').on('click', '#btnPublicar', function(){
+            System.out.println("minimo sirve el boton");
+            $.post("./CreatePreguntaController", {pTitulo: $('#qTitulo').text(), pContenido: $('#pregunta').text()});
+        });
+        
+        /*-----------------TOOLTIP INPUT------------*/
+        $('input[rel="txtTooltip"]').tooltip();
+       
         if (window.File && window.FileList && window.FileReader) 
         {
             $("#files").on("change", function(e) 
@@ -84,11 +93,6 @@
             alert("Your browser doesn't support to File API")
         }
     });
-
-     /*-----------------TOOLTIP INPUT------------*/
-     $(document).ready(function() {
-  $('input[rel="txtTooltip"]').tooltip();
-});
 
  $(function(){
       $("#includeFooter").load("footer.jsp"); 
@@ -134,7 +138,7 @@
         <!--QUIESTIONS-->
         <div class="col-sm-7" style="margin-bottom: 5%;">
      
-          <form class="modal-content animate" action="./CreatePreguntaController" method="POST">
+        
   
               <div class="container" style="background-color: white;">
         
@@ -181,7 +185,7 @@
 
 
                         <div class="container" style="text-align: center; margin-bottom: 2%; margin-top: 3%;">
-                          <button  type="submit"  class="btn btn-primary">Publicar Pregunta</button>
+                          <button  id = "btnPublicar" type="submit"  class="btn btn-primary">Publicar Pregunta</button>
                         </div>
                 
         
@@ -195,7 +199,7 @@
         
     
         
-            </form>
+
 
         </div>
 

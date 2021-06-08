@@ -315,7 +315,7 @@
                 
               <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
                   
-                  <a onclick = "PruebaServlet()" id="leEstaCosa" href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>             
+                  <a onclick="location.href = '/DbConnection/assets/html/perfil.jsp';"  id="leEstaCosa" href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>             
                 <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
                 <a href=""  class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>

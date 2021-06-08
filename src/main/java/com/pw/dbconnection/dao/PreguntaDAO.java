@@ -265,9 +265,10 @@ public class PreguntaDAO {
       }
       
       public static int insertPregunta(PreguntaModel myPregunta){
-            
+            Connection con =null;
           try{
-            Connection con = DbConnection.getConnection();
+              System.out.println("Lo intentamos ");
+            con = DbConnection.getConnection();
             CallableStatement statement = con.prepareCall("insert into Pregunta(contenido, categoria, usuario, descripcion, fecha) values (?,?,?,?,?)");
             statement.setString(1, myPregunta.getContenido());
             statement.setInt(2, myPregunta.getCatId());
@@ -277,7 +278,11 @@ public class PreguntaDAO {
             return statement.executeUpdate();
           }catch (SQLException ex) {
             System.out.println(ex.getMessage());
+            System.out.println("pero no pudo funcionar");
           } finally {
+              try{
+              con.close();
+              }catch(SQLException ex){}
               
               
           }

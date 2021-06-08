@@ -11,7 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASKY</title>
-  
+ 
   <link rel="shortcut icon" type="image/x-icon" href="assets/Images/conversation.png" />
 
   <!-- Latest compiled and minified CSS -->
@@ -43,6 +43,8 @@
         function OpenPregunta(myId){
           $.post("./ShowPreguntaController", {IdPregunta : myId});
           //  onclick="location.href = '/DbConnection/assets/html/pregunta.jsp';" 
+          
+         
         }
         });
     </script>
@@ -69,6 +71,9 @@
       $('.container').on('click', '.col-sm-8', function(){
           //System.out.println($(this).children('.idPregunta').text());
           $.post("./ShowPreguntaController", {IdPregunta : $(this).children('.IdMyPreg').text()});
+           setTimeout(function () {
+            window.location.href = '/DbConnection/assets/html/pregunta.jsp'; //will redirect to your blog page (an ex: blog.html)
+           }, 500);
           //System.out.println("ESTO SALIO");
           
       });       
@@ -278,7 +283,7 @@
 
 
       <!--QUIESTIONS-->
-            <div  onclick="location.href = '/DbConnection/assets/html/pregunta.jsp';"  class="col-sm-8" >
+            <div  class="col-sm-8" >
               <div class="IdMyPreg" style="display: none">${preguntas.id}</div>
               <div class="container question" style="background-color: #ffffff; margin-bottom: 2%; padding: 5%;">
                 <!--NAME-->
