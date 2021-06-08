@@ -110,12 +110,13 @@
 
   <!--NAVBAR-->
   
+  <div id="includeNavBar" style="top: 0;  z-index: 100; position: fixed; width: 100%;"></div>
 
- <div id="includeNavBar"></div>
-
-
+  <div class="row" style="margin-bottom: 100px">
+          <div class="col-12"></div>
+      </div>
+  
   <div id="includeSidebar"></div>
-
 
   <!--PREGUNTAS-->
   <div class="container" style="margin-top: 2%;">
@@ -175,7 +176,7 @@
                 
                      
                           <div class="field" style="align-self:center;">
-                            <input type="file" id="files" name="files[]" multiple accept="image/*" />
+                            <input required type="file" id="files" name="files[]" multiple accept="image/*" />
                           </div>                
              
 

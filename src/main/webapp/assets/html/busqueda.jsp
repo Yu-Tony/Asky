@@ -25,13 +25,13 @@
    
 
   <!--CSS-->
-  <link rel="stylesheet" href="../css/navbar.css" />
-  <link rel="stylesheet" href="../css/Home.css">
-  <link rel="stylesheet" href="../css/sidebar.css">
-  <link rel="stylesheet" href="../css/paginacion.css">
+  <link rel="stylesheet" href="/DbConnection/assets/css/navbar.css" />
+  <link rel="stylesheet" href="/DbConnection/assets/css/Home.css">
+  <link rel="stylesheet" href="/DbConnection/assets/css/sidebar.css">
+  <link rel="stylesheet" href="/DbConnection/assets/css/paginacion.css">
 
     <!--JS-->
-  <script src="../js/NavBar.js"></script>
+  <script src="/DbConnection/assets/js/NavBar.js"></script>
 
 
 
@@ -229,19 +229,19 @@
 
 
     $(function(){
-      $("#includeFooter").load("footer.jsp"); 
+      $("#includeFooter").load("/DbConnection/assets/html/footer.jsp"); 
     });
 
     $(function(){
-      $("#includePagination").load("paginacion.html"); 
+      $("#includePagination").load("/DbConnection/assets/html/paginacion.html"); 
     });
 
     $(function(){
-      $("#includeSidebar").load("sidebar.jsp"); 
+      $("#includeSidebar").load("/DbConnection/assets/html/sidebar.jsp"); 
     });
 
     $(function(){
-      $("#includeNavBar").load("navbar.jsp"); 
+      $("#includeNavBar").load("/DbConnection/assets/html/navbar.jsp"); 
     });
 
 
@@ -250,7 +250,11 @@
   <!--NAVBAR-->
   
 
- <div id="includeNavBar"></div>
+  <div id="includeNavBar" style="top: 0;  z-index: 100; position: fixed; width: 100%;"></div>
+
+  <div class="row" style="margin-bottom: 100px">
+          <div class="col-12"></div>
+      </div>
 
 
   <div id="includeSidebar"></div>
@@ -416,8 +420,18 @@
    </div>
    </c:forEach>
 
-
-   <div id="includePagination"></div>
+    <div class="text-center">
+        <ul class="pagination">
+            <li><a href="">«</a></li>
+            <li><a class="active" href="/DbConnection/SearchController?page=1">1</a></li>
+            <li><a href="/DbConnection/SearchController?page=2">2</a></li>
+            <li><a href="/DbConnection/SearchController?page=3">3</a></li>
+            <li><a href="/DbConnection/SearchController?page=4">4</a></li>
+            <li><a href="/DbConnection/SearchController?page=5">5</a></li>
+            <li><a href="/DbConnection/SearchController?page=6">6</a></li>
+            <li><a href="#">»</a></li>
+          </ul>
+    </div>
 
 </div>
 

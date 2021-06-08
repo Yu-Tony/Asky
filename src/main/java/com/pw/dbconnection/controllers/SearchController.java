@@ -27,7 +27,61 @@ import javax.servlet.http.HttpSession;
 @MultipartConfig(maxFileSize = 1000 * 1000 * 5, maxRequestSize = 1000 * 1000 * 25, fileSizeThreshold = 1000 * 1000)
 public class SearchController extends HttpServlet {
     
-    
+       @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        
+   HttpSession MomoSession = request.getSession(false);
+        String a=null;
+
+        if(MomoSession!=null){
+          a = (String)MomoSession.getAttribute("srchString");
+         // request.setAttribute("srchResult", a);
+
+        }
+        else{
+            MomoSession = request.getSession(true);
+ 
+
+           //System.out.println("session == null " + a);
+           
+        }
+        
+ 
+           System.out.println("cosa a buscar en doget " + a);
+       // System.out.println("idk por que se imprime esto" +nombre);
+        
+         String spageid1=request.getParameter("page"); 
+         if(spageid1==null)
+         {
+             spageid1 = "1";
+         }
+        int pageid1=Integer.parseInt(spageid1);  
+        int total1=10;  
+
+        if(pageid1==1){}  
+        else{  
+            pageid1=pageid1-1;  
+            pageid1=pageid1*total1+1;  
+        }  
+        spageid1 = Integer.toString(pageid1);
+  
+         
+        List<PreguntaModel> Preguntas = PreguntaDAO.buscarPregunta(a,spageid1);
+        
+         if(MomoSession!=null){
+ 
+            MomoSession.setAttribute("srchResult", Preguntas);
+            System.out.println("SE SETEO");
+        }
+        else{
+            MomoSession = request.getSession(true);
+            MomoSession.setAttribute("srchResult", Preguntas);  
+        }
+
+        request.getRequestDispatcher("/assets/html/busqueda.jsp").forward(request, response);
+       
+    }
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,22 +94,45 @@ public class SearchController extends HttpServlet {
         LikeDAO.insertLike(like);
         */
         
+        /*------------------paginacion---------------*/
         String nombre = request.getParameter("busqueda");
-        System.out.println(nombre);
-        List<PreguntaModel> Preguntas = PreguntaDAO.buscarPregunta(nombre);
+         System.out.println("cosa a buscar en dopost " + nombre);
+
+        
+        /* String spageid1=request.getParameter("page"); 
+         if(spageid1==null)
+         {
+             spageid1 = "1";
+         }
+        int pageid1=Integer.parseInt(spageid1);  
+        int total1=10;  
+
+        if(pageid1==1){}  
+        else{  
+            pageid1=pageid1-1;  
+            pageid1=pageid1*total1+1;  
+        }  
+        spageid1 = Integer.toString(pageid1);*/
+         /*------------------paginacion-----------------*/
+         
+        List<PreguntaModel> Preguntas = PreguntaDAO.buscarPregunta(nombre,"1");
 
        
         //request.setAttribute("srchResult", Preguntas);
         HttpSession MomoSession = request.getSession(false);
         if(MomoSession!=null){
+            MomoSession.setAttribute("srchString", nombre);
             MomoSession.setAttribute("srchResult", Preguntas);
             System.out.println("SE SETEO");
         }
         else{
             MomoSession = request.getSession(true);
+            MomoSession.setAttribute("srchString", nombre);
             MomoSession.setAttribute("srchResult", Preguntas);  
         }
-        response.sendRedirect("assets/html/busqueda.jsp");        
+        
+        response.sendRedirect("SearchController");
+        //response.sendRedirect("assets/html/busqueda.jsp");        
     }
    
 }

@@ -71,16 +71,37 @@ public class UsersController extends HttpServlet
            
         }
         
+        
+         String spageid1=request.getParameter("page"); 
+         if(spageid1==null)
+         {
+             spageid1 = "1";
+         }
+         
+        
+         
+        int pageid1=Integer.parseInt(spageid1);  
+        int total1=10;  
+
+        if(pageid1==1){}  
+        else{  
+            pageid1=pageid1-1;  
+            pageid1=pageid1*total1+1;  
+        }  
+        spageid1 = Integer.toString(pageid1);
+        
         // Obtenemos las Preguntas del DAO
-        List<PreguntaModel> Preguntas = PreguntaDAO.getPreguntas();
+        List<PreguntaModel> Preguntas = PreguntaDAO.getPreguntas(spageid1);
         List<CategoriaModel> Categorias = CategoriaDAO.getCategorias();
-        // Lo agregamos como atributo al request
+        
+      
+            // Lo agregamos como atributo al request
         request.setAttribute("preguntasDB", Preguntas);
-        request.setAttribute("categoriasDB", Categorias);
+       request.setAttribute("categoriasDB", Categorias);
         
     
         request.getRequestDispatcher("index.jsp").forward(request, response);
-      // request.getRequestDispatcher("UserController");
+       //request.getRequestDispatcher("UserController");
     }
 
     @Override

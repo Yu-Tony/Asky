@@ -349,10 +349,22 @@
                                 
             </c:forEach>
 
+   
+    <div class="text-center">
+        <ul class="pagination">
+            <li><a href="">«</a></li>
+            <li><a class="active" href="UsersController?page=1">1</a></li>
+            <li><a href="UsersController?page=2">2</a></li>
+            <li><a href="UsersController?page=3">3</a></li>
+            <li><a href="UsersController?page=4">4</a></li>
+            <li><a href="UsersController?page=5">5</a></li>
+            <li><a href="UsersController?page=6">6</a></li>
+            <li><a href="#">»</a></li>
+          </ul>
+    </div>
 
-
-
-   <div id="includePagination"></div>
+<!--<div id="includePagination"></div>-->
+   
 
 </div>
 

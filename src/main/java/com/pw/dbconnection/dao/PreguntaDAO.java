@@ -23,23 +23,31 @@ import static javax.swing.JOptionPane.showMessageDialog;
  */
 public class PreguntaDAO {
     
-     public static List<PreguntaModel> getPreguntas(){
+     public static List<PreguntaModel> getPreguntas(String start1){
          List<PreguntaModel> preguntas = new ArrayList<>();
          Connection con=null;
          
         try 
         {
+            int pageid1=Integer.parseInt(start1);  
+            pageid1 = pageid1-1;
+           // "select * from student limit "+(start1-1)+","+total1
+                    
             con = DbConnection.getConnection();
-            CallableStatement statement = con.prepareCall("select * from Pregunta limit 10");
+            CallableStatement statement = con.prepareCall("SELECT * FROM Pregunta LIMIT ?,10");
+            statement.setInt(1, pageid1);
             ResultSet resultSet = statement.executeQuery();
             // Si el resultSet tiene resultados lo recorremos
 
             
+             
             while (resultSet.next()) {
                 // Obtenemos el valor del result set en base al nombre de la
                 // columna
             
+             
                 String contenido = resultSet.getString("contenido");
+                 //System.out.println("page number DAO " + contenido);
                 int id = resultSet.getInt("id");
                 String descripcion = resultSet.getString("descripcion");
                 String imagenPregunta = resultSet.getString("imagen");
@@ -104,21 +112,25 @@ public class PreguntaDAO {
         }
      }
     
-      public static List<PreguntaModel> buscarPregunta(String aBuscar){
+      public static List<PreguntaModel> buscarPregunta(String aBuscar, String start1){
                    List<PreguntaModel> preguntas = new ArrayList<>();
          
         try 
         {
+            int pageid1=Integer.parseInt(start1);  
+            pageid1 = pageid1-1;
             
             Connection con = DbConnection.getConnection();
              System.out.println("Llego");
              System.out.println(aBuscar);
              String pstmt;
             
-            CallableStatement statement = con.prepareCall("select * from pregunta where contenido like ? limit 10");
+            CallableStatement statement = con.prepareCall("select * from pregunta where contenido like ? limit ?,10");
             statement.setString(1,  "%" + aBuscar + "%");
+            statement.setInt(2, pageid1);
             ResultSet resultSet = statement.executeQuery();
            
+            System.out.println("busqueda page " + pageid1);
             // Si el resultSet tiene resultados lo recorremos
 
             
@@ -131,7 +143,7 @@ public class PreguntaDAO {
                 String descripcion = resultSet.getString("descripcion");
                 String imagenPregunta = resultSet.getString("imagen");
                 String usuarioPregunta = resultSet.getString("usuario");
-                System.out.println(usuarioPregunta);
+                //System.out.println(usuarioPregunta);
                 int categoriaPreguntaID = resultSet.getInt("categoria");
                 String categoriaPregunta = null;
                 Date fecha_Pregunta = resultSet.getDate("fecha");
@@ -175,7 +187,10 @@ public class PreguntaDAO {
                 
                 // Agregamos el usuario a la lista
                 preguntas.add(new PreguntaModel(contenido, id, descripcion, imagenPregunta, usuarioPregunta, categoriaPregunta, fecha_Pregunta, fav, util,comentarios));
+                
+               
             }
+             con.close();
         } catch (SQLException ex) 
         {
             System.out.println(ex.getMessage());
@@ -186,9 +201,9 @@ public class PreguntaDAO {
       }
       
       public static int insertPregunta(PreguntaModel myPregunta){
-            
+             Connection con = null;
           try{
-            Connection con = DbConnection.getConnection();
+            con = DbConnection.getConnection();
             CallableStatement statement = con.prepareCall("insert into Pregunta(contenido, categoria, usuario, descripcion, fecha) values (?,?,?,?,?)");
             statement.setString(1, myPregunta.getContenido());
             statement.setInt(2, myPregunta.getCatId());
@@ -200,7 +215,14 @@ public class PreguntaDAO {
             System.out.println(ex.getMessage());
           } finally {
               
-              
+               try
+            {
+                  con.close();
+            }
+            catch(SQLException e)
+            {
+                 System.out.println(e.getMessage());
+            }
           }
             
       
