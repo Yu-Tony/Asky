@@ -44,5 +44,10 @@
         <servlet-class>com.pw.dbconnection.controllers.CreatePreguntaController</servlet-class>
     </servlet>
     
+     <servlet>
+        <servlet-name>ShowPreguntaController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.ShowPreguntaController</servlet-class>
+    </servlet>
+    
     
 </web-app>

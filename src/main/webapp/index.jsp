@@ -11,7 +11,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASKY</title>
-  
+ 
   <link rel="shortcut icon" type="image/x-icon" href="assets/Images/conversation.png" />
 
   <!-- Latest compiled and minified CSS -->
@@ -24,7 +24,7 @@
 
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-
+ 
 
 
   <!--CSS-->
@@ -34,7 +34,20 @@
      <link rel="stylesheet" href="./assets/css/paginacion.css">
     <!--JS-->
   <script src="./assets/js/NavBar.js"></script>
-
+  
+  
+  
+    <script type="javascript">
+        $(document).ready(function() 
+        {   
+        function OpenPregunta(myId){
+          $.post("./ShowPreguntaController", {IdPregunta : myId});
+          //  onclick="location.href = '/DbConnection/assets/html/pregunta.jsp';" 
+          
+         
+        }
+        });
+    </script>
 
 
     <!--FONT AWESOME  -->
@@ -48,12 +61,25 @@
 
 <body style="background-color: #F1F1F1;">
 
+
     
   <script>
+     
     
     $(document).ready(function() 
     {
-        
+      $('.container').on('click', '.col-sm-8', function(){
+          //System.out.println($(this).children('.idPregunta').text());
+          $.post("./ShowPreguntaController", {IdPregunta : $(this).children('.IdMyPreg').text()});
+           setTimeout(function () {
+            window.location.href = '/DbConnection/assets/html/pregunta.jsp'; //will redirect to your blog page (an ex: blog.html)
+           }, 500);
+          //System.out.println("ESTO SALIO");
+          
+      });       
+       
+       
+
        
       /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
       $('.like').click(function() 
@@ -165,7 +191,7 @@
      
       
       });
-
+      
       /*-----------------TOOGLE FAV CON NUMERO---------------------*/
       $('.fav').click(function()
       {
@@ -213,7 +239,7 @@
 		});
     
     });
-
+  
   
     $(function(){
       $("#includeFooter").load("assets/html/footer.jsp"); 
@@ -254,7 +280,7 @@
  <c:set var = "categorias" scope = "application" value = "${categoriasDB}"/>
     
     <c:forEach var ="preguntas" items="${preguntasDB}">
-        <div class="row">
+        <div   class="row">
    
             <div class="col-sm-3">
                     
@@ -262,7 +288,8 @@
 
 
       <!--QUIESTIONS-->
-            <div class="col-sm-8" >
+            <div  class="col-sm-8" >
+              <div class="IdMyPreg" style="display: none">${preguntas.id}</div>
               <div class="container question" style="background-color: #ffffff; margin-bottom: 2%; padding: 5%;">
                 <!--NAME-->
                 <div class="row">
