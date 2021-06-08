@@ -235,18 +235,22 @@
   </script>
 
   
- <div id="includeNavBar"></div>
+  <div id="includeNavBar" style="top: 0;  z-index: 100; position: fixed; width: 100%;"></div>
 
-
+  <div class="row" style="margin-bottom: 100px">
+          <div class="col-12"></div>
+      </div>
+  
   <div id="includeSidebar"></div>
 
   <!--PREGUNTAS-->
   <div class="container" style="margin-top: 2%;">
 
-
+    
       <!--https://flylib.com/books/en/1.177.1.20/1/-->
  <c:set var = "NombreUsuario" scope = "application" value = "${userSession}"/>
  <c:set var = "ImagenUsuario" scope = "application" value = "${picture}"/>
+ <c:set var = "EstadoUsuario" scope = "application" value = "${status}"/>
  <c:set var = "categorias" scope = "application" value = "${categoriasDB}"/>
     
     <c:forEach var ="preguntas" items="${preguntasDB}">
@@ -265,7 +269,13 @@
                   <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
                   <div class="col-4"> <h6 style="padding-top: 10%;">${preguntas.usuarioPregunta}</h6></div>
                   <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i>  ${preguntas.fecha_Pregunta}</div>
-                  <div class="col-1"> <i class="far fa-star fav">${preguntas.fav}</i></div>
+                  <c:if test = "${NombreUsuario != null}">
+                    <div class="col-1"> <i class="far fa-star fav">${preguntas.fav}</i></div>
+                  </c:if>
+                  <c:if test = "${NombreUsuario == null}">
+                     <div class="col-1"> <i class="far fa-star">${preguntas.fav}</i></div>
+                  </c:if>
+                 
                 </div>
                 <!--TITLE-->
                 <div class="row">
@@ -294,16 +304,27 @@
                   <div class="col-3">
                       
                      
-                       
+                     
                        
                             <div class="idPregunta" style="display: none">${preguntas.id}</div>
                            <div class="nombrePersona" name="nombrePersona" style="display: none">${NombreUsuario}</div>
                            <div class="IDthisPregunta" name="preguntaID" style="display: none" ></div>
-                            <i class="far fa-thumbs-up like likeup" name="like"   > ${preguntas.util}</i>
+                           <c:if test = "${NombreUsuario != null}">
+                                <i class="far fa-thumbs-up like likeup" name="like"   > ${preguntas.util}</i>
+                           </c:if>
+                           <c:if test = "${NombreUsuario == null}">
+                                <i class="far fa-thumbs-up likeup"  > ${preguntas.util}</i>
+                           </c:if>
+                           
                           
                     
-                       
-                      <i class="far fa-thumbs-down like likedown" name="dislike"> 0</i>
+                           <c:if test = "${NombreUsuario != null}">
+                               <i class="far fa-thumbs-down like likedown" name="dislike"> 0</i>
+                           </c:if>
+                           <c:if test = "${NombreUsuario == null}">
+                                 <i class="far fa-thumbs-down likedown"></i>
+                           </c:if>
+                     
                
                   </div>
                   <div class="col-3">

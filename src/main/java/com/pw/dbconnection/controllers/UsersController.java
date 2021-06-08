@@ -41,6 +41,7 @@ public class UsersController extends HttpServlet
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
          System.out.println("Entro a doget qwq");
+         
         HttpSession MomoSession = request.getSession(false);
         String a=null;
         String b=null;
@@ -51,17 +52,21 @@ public class UsersController extends HttpServlet
           a = (String)MomoSession.getAttribute("correo");
           b = (String)MomoSession.getAttribute("contrasena");
           c = (String)MomoSession.getAttribute("profile_pic");
-           request.setAttribute("userSession", a);
+          d = (String)MomoSession.getAttribute("estado");
+          request.setAttribute("userSession", a);
           request.setAttribute("pass",  b);
           request.setAttribute("picture",  c);
+          request.setAttribute("status",  d);
+        
           
          
         }
         else{
             MomoSession = request.getSession(true);
-             request.setAttribute("userSession", a);
-          request.setAttribute("pass",  b);
-           request.setAttribute("picture",  c);
+            request.setAttribute("userSession", a);
+            request.setAttribute("pass",  b);
+            request.setAttribute("picture",  c);
+            request.setAttribute("status",  d);
            //System.out.println("session == null " + a);
            
         }
@@ -145,7 +150,8 @@ public class UsersController extends HttpServlet
                 MomoSession.setAttribute("correo", correo);
                 MomoSession.setAttribute("contrasena", contrasena);
                  MomoSession.setAttribute("profile_pic", FileUtils.RUTE_USER_IMAGE + "/" + profile_pic);
-               // System.out.println("dopost session !=null");
+                MomoSession.setAttribute("estado",  estado);
+                 // System.out.println("dopost session !=null");
 
             }
             else
@@ -154,7 +160,8 @@ public class UsersController extends HttpServlet
                 MomoSession.setAttribute("correo", correo);
                 MomoSession.setAttribute("contrasena", contrasena);
                 MomoSession.setAttribute("profile_pic", FileUtils.RUTE_USER_IMAGE + "/" + profile_pic);
-                //System.out.println("dopost session==null");
+                MomoSession.setAttribute("estado",  estado);                
+              //System.out.println("dopost session==null");
 
             }
         

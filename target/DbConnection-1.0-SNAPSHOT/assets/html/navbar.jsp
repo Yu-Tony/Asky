@@ -319,7 +319,7 @@
             <c:if test = "${NombreUsuario != null}">
                  <div class="dropdown" id="ProfileDropdown">
                 <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >
-                  <img id="ImageDropPerfil" src= "${ImagenUsuario}" style="max-width: 25px;">
+                  <img id="ImageDropPerfil" src= "${ImagenUsuario}" style="max-height:  40px;">
                  <span class="caret"></span>
               </button>
                 
@@ -344,7 +344,6 @@
 
     </div>
   </nav>
-
 
 
   

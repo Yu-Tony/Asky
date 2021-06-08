@@ -11,6 +11,7 @@ and open the template in the editor.
 
 
 #sidebar {
+   position: fixed;
   left: 10%;
   margin-top: 2%;
   overflow: hidden;
@@ -19,9 +20,9 @@ and open the template in the editor.
   
 }
 #sidebar .list-group {
-  min-width: 180px;
+  min-width: 50px;
   background-color: transparent;
-  height: 310vh;
+ 
   
 }
 #sidebar i {
