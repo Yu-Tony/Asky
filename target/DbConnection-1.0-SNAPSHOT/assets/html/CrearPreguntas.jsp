@@ -15,7 +15,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ASKY</title>
-  <link rel="shortcut icon" type="image/x-icon" href="/Asky/conversation.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="/DbConnection/assets/Images/conversation.png" />
 
   
    <!--BOOTSTRAP -->
@@ -55,10 +55,10 @@
     $(document).ready(function() {
         
         
-         $('.row').on('click', '#btnPublicar', function(){
-            System.out.println("minimo sirve el boton");
+         /*$('.row').on('click', '#btnPublicar', function(){
+          // alert("minimo sirve el boton");
             $.post("./CreatePreguntaController", {pTitulo: $('#qTitulo').text(), pContenido: $('#pregunta').text()});
-        });
+        });*/
         
         /*-----------------TOOLTIP INPUT------------*/
         $('input[rel="txtTooltip"]').tooltip();
@@ -144,19 +144,18 @@
               <div class="container" style="background-color: white;">
         
                 <div class="row">
-                 
-    
-        
+
                   <div class="col-12" style="display: inline-block;">
-          <h2> Realiza una pregunta.</h2>
+                    <h2> Realiza una pregunta.</h2>
                   
-                  <hr>
-                      
-                      <label for="titulo" style="  display: inline-block;">Titulo de la pregunta</label>
-                        <input id = "qTitulo" class="form-control input" name="titulo" required autocomplete="off" /> 
+                    <hr>
+                    <form action="/DbConnection/CreatePreguntaController" method="POST" enctype="multipart/form-data">
+                        
+                        <label for="titulo" style="  display: inline-block;">Titulo de la pregunta</label>
+                        <input id = "qTitulo" class="form-control input" name="pTitulo" required autocomplete="off" /> 
 
                         <label for="pregunta" style="  display: inline-block;">Descripción</label>
-                        <textarea class="form-control" rows="5" id="pregunta" required></textarea>
+                        <textarea class="form-control" rows="5" id="pregunta" name="pContenido" required></textarea>
 
                         <!--<label for="tags" style="  display: inline-block;">Tags</label>
 
@@ -165,7 +164,7 @@
       
 
                         <label for="sel1">Categoria </label>
-                        <select class="form-control" id="sel1" required>
+                        <select class="form-control" id="sel1" required name="pCategoria">
                             
                              <c:forEach var="categ" items="${categorias}">
                                 <li>
@@ -186,10 +185,10 @@
 
 
                         <div class="container" style="text-align: center; margin-bottom: 2%; margin-top: 3%;">
-                          <button  id = "btnPublicar" type="submit"  class="btn btn-primary">Publicar Pregunta</button>
+                          <button type="submit" id = "btnPublicar"  class="btn btn-primary">Publicar Pregunta</button>
                         </div>
-                
-        
+                        
+                    </form>
                   </div>
         
                   

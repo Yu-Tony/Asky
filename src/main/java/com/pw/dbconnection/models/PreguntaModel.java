@@ -13,7 +13,8 @@ import java.sql.Date;
  */
 public class PreguntaModel {
 
-    public PreguntaModel(String contenido, int id, String descripcion, String imagenPregunta, String usuarioPregunta, String categoriaPregunta, Date fecha_Pregunta, int fav, int util, int comentarios) {      
+    public PreguntaModel(String profilepic, String contenido, int id, String descripcion, String imagenPregunta, String usuarioPregunta, String categoriaPregunta, Date fecha_Pregunta, int fav, int util, int comentarios) {      
+       this.profilepic = profilepic;
        this.contenido = contenido;
        this.id=id;
        this.descripcion=descripcion;
@@ -134,5 +135,6 @@ public class PreguntaModel {
     private int util;
     private int comentarios;
     private int categoria_id;
+    private String profilepic;
 
 }

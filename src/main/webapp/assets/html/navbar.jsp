@@ -30,7 +30,7 @@
         }}*/
     function PruebaServlet(){
          System.out.println("Message from jsp");
-        $.post("./ProfileController", {name : "Message from jsp"}, alert(""));
+        $.post("/DbConnection/ProfileController", {name : "Message from jsp"}, alert(""));
        
     }
     
@@ -80,12 +80,12 @@
       <span class="navbar-toggler-icon"></span>
     </button>
       
-    <a class="navbar-brand" href="/DbConnection" style="color: whitesmoke;">  <img src = 'assets/Images/conversation.png' style="height: 30px; margin-right: 5px;" /> ASKY</a>
+    <a class="navbar-brand" href="/DbConnection" style="color: whitesmoke;">  <img src = '/DbConnection/assets/Images/conversation.png' style="height: 30px; margin-right: 5px;" /> ASKY</a>
   
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
         
-        <form action="./SearchController" method="POST" enctype="multipart/form-data">
+        <form action="/DbConnection/SearchController" method="POST" enctype="multipart/form-data">
             <input id = "busqueda" name = "busqueda"class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" style="width:400px" ">
             <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
         </form>
@@ -112,7 +112,7 @@
               </c:if>
             
 
-            <form action="./LoginController" method="POST" id="ModalLogIn" enctype="multipart/form-data">
+            <form action="/DbConnection/LoginController" method="POST" id="ModalLogIn" enctype="multipart/form-data">
               <!-- Button trigger modal -->
               <c:if test = "${NombreUsuario == null}">
               <button type="button" class="btn btn-outline-primary" data-toggle="modal" id="btnIniciarSesion" data-target="#modalIniciar">
@@ -134,7 +134,7 @@
                       <div class="container-fluid">
                         <div class="row"  >
                           <div class="col-image col-lg-6">
-                            <img src="assets/Images/login.jpg" class="img-fluid" alt="Responsive image">
+                            <img src="/DbConnection/assets/Images/login.jpg" class="img-fluid" alt="Responsive image">
                           </div>
 
                           <div class="col-sm-12 col-md-12 col-lg-6">
@@ -180,7 +180,7 @@
                     
             </form>
 
-            <form action="./UsersController" method="POST" id="ModalRegistrarse" enctype="multipart/form-data">
+            <form action="/DbConnection/UsersController" method="POST" id="ModalRegistrarse" enctype="multipart/form-data">
               <!-- Button trigger modal -->
       
  <c:if test = "${NombreUsuario == null}">
@@ -203,7 +203,7 @@
                       <div class="container-fluid">
                         <div class="row"  >
                           <div class="col-image col-lg-6">
-                            <img src="assets/Images/signin.jpg" class="img-fluid" alt="Responsive image">
+                            <img src="/DbConnection/assets/Images/signin.jpg" class="img-fluid" alt="Responsive image">
                           </div>
 
                           <div class="col-lg-6 col-md-12 col-sm-12 col-12">
@@ -328,7 +328,7 @@
                   <a onclick="location.href = '/DbConnection/assets/html/perfil.jsp';"  id="leEstaCosa" href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>             
                 <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
                 <div class="divider dropdown-divider"></div>
-                <a href="LoginController"  class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
+                <a href="/DbConnection/LoginController"  class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
               </ul>
             </div> 
                 

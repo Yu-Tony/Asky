@@ -96,7 +96,7 @@ public class UsersController extends HttpServlet
         
       
             // Lo agregamos como atributo al request
-        request.setAttribute("preguntasDB", Preguntas);
+       request.setAttribute("preguntasDB", Preguntas);
        request.setAttribute("categoriasDB", Categorias);
         
     

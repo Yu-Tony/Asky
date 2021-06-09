@@ -293,7 +293,7 @@
               <div class="container question" style="background-color: #ffffff; margin-bottom: 2%; padding: 5%;">
                 <!--NAME-->
                 <div class="row">
-                  <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
+                  <div class="col-2"> <img src="${preguntas.contenido}" alt="Avatar" style="max-width: 100%;" /></div>
                   <div class="col-4"> <h6 style="padding-top: 10%;">${preguntas.usuarioPregunta}</h6></div>
                   <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i>  ${preguntas.fecha_Pregunta}</div>
                   <c:if test = "${NombreUsuario != null}">

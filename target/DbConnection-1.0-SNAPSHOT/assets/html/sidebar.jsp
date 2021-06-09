@@ -27,32 +27,7 @@
 
               </div>
 
-              <a href="#menu3" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fas fa-question"></i> <span class="d-none d-md-inline">Preguntas </span></a>
-              <div class="collapse" id="menu3" data-parent="#sidebar">
-                  <a href="#" class="list-group-item" data-parent="#menu3">3.1</a>
-                  <a href="#menu3sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">3.2 </a>
-                  <div class="collapse" id="menu3sub2">
-                      <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 a</a>
-                      <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 b</a>
-                      <a href="#" class="list-group-item" data-parent="#menu3sub2">3.2 c</a>
-                  </div>
-                  <a href="#" class="list-group-item" data-parent="#menu3">3.3</a>
-              </div>
-
-              <a href="#menu4" class="list-group-item d-inline-block collapsed" data-toggle="collapse" aria-expanded="false"><i class="fas fa-tags"></i><span class="d-none d-md-inline">Tags </span></a>
-              <div class="collapse" id="menu4" data-parent="#sidebar">
-                  <a href="#" class="list-group-item" data-parent="#menu4">3.1</a>
-                  <a href="#menu4sub2" class="list-group-item" data-toggle="collapse" aria-expanded="false">3.2 </a>
-                  <div class="collapse" id="menu4sub2">
-                      <a href="#" class="list-group-item" data-parent="#menu4sub2">3.2 a</a>
-                      <a href="#" class="list-group-item" data-parent="#menu4sub2">3.2 b</a>
-                      <a href="#" class="list-group-item" data-parent="#menu4sub2">3.2 c</a>
-                  </div>
-                  <a href="#" class="list-group-item" data-parent="#menu4">3.3</a>
-              </div>
-
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fas fa-users"></i> <span class="d-none d-md-inline">Usuarios</span></a>
-              <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fas fa-info-circle"></i><span class="d-none d-md-inline">Ayuda</span></a>
+             <a href="#" class="list-group-item d-inline-block collapsed" data-parent="#sidebar"><i class="fas fa-info-circle"></i><span class="d-none d-md-inline">Ayuda</span></a>
              
           </div>
       </div>

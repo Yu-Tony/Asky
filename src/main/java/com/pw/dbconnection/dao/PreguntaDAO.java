@@ -58,6 +58,7 @@ public class PreguntaDAO {
                 int fav=0;
                 int util=0;
                 int comentarios=0;
+                String ProfilePic=null;
             
                  //http://www.java2s.com/Code/Java/Database-SQL-JDBC/CountRecordsUsingPreparedStatement.htm
                 CallableStatement statementFavs = con.prepareCall("SELECT COUNT(*) AS FavRowCount FROM fav_pregunta WHERE pregunta = ?");
@@ -93,8 +94,17 @@ public class PreguntaDAO {
                 comentarios = commentResult;
                 }
                 
+                CallableStatement statementProfilePic = con.prepareCall("SELECT profile_pic FROM Usuario where username = ?");
+                statementProfilePic.setString(1, usuarioPregunta);
+                ResultSet resultSetProfilePic = statementProfilePic.executeQuery();
+                if (resultSetProfilePic.next()) {
+                String commentResult = resultSetProfilePic.getString("profile_pic");
+                ProfilePic = commentResult;
+                System.out.println(ProfilePic);
+                }
+                
                 // Agregamos el usuario a la lista
-                preguntas.add(new PreguntaModel(contenido, id, descripcion, imagenPregunta, usuarioPregunta, categoriaPregunta, fecha_Pregunta, fav, util,comentarios));
+                preguntas.add(new PreguntaModel(ProfilePic, contenido, id, descripcion, imagenPregunta, usuarioPregunta, categoriaPregunta, fecha_Pregunta, fav, util,comentarios));
                 
                
             }
@@ -150,6 +160,7 @@ public class PreguntaDAO {
                 int fav=0;
                 int util=0;
                 int comentarios=0;
+                String ProfilePic=null;
             
                  //http://www.java2s.com/Code/Java/Database-SQL-JDBC/CountRecordsUsingPreparedStatement.htm
                 CallableStatement statementFavs = con.prepareCall("SELECT COUNT(*) AS FavRowCount FROM fav_pregunta WHERE pregunta = ?");
@@ -185,8 +196,17 @@ public class PreguntaDAO {
                 comentarios = commentResult;
                 }
                 
+                      CallableStatement statementProfilePic = con.prepareCall("SELECT profile_pic FROM Usuario where username = ?");
+                statementProfilePic.setString(1, usuarioPregunta);
+                ResultSet resultSetProfilePic = statementProfilePic.executeQuery();
+                if (resultSetProfilePic.next()) {
+                String commentResult = resultSetProfilePic.getString("profile_pic");
+                ProfilePic = commentResult;
+                System.out.println(ProfilePic);
+                }
+                
                 // Agregamos el usuario a la lista
-                preguntas.add(new PreguntaModel(contenido, id, descripcion, imagenPregunta, usuarioPregunta, categoriaPregunta, fecha_Pregunta, fav, util,comentarios));
+                preguntas.add(new PreguntaModel(ProfilePic, contenido, id, descripcion, imagenPregunta, usuarioPregunta, categoriaPregunta, fecha_Pregunta, fav, util,comentarios));
                 
                
             }
@@ -200,22 +220,22 @@ public class PreguntaDAO {
         }
       }
       
-      public static PreguntaModel idPregunta(int myid){
+   public static PreguntaModel idPregunta(int myid){
         PreguntaModel miPregunta = null;
-  
+
         try{
             Connection con = DbConnection.getConnection();
-;
-            
+
+
             CallableStatement statement = con.prepareCall("select * from Pregunta where id = ?");
             statement.setInt(1, myid);
             ResultSet resultSet = statement.executeQuery();
-           
+
             // Si el resultSet tiene resultados lo recorremos
 
-            
+
             while (resultSet.next()) {
-                
+
                 String contenido = resultSet.getString("contenido");
                 int id = resultSet.getInt("id");
                 String descripcion = resultSet.getString("descripcion");
@@ -228,7 +248,8 @@ public class PreguntaDAO {
                 int fav=0;
                 int util=0;
                 int comentarios=0;
-            
+                String ProfilePic=null;
+
                  //http://www.java2s.com/Code/Java/Database-SQL-JDBC/CountRecordsUsingPreparedStatement.htm
                 CallableStatement statementFavs = con.prepareCall("SELECT COUNT(*) AS FavRowCount FROM fav_pregunta WHERE pregunta = ?");
                 statementFavs.setInt(1, id);
@@ -237,7 +258,7 @@ public class PreguntaDAO {
                 int favResult = resultSetFavs.getInt(1);
                 fav=favResult;
                 }
-                
+
                 CallableStatement statementUtils = con.prepareCall("SELECT COUNT(*) AS UtilRowCount FROM util_pregunta WHERE pregunta = ?");
                 statementUtils.setInt(1, id);
                 ResultSet resultSetUtils = statementUtils.executeQuery();
@@ -245,7 +266,7 @@ public class PreguntaDAO {
                 int utilResult = resultSetUtils.getInt(1);
                 util = utilResult;
                 }
-                
+
                 CallableStatement statementCateg = con.prepareCall("SELECT nombre FROM Categoria WHERE id = ?");
                 statementCateg.setInt(1, categoriaPreguntaID);
                 ResultSet resultSetCateg = statementCateg.executeQuery();
@@ -254,7 +275,7 @@ public class PreguntaDAO {
                 //System.out.println(CategResult);
                 categoriaPregunta = CategResult;
                 }
-                
+
               CallableStatement statementComment = con.prepareCall("SELECT COUNT(*) AS CommentRowCount FROM Respuesta WHERE pregunta = ?");
                 statementComment.setInt(1, id);
                 ResultSet resultSetComment = statementComment.executeQuery();
@@ -263,8 +284,17 @@ public class PreguntaDAO {
                 comentarios = commentResult;
                 }
                 
+                         CallableStatement statementProfilePic = con.prepareCall("SELECT profile_pic FROM Usuario where username = ?");
+                statementProfilePic.setString(1, usuarioPregunta);
+                ResultSet resultSetProfilePic = statementProfilePic.executeQuery();
+                if (resultSetProfilePic.next()) {
+                String commentResult = resultSetProfilePic.getString("profile_pic");
+                ProfilePic = commentResult;
+                System.out.println(ProfilePic);
+                }
+
                 // Agregamos el usuario a la lista
-                miPregunta = new PreguntaModel(contenido, id, descripcion, imagenPregunta, usuarioPregunta, categoriaPregunta, fecha_Pregunta, fav, util,comentarios);
+                miPregunta = new PreguntaModel(ProfilePic, contenido, id, descripcion, imagenPregunta, usuarioPregunta, categoriaPregunta, fecha_Pregunta, fav, util,comentarios);
             }
             //con.close();
         }
@@ -272,11 +302,11 @@ public class PreguntaDAO {
             System.out.println(ex.getMessage());
         }
         finally{
-            
+
             return miPregunta;
         }
-        
-        
+
+
       }
       
       public static int insertPregunta(PreguntaModel myPregunta){
@@ -298,18 +328,11 @@ public class PreguntaDAO {
               try{
               con.close();
               }catch(SQLException ex){}
-              
-               try
-            {
-                  con.close();
-            }
-            catch(SQLException e)
-            {
-                 System.out.println(e.getMessage());
-            }
+
+
           }
-            
-      
+
+
         return 0;
       }
 }
