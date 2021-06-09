@@ -67,7 +67,16 @@
     $(document).ready(function() 
     {
         
-
+        $('.container').on('click', '.col-sm-8', function(){
+          //System.out.println($(this).children('.idPregunta').text());
+          $.post("./ShowPreguntaController", {IdPregunta : $(this).children('.IdMyPreg').text()});
+           setTimeout(function () {
+            window.location.href = '/DbConnection/assets/html/pregunta.jsp'; //will redirect to your blog page (an ex: blog.html)
+           }, 500);
+          //System.out.println("ESTO SALIO");
+          
+        });  
+      
       /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
       $('.like').click(function() 
       {
@@ -363,10 +372,11 @@
 
         <!--QUIESTIONS-->
         <div class="col-sm-8" >
+              <div class="IdMyPreg" style="display: none">${preguntas.id}</div>
           <div class="container question" style="background-color: #ffffff; margin-bottom: 2%; padding: 5%;">
             <!--NAME-->
             <div class="row">
-              <div class="col-2 "> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
+              <div class="col-2 "> <img src="${preguntas.profilePregunta}" alt="Avatar" style="max-width: 100%;" /></div>
               <div class="col-4"> <h6 style="padding-top: 10%;">${preguntas.usuarioPregunta}</h6></div>
               <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i>${preguntas.fecha_Pregunta}</div>
               <div class="col-1"> <i class="far fa-star fav">${preguntas.fav}</i></div>
@@ -396,8 +406,26 @@
             <div class="row">
               <div class="col-2"></div>
               <div class="col-3">
-                <i class="far fa-thumbs-up like likeup"> ${preguntas.util}</i>
-                <i class="far fa-thumbs-down like likedown"> 0</i>
+                  
+                 <div class="idPregunta" style="display: none">${preguntas.id}</div>
+                           <div class="nombrePersona" name="nombrePersona" style="display: none">${NombreUsuario}</div>
+                           <div class="IDthisPregunta" name="preguntaID" style="display: none" ></div>
+                           <c:if test = "${NombreUsuario != null}">
+                                <i class="far fa-thumbs-up like likeup" name="like"   > ${preguntas.util}</i>
+                           </c:if>
+                           <c:if test = "${NombreUsuario == null}">
+                                <i class="far fa-thumbs-up likeup"  > ${preguntas.util}</i>
+                           </c:if>
+                           
+                          
+                    
+                           <c:if test = "${NombreUsuario != null}">
+                               <i class="far fa-thumbs-down like likedown" name="dislike"> 0</i>
+                           </c:if>
+                           <c:if test = "${NombreUsuario == null}">
+                                 <i class="far fa-thumbs-down likedown"></i>
+                           </c:if>
+                
               </div>
               <div class="col-3">
                 <i class="far fa-comment"></i>

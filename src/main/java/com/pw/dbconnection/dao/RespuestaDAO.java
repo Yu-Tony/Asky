@@ -44,21 +44,32 @@ public class RespuestaDAO {
                 String imagenRes = resultSet.getString("imagen");
                 String usuarioRes = resultSet.getString("usuario");
                 Boolean mejor = resultSet.getBoolean("mejor");
-                Date fecha_Res = resultSet.getDate("fecha");             
-            
+                Date fecha_Res = resultSet.getDate("fecha"); 
+                String profileRespuesta = null;
+                boolean edit = resultSet.getBoolean("edit");
                 int util=0;
-                /*
-                CallableStatement statementUtils = con.prepareCall("SELECT COUNT(*) AS UtilRowCount FROM util_respuesta WHERE respuesta = ?");
+                 
+                CallableStatement statementUtils = con.prepareCall("SELECT COUNT(*) AS RUtilRowCount FROM util_respuesta WHERE respuesta = ?");
                 statementUtils.setInt(1, id);
                 ResultSet resultSetUtils = statementUtils.executeQuery();
                 if (resultSetUtils.next()) {
                 int utilResult = resultSetUtils.getInt(1);
                 util = utilResult;
-                }*/
+                }
+                
+                 CallableStatement statementProfilePic = con.prepareCall("SELECT profile_pic FROM Usuario where username = ?");
+                statementProfilePic.setString(1, usuarioRes);
+                ResultSet resultSetProfilePic = statementProfilePic.executeQuery();
+                if (resultSetProfilePic.next()) {
+                String commentResult = resultSetProfilePic.getString("profile_pic");
+                profileRespuesta = commentResult;
+                //System.out.println(ProfilePic);
+                }
                 
                 // Agregamos el usuario a la lista
                 //  respuestas 
-                respuestas.add(new RespuestaModel(contenido, id, imagenRes, usuarioRes, mejor, fecha_Res));
+                //String contenido, int id, String imagen, String usuario, Boolean mejor, Date fecha, int util, boolean editRespuesta , String profileRespuesta
+                respuestas.add(new RespuestaModel(contenido, id, imagenRes, usuarioRes, mejor, fecha_Res,util,edit, profileRespuesta));
                
             }
             

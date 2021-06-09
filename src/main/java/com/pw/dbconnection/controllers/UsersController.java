@@ -49,14 +49,14 @@ public class UsersController extends HttpServlet
         String d=null;
        
         if(MomoSession!=null){
-          a = (String)MomoSession.getAttribute("correo");
+          a = (String)MomoSession.getAttribute("username");
           b = (String)MomoSession.getAttribute("contrasena");
           c = (String)MomoSession.getAttribute("profile_pic");
-          d = (String)MomoSession.getAttribute("estado");
+          //d = (String)MomoSession.getAttribute("estado");
           request.setAttribute("userSession", a);
           request.setAttribute("pass",  b);
           request.setAttribute("picture",  c);
-          request.setAttribute("status",  d);
+         // request.setAttribute("status",  d);
         
           
          
@@ -66,7 +66,7 @@ public class UsersController extends HttpServlet
             request.setAttribute("userSession", a);
             request.setAttribute("pass",  b);
             request.setAttribute("picture",  c);
-            request.setAttribute("status",  d);
+           // request.setAttribute("status",  d);
            //System.out.println("session == null " + a);
            
         }
@@ -94,6 +94,7 @@ public class UsersController extends HttpServlet
         List<PreguntaModel> Preguntas = PreguntaDAO.getPreguntas(spageid1);
         List<CategoriaModel> Categorias = CategoriaDAO.getCategorias();
         
+        //System.out.println("usersController: " + Preguntas.get(0).getProfilePic());
       
             // Lo agregamos como atributo al request
        request.setAttribute("preguntasDB", Preguntas);
@@ -168,7 +169,7 @@ public class UsersController extends HttpServlet
             HttpSession MomoSession = request.getSession();
             if(MomoSession!=null)
             {
-                MomoSession.setAttribute("correo", correo);
+                MomoSession.setAttribute("username", username);
                 MomoSession.setAttribute("contrasena", contrasena);
                  MomoSession.setAttribute("profile_pic", FileUtils.RUTE_USER_IMAGE + "/" + profile_pic);
                 MomoSession.setAttribute("estado",  estado);

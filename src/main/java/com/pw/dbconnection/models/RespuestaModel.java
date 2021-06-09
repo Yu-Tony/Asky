@@ -14,13 +14,49 @@ import java.sql.Date;
 public class RespuestaModel {
     
     
-     public RespuestaModel(String contenido, int id, String imagen, String usuario, Boolean mejor, Date fecha){
+     public RespuestaModel(String contenido, int id, String imagen, String usuario, Boolean mejor, Date fecha, int util, boolean editRespuesta , String profileRespuesta){
         this.contenido = contenido;
         this.id = id;
         this.imagen = imagen;
         this.mejor = mejor;
         this.fecha_Respuesta = fecha;
         this.usuario = usuario;
+        this.util=util;
+        this.editRespuesta=editRespuesta;
+        this.profileRespuesta=profileRespuesta;
+        
+    }
+
+    public int getUtil() {
+        return util;
+    }
+
+    public void setUtil(int util) {
+        this.util = util;
+    }
+
+    public int getNoutil() {
+        return Noutil;
+    }
+
+    public void setNoutil(int Noutil) {
+        this.Noutil = Noutil;
+    }
+
+    public boolean isEditRespuesta() {
+        return editRespuesta;
+    }
+
+    public void setEditRespuesta(boolean editRespuesta) {
+        this.editRespuesta = editRespuesta;
+    }
+
+    public String getProfileRespuesta() {
+        return profileRespuesta;
+    }
+
+    public void setProfileRespuesta(String profileRespuesta) {
+        this.profileRespuesta = profileRespuesta;
     }
     
     public int getId() {
@@ -77,6 +113,10 @@ public class RespuestaModel {
       private String imagen;
       private boolean mejor;
       private Date fecha_Respuesta;
+      private int util;
+      private int Noutil;
+      private boolean editRespuesta;
+      private String profileRespuesta;
      
 
     

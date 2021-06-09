@@ -72,20 +72,26 @@ $(document).ready(function()
            // alert($('#blablabla').text());
          });
       /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
-      $('.like').click(function() 
+        $('.like').click(function() 
       {
         var val = parseInt($(this).text(), 10);
-        var val2= parseInt( $(this).siblings("i").text(), 10);
+        var val3 =  parseInt($(this).parent().parent().find(".idPregunta").text(), 10); 
     
+        $(this).parent().parent().find(".IDthisPregunta").text(val3);
+        var val4 =  parseInt($(this).parent().parent().find(".IDthisPregunta").text(), 10);
+         var val5 =  $(this).parent().parent().find(".nombrePersona").text(); 
+  
         /*REVISA SI ALGO MÁS YA ESTÁ SELECCIONADO*/
         if (($(this).hasClass('likeup'))) 
         {
+            var val2= parseInt( $(this).parent().parent().find(".likedown").text(), 10);
+           
+         if(($(this).parent().parent().find(".likedown").hasClass('is-liked')))
 
-          if(($(this).siblings("i").hasClass('is-liked')))
           {
-            $(this).siblings("i").toggleClass('is-liked');
+              $(this).parent().parent().find(".likedown").toggleClass('is-liked');
 
-            if ($(this).siblings("i").hasClass('is-liked')) 
+            if ($(this).parent().parent().find(".likedown").hasClass('is-liked')) 
             {
               val2++;
             } else 
@@ -94,19 +100,23 @@ $(document).ready(function()
               val2--;
             }
             
-            $(this).siblings("i").text(" " + val2);
+            $(this).parent().parent().find(".likedown").text(" " + val2);
 
           }
+
+         
+           
+    
         }
 
         if (($(this).hasClass('likedown'))) 
         {
-
-          if(($(this).siblings("i").hasClass('is-liked')))
+            var val2= parseInt( $(this).parent().parent().find(".likeup").text(), 10);
+          if(($(this).parent().parent().find(".likeup").hasClass('is-liked')))
           {
-            $(this).siblings("i").toggleClass('is-liked');
+           $(this).parent().parent().find(".likeup").toggleClass('is-liked');
 
-            if ($(this).siblings("i").hasClass('is-liked')) 
+            if ($(this).parent().parent().find(".likeup").hasClass('is-liked')) 
             {
               val2++;
             } else 
@@ -115,7 +125,7 @@ $(document).ready(function()
               val2--;
             }
             
-            $(this).siblings("i").text(" " + val2);
+           $(this).parent().parent().find(".likeup").text(" " + val2);
 
           }
         }
@@ -130,8 +140,156 @@ $(document).ready(function()
         {
           val--;
         }
-
+        
         $(this).text(" " + val);
+           
+        if($(this).hasClass('likeup'))
+        {
+             if($(this).hasClass('is-liked'))
+            {
+                $.post(
+                 "./LikeController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: true, tipoLike:1} 
+                 );
+            }
+            else
+            {
+              //https://stackoverflow.com/questions/31168646/how-to-send-data-to-servlet-using-ajax-without-a-submitting-form/31175969
+          
+                $.post(
+                 "./LikeController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: true, tipoLike:2}
+                 );
+            }
+        }
+        else
+        {         
+            if($(this).hasClass('is-liked'))
+            {
+              $.post(
+                 "./LikeController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: false, tipoLike:3});
+            }
+            else
+            {
+                $.post(
+                 "./LikeController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: false, tipoLike:4});
+            }
+        }
+
+     
+      
+      });
+      
+       /*------------TOGGLE LIKE/DISLIKE CON NUMERO RESPUESTA---------------*/
+        $('.likeR').click(function() 
+      {
+        var val = parseInt($(this).text(), 10);
+        var val3 =  parseInt($(this).parent().parent().find(".idPregunta").text(), 10); 
+    
+        $(this).parent().parent().find(".IDthisPregunta").text(val3);
+        var val4 =  parseInt($(this).parent().parent().find(".IDthisPregunta").text(), 10);
+         var val5 =  $(this).parent().parent().find(".nombrePersona").text(); 
+  
+        /*REVISA SI ALGO MÁS YA ESTÁ SELECCIONADO*/
+        if (($(this).hasClass('likeup'))) 
+        {
+            var val2= parseInt( $(this).parent().parent().find(".likedown").text(), 10);
+           
+         if(($(this).parent().parent().find(".likedown").hasClass('is-liked')))
+
+          {
+              $(this).parent().parent().find(".likedown").toggleClass('is-liked');
+
+            if ($(this).parent().parent().find(".likedown").hasClass('is-liked')) 
+            {
+              val2++;
+            } else 
+            {
+              if(val2 > 0)
+              val2--;
+            }
+            
+            $(this).parent().parent().find(".likedown").text(" " + val2);
+
+          }
+
+         
+           
+    
+        }
+
+        if (($(this).hasClass('likedown'))) 
+        {
+            var val2= parseInt( $(this).parent().parent().find(".likeup").text(), 10);
+          if(($(this).parent().parent().find(".likeup").hasClass('is-liked')))
+          {
+           $(this).parent().parent().find(".likeup").toggleClass('is-liked');
+
+            if ($(this).parent().parent().find(".likeup").hasClass('is-liked')) 
+            {
+              val2++;
+            } else 
+            {
+              if(val2 > 0)
+              val2--;
+            }
+            
+           $(this).parent().parent().find(".likeup").text(" " + val2);
+
+          }
+        }
+
+        /*APLICA EL TOGGLE AL QUE SE CLICKEO Y AUMENTA EL NUMERO*/
+        $(this).toggleClass('is-liked');
+
+        if ($(this).hasClass('is-liked')) 
+        {
+          val++;
+        } else 
+        {
+          val--;
+        }
+        
+        $(this).text(" " + val);
+           
+        if($(this).hasClass('likeup'))
+        {
+             if($(this).hasClass('is-liked'))
+            {
+                $.post(
+                 "./LikeRespuestaController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: true, tipoLike:1} 
+                 );
+            }
+            else
+            {
+              //https://stackoverflow.com/questions/31168646/how-to-send-data-to-servlet-using-ajax-without-a-submitting-form/31175969
+          
+                $.post(
+                 "./LikeRespuestaController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: true, tipoLike:2}
+                 );
+            }
+        }
+        else
+        {         
+            if($(this).hasClass('is-liked'))
+            {
+              $.post(
+                 "./LikeRespuestaController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: false, tipoLike:3});
+            }
+            else
+            {
+                $.post(
+                 "./LikeRespuestaController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: false, tipoLike:4});
+            }
+        }
+
+     
       
       });
 
@@ -140,13 +298,25 @@ $(document).ready(function()
       {
         
         var val = parseInt($(this).text(), 10);
+         var val3 =  parseInt($(this).parent().parent().parent().find(".idPregunta").text(), 10); 
+    
+        $(this).parent().parent().parent().find(".IDthisPregunta").text(val3);
+        var val4 =  parseInt($(this).parent().parent().parent().find(".IDthisPregunta").text(), 10);
+         var val5 =  $(this).parent().parent().parent().find(".nombrePersona").text(); 
+         
         $(this).toggleClass('is-fav');
         if ($(this).hasClass('is-fav')) 
         {
           val++;
+          $.post(
+                 "./FavController", 
+                 {usuarioPreguntaFav: val5, idPreguntaFav: val4, utilPreguntaFav: true, tipoFav: 1});
         } else 
         {
           val--;
+          $.post(
+                 "./FavController", 
+                 {usuarioPreguntaFav: val5, idPreguntaFav:val4, utilPreguntaFav: false, tipoFav:2});
         }
 
         $(this).text( val);
@@ -158,26 +328,31 @@ $(document).ready(function()
         
         var boxes = $('div.box');
 
-
-      
-
-
+ 
+        
         if($(this).hasClass('far'))
         {
-          $('.fa-check-square').removeClass('fas');
-          $(this).removeClass('fas');
+             if($('.fa-check-square').hasClass('fas'))
+             {
+                 $('.fa-check-square').removeClass('fas');
+                 $('.fa-check-square').addClass('far');
+             }
+          //$('.fa-check-square').removeClass('fas');
+         // $(this).removeClass('fas');
 
           $(this).addClass('fas');
-          $('.fa-check-square').addClass('far');
+          //$('.fa-check-square').addClass('far');
             $(this).removeClass('far');
         }
         else
         {
-          $('.fa-check-square').removeClass('far');
-          $(this).removeClass('far');
+           
+             
+          //$('.fa-check-square').removeClass('far');
+          //$(this).removeClass('far');
 
           $(this).addClass('far');
-          $('.fa-check-square').addClass('fas');
+          //$('.fa-check-square').addClass('fas');
             $(this).removeClass('fas');
         }
 
@@ -303,15 +478,22 @@ $(document).ready(function()
           <div class="container question" style="background-color: #ffffff; margin-bottom: 2%; padding: 5%;">
             <!--NAME-->
             <div class="row MainRow">
-              <div class="col-2 "> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
+              <div class="col-2 "> <img src="/DbConnection/${LaPregunta.profilePregunta}" alt="Avatar" style="max-width: 100%;" /></div>
               <div  id="blablabla"class="col-4"> <h6 style="padding-top: 10%;">${LaPregunta.usuarioPregunta}</h6></div>
-              <div class="col-3"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
+              <div class="col-3"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> ${LaPregunta.fecha_Pregunta}</div>
               <div class="col-1"> <i class="far fa-star fav">${LaPregunta.fav}</i></div>
               <div class="col-1" id="delete-post">
 
-                 <!-- Button trigger modal -->
-
-                 <i class="fas fa-trash-alt"  data-toggle="modal" data-target=".exampleModalCenter0"></i>
+                   <c:choose>
+                      <c:when test ="${LaPregunta.usuarioPregunta eq NombreUsuario}">
+                        <!-- Button trigger modal -->
+                        <i class="fas fa-trash-alt"  data-toggle="modal" data-target=".exampleModalCenter0"></i>
+                    </c:when>
+                    <c:otherwise>
+                    
+                    </c:otherwise>
+                </c:choose>
+                 
  
 
                  <!-- Modal -->
@@ -345,7 +527,16 @@ $(document).ready(function()
                   <h3>${LaPregunta.contenido}</h3>
                 </div>
                 <div class="col-2">
-                    <h6 >Editada</h6>
+                    
+                    <c:if test="${LaPregunta.editPregunta == false}">
+                         <h6 ></h6>
+                    </c:if>
+                    <c:if test="${LaPregunta.editPregunta== true}">
+                         <h6 >Editada</h6>
+                    </c:if>
+                     
+                      
+                  
                 </div>
               </div>
             <!--DESCRIPTION-->
@@ -359,9 +550,14 @@ $(document).ready(function()
                   <div class="col-10">
                   </div>
                   <div class="col-2">
-                    <button class="btn btn-outline-primary" type="button" onclick="location.href = '/Asky/CrearPregunta/crearPregunta.html';">
-                      Editar
-                    </button>
+                    <c:choose>
+                        <c:when test ="${LaPregunta.usuarioPregunta eq NombreUsuario}">
+                            <button class="btn btn-outline-primary" type="button" onclick="location.href = '/Asky/CrearPregunta/crearPregunta.html';">
+                             Editar
+                        </button>
+                        </c:when>
+                    </c:choose>
+                    
                   </div>
                 </div>
             <!--SEPARADOR 1-->
@@ -375,15 +571,33 @@ $(document).ready(function()
             <div class="row">
               <div class="col-2"></div>
               <div class="col-3">
-                <i class="far fa-thumbs-up like likeup"> 0</i>
-                <i class="far fa-thumbs-down like likedown"> 0</i>
+                  
+                   <div class="idPregunta" style="display: none">${LaPregunta.id}</div>
+                           <div class="nombrePersona" name="nombrePersona" style="display: none">${NombreUsuario}</div>
+                           <div class="IDthisPregunta" name="preguntaID" style="display: none" ></div>
+                           <c:if test = "${NombreUsuario != null}">
+                                <i class="far fa-thumbs-up like likeup" name="like"   > ${LaPregunta.util}</i>
+                           </c:if>
+                           <c:if test = "${NombreUsuario == null}">
+                                <i class="far fa-thumbs-up likeup"  > ${LaPregunta.util}</i>
+                           </c:if>
+                           
+                          
+                    
+                           <c:if test = "${NombreUsuario != null}">
+                               <i class="far fa-thumbs-down like likedown" name="dislike"> 0</i>
+                           </c:if>
+                           <c:if test = "${NombreUsuario == null}">
+                                 <i class="far fa-thumbs-down likedown"></i>
+                           </c:if>
+                                 
               </div>
               <div class="col-3">
                 <i class="far fa-comment"></i>
-                2
+                 ${LaPregunta.comentarios} 
               </div>
               <div class="col-4">
-                TAGS
+                  CATEGORIA: ${LaPregunta.categoriaPregunta} 
               </div>
             </div>
 
@@ -411,6 +625,7 @@ $(document).ready(function()
  
    </div>
 
+   <c:forEach var ="respuestas" items="${MostrarRespuestas}">
 
     <div class="row" >
 
@@ -419,23 +634,39 @@ $(document).ready(function()
         </div>
 
 
-        <!--QUIESTIONS-->
-        <c:forEach var ="respuestas" items="${MostrarRespuestas}">
+        <!--ANSWERS-->
+
         
             <div class="col-sm-8" >
             <div class="container question" style="background-color: #ffffff; margin-bottom: 2%; padding: 5%;">
                 <!--NAME-->
                 <div class="row MainRow">
-                    <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
+                    <div class="col-2"> <img src="/DbConnection/${respuestas.profileRespuesta}" alt="Avatar" style="max-width: 100%;" /></div>
                     <div class="col-4"> <h6 style="padding-top: 10%;">${respuestas.usuario}</h6></div>
-                    <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
+                    <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> ${respuestas.fecha_Respuesta}</div>
 
-                    <div class="col-1" id="check-comment"><i class="far fa-check-square"></i></div>
-                    <div class="col-1" id="delete-comment">
+                    <!--  -->
+                   <c:choose>
+                      <c:when test ="${LaPregunta.usuarioPregunta eq NombreUsuario}">
+                         <div class="col-1" id="check-comment"><i class="far fa-check-square"></i></div>
+                    </c:when>
+                    <c:otherwise>
+                      <div class="col-1" id="check-comment"><i class="far"></i></div>
+                    </c:otherwise>
+                </c:choose>
+        
+                  <div class="col-1" id="delete-comment">
 
-                      <!-- Button trigger modal -->
-
+                       <c:choose>
+                      <c:when test ="${respuestas.usuario eq NombreUsuario}">
+                        <!-- Button trigger modal -->
                           <i class="fas fa-trash-alt"  data-toggle="modal" data-target=".exampleModalCenter1"></i>
+                    </c:when>
+                    <c:otherwise>
+                    
+                    </c:otherwise>
+                </c:choose>
+                     
 
 
                         <!-- Modal -->
@@ -477,7 +708,12 @@ $(document).ready(function()
                     ${respuestas.contenido}
                     </div>
                     <div class="col-2">
-                        <h6>Editado</h6>
+                       <c:if test="${respuestas.editRespuesta == false}">
+                         <h6 ></h6>
+                    </c:if>
+                    <c:if test="${respuestas.editRespuesta== true}">
+                         <h6 >Editado</h6>
+                    </c:if>
                     </div>
                 </div>
 
@@ -485,12 +721,14 @@ $(document).ready(function()
                     <div class="col-10"></div>
 
                     <div class="col-2">
-                      <p>
-                        <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseEditA" aria-expanded="false" aria-controls="collapseEditA">
+                         <c:choose>
+                        <c:when test ="${respuestas.usuario eq NombreUsuario}">
+                           <button class="btn btn-outline-primary" type="button" data-toggle="collapse" data-target="#collapseEditA" aria-expanded="false" aria-controls="collapseEditA">
                           Editar
                         </button>
-                      </p>
-
+                        </c:when>
+                    </c:choose>
+   
 
                     </div>
 
@@ -506,8 +744,19 @@ $(document).ready(function()
                 <div class="row">
                 <div class="col-2"></div>
                 <div class="col-3">
-                    <i class="far fa-thumbs-up like likeup"> 0</i>
-                    <i class="far fa-thumbs-down like likedown"> 0</i>
+                    <c:if test = "${NombreUsuario != null}">
+                         <i class="far fa-thumbs-up likeR likeup" name="like"   > ${respuestas.util}</i>
+                    </c:if>
+                    <c:if test = "${NombreUsuario == null}">
+                         <i class="far fa-thumbs-up likeup"  > ${LaPregunta.util}</i>
+                    </c:if>
+                    
+                    <c:if test = "${NombreUsuario != null}">
+                        <i class="far fa-thumbs-down likeR likedown" name="dislike"> 0</i>
+                    </c:if>
+                    <c:if test = "${NombreUsuario == null}">
+                          <i class="far fa-thumbs-down likedown"></i>
+                    </c:if>
                 </div>
                 <div class="col-3">
 
@@ -549,12 +798,14 @@ $(document).ready(function()
             </div>
 
           </div>
-       </c:forEach>
+    
 
         <div class="col-sm-1">
-        <div id="includeRightSideBar"></div>
+      
         </div>
     </div>
+                
+           </c:forEach>        
 
         <div class="row">
 

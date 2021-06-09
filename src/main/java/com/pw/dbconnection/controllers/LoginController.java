@@ -62,18 +62,20 @@ public class LoginController extends HttpServlet {
             {
                
                 if(MomoSession!=null){
-                    MomoSession.setAttribute("correo", result.getCorreo());
+                    MomoSession.setAttribute("username", result.getUsername());
                     MomoSession.setAttribute("contrasena", result.getContrasena());
-                     MomoSession.setAttribute("profile_pic", result.getProfile_pic());
+                    MomoSession.setAttribute("profile_pic", result.getProfile_pic());
+                   // MomoSession.setAttribute("estado", result.isEstado());
                     //System.out.println("dopost session !=null");
 
                 }
                 else
                 {
                     MomoSession = request.getSession(true);
-                    MomoSession.setAttribute("correo", result.getCorreo());
+                    MomoSession.setAttribute("username", result.getUsername());
                     MomoSession.setAttribute("contrasena", result.getContrasena());
-                     MomoSession.setAttribute("profile_pic", result.getProfile_pic());
+                    MomoSession.setAttribute("profile_pic", result.getProfile_pic());
+                    //MomoSession.setAttribute("estado", result.isEstado());
                     //System.out.println("dopost session==null");
 
                 }
@@ -94,7 +96,7 @@ public class LoginController extends HttpServlet {
          }
          else
          {
-               System.out.println("logout ");
+               //System.out.println("logout ");
             MomoSession.invalidate();  
                response.sendRedirect("UsersController");
          }

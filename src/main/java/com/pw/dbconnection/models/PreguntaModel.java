@@ -13,8 +13,26 @@ import java.sql.Date;
  */
 public class PreguntaModel {
 
-    public PreguntaModel(String profilepic, String contenido, int id, String descripcion, String imagenPregunta, String usuarioPregunta, String categoriaPregunta, Date fecha_Pregunta, int fav, int util, int comentarios) {      
-       this.profilepic = profilepic;
+
+
+    private String profilePregunta;
+    private String contenido;
+    private int id;
+    private String descripcion;
+    private String imagenPregunta;
+    private String usuarioPregunta;
+    private String categoriaPregunta;
+    private Date fecha_Pregunta;
+    private int fav;
+    private int util;
+    private int noUtil;
+    private int comentarios;
+    private int categoria_id;
+    private boolean editPregunta;
+    
+    
+    public PreguntaModel(String profilePregunta, String contenido, int id, String descripcion, String imagenPregunta, String usuarioPregunta, String categoriaPregunta, Date fecha_Pregunta, int fav, int util, int comentarios, boolean editPregunta) {      
+       this.profilePregunta = profilePregunta;
        this.contenido = contenido;
        this.id=id;
        this.descripcion=descripcion;
@@ -25,6 +43,17 @@ public class PreguntaModel {
        this.fav=fav;
        this.util=util;
        this.comentarios = comentarios;
+       this.editPregunta = editPregunta;
+       
+       //System.out.println("pregunta model " + ProfilePic);
+    }
+
+    public boolean isEditPregunta() {
+        return editPregunta;
+    }
+
+    public void setEditPregunta(boolean editPregunta) {
+        this.editPregunta = editPregunta;
     }
     
     public PreguntaModel(String titulo, String contenido, String username, int categoria, java.util.Date fecha){
@@ -34,8 +63,26 @@ public class PreguntaModel {
         this.categoria_id = categoria;
         this.fecha_Pregunta = (Date) fecha;
     }
+    
+    public String getProfilePregunta() {
+           return profilePregunta;
+        
+    }
+
+    public void setProfilePregunta(String profilePregunta) {
+        this.profilePregunta = profilePregunta;
+    }
+
+    public int getCategoria_id() {
+           return categoria_id;
+    }
+
+    public void setCategoria_id(int categoria_id) {
+        this.categoria_id = categoria_id;
+    }
 
     public int getComentarios() {
+       
         return comentarios;
     }
 
@@ -77,7 +124,7 @@ public class PreguntaModel {
     }
 
     public int getId() {
-        return id;
+           return id;
     }
 
     public void setId(int id) {
@@ -124,17 +171,6 @@ public class PreguntaModel {
         this.categoria_id = catid;
     }
     
-    private String contenido;
-    private int id;
-    private String descripcion;
-    private String imagenPregunta;
-    private String usuarioPregunta;
-    private String categoriaPregunta;
-    private Date fecha_Pregunta;
-    private int fav;
-    private int util;
-    private int comentarios;
-    private int categoria_id;
-    private String profilepic;
+
 
 }

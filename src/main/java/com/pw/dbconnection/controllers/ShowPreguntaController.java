@@ -32,16 +32,21 @@ public class ShowPreguntaController extends HttpServlet{
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int a = 0;
         HttpSession MomoSession = request.getSession(false); 
-        System.out.println("ESTO SALIO 3");
+        //System.out.println("ESTO SALIO 3");
         if(MomoSession!=null){
             a = (int)MomoSession.getAttribute("IdShowPregunta");
-            System.out.println(MomoSession.getAttribute("IdShowPregunta"));
+            //System.out.println(MomoSession.getAttribute("IdShowPregunta"));
+            
             PreguntaModel miPregunta = PreguntaDAO.idPregunta(a);
+            System.out.println("ver pregunta profile: " + miPregunta.getProfilePregunta());
+            
             List<RespuestaModel> misRespuestas = RespuestaDAO.getRespuestas(a);
-            System.out.println(misRespuestas.size());
+            
+            
+           // System.out.println(misRespuestas.size());
             MomoSession.setAttribute("MostrarPregunta", miPregunta);
             MomoSession.setAttribute("MostrarRespuestas", misRespuestas);
-            System.out.println(miPregunta.getContenido());
+           // System.out.println(miPregunta.getContenido());
         
        
         
@@ -56,15 +61,15 @@ public class ShowPreguntaController extends HttpServlet{
            
        
         int idPregunta = Integer.parseInt(request.getParameter("IdPregunta"));  
-        System.out.println("ESTO SALIO 2");
+        ////System.out.println("ESTO SALIO 2");
         HttpSession MomoSession = request.getSession(false);
         if(MomoSession!=null){
             MomoSession.setAttribute("IdShowPregunta", idPregunta);
-            System.out.println("true");
+           // System.out.println("true");
         }
         else{
             MomoSession = request.getSession(true);
-            System.out.println("false");
+           // System.out.println("false");
             MomoSession.removeAttribute("IdShowPregunta"); 
             MomoSession.setAttribute("IdShowPregunta", idPregunta);  
         }
