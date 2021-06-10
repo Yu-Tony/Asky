@@ -65,8 +65,8 @@ public class LoginController extends HttpServlet {
                     MomoSession.setAttribute("username", result.getUsername());
                     MomoSession.setAttribute("contrasena", result.getContrasena());
                     MomoSession.setAttribute("profile_pic", result.getProfile_pic());
-                   // MomoSession.setAttribute("estado", result.isEstado());
-                    //System.out.println("dopost session !=null");
+                    MomoSession.setAttribute("estado", result.isEstado());
+                 
 
                 }
                 else
@@ -75,7 +75,8 @@ public class LoginController extends HttpServlet {
                     MomoSession.setAttribute("username", result.getUsername());
                     MomoSession.setAttribute("contrasena", result.getContrasena());
                     MomoSession.setAttribute("profile_pic", result.getProfile_pic());
-                    //MomoSession.setAttribute("estado", result.isEstado());
+                    MomoSession.setAttribute("estado", result.isEstado());
+                
                     //System.out.println("dopost session==null");
 
                 }
@@ -98,7 +99,7 @@ public class LoginController extends HttpServlet {
          {
                //System.out.println("logout ");
             MomoSession.invalidate();  
-               response.sendRedirect("UsersController");
+            response.sendRedirect("/DbConnection/UsersController");
          }
 
    

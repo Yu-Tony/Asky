@@ -323,7 +323,7 @@ $(document).ready(function()
       });
 
       /*-----------------TOOGLE PREGUNTA CORRECTA---------------------*/
-      $('.fa-check-square').click(function()
+      $('.bestAnswer').click(function()
       {
         
         var boxes = $('div.box');
@@ -343,17 +343,35 @@ $(document).ready(function()
           $(this).addClass('fas');
           //$('.fa-check-square').addClass('far');
             $(this).removeClass('far');
+            
+          
+             var val5 = $(this).parent().parent().find(".idPreguntaRes").text();
+             var val4 = $(this).parent().parent().find(".idRespuestaRes").text();
+             
+               //alert("idPreguntaRes" + val5 + "+ idRespuestaRes " + val4)
+                     
+             $.post(
+                 "/DbConnection/BestController", 
+                 {idPreguntaBest: val5, idRespuestaBest: val4, bestRespuesta: true});
+            
         }
         else
         {
            
+             var val5 = $(this).parent().parent().find(".idPreguntaRes").text();
+             var val4 = $(this).parent().parent().find(".idRespuestaRes").text();
              
+           
           //$('.fa-check-square').removeClass('far');
           //$(this).removeClass('far');
 
           $(this).addClass('far');
           //$('.fa-check-square').addClass('fas');
             $(this).removeClass('fas');
+            
+            $.post(
+                 "/DbConnection/BestController", 
+                 {idPreguntaBest: val5, idRespuestaBest: val4, bestRespuesta: false});
         }
 
       });
@@ -370,7 +388,18 @@ $(document).ready(function()
 
       /*-----------------BORRAR PREGUNTA---------------------*/
       $('.BorrarQ').click(function(){
-        window.location.href='/Asky/Error404/Error404.html';
+         
+           var val4 =$(this).parent().parent().parent().parent().parent().parent().find(".idPregunta").text();
+            //alert(val4)
+           $.post(
+            "/DbConnection/DeletePreguntaController", 
+             {idPreguntaBorrar: val4});
+             
+             setTimeout(function () {
+            window.location.href = '/DbConnection/UsersController'; //will redirect to your blog page (an ex: blog.html)
+           }, 500);
+             
+       // window.location.href='/Asky/Error404/Error404.html';
       });
 
 
@@ -482,6 +511,7 @@ $(document).ready(function()
               <div  id="blablabla"class="col-4"> <h6 style="padding-top: 10%;">${LaPregunta.usuarioPregunta}</h6></div>
               <div class="col-3"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> ${LaPregunta.fecha_Pregunta}</div>
               <div class="col-1"> <i class="far fa-star fav">${LaPregunta.fav}</i></div>
+              <i class="idPregunta" style="display: none">${LaPregunta.id}</i>
               <div class="col-1" id="delete-post">
 
                    <c:choose>
@@ -648,10 +678,12 @@ $(document).ready(function()
                     <!--  -->
                    <c:choose>
                       <c:when test ="${LaPregunta.usuarioPregunta eq NombreUsuario}">
-                         <div class="col-1" id="check-comment"><i class="far fa-check-square"></i></div>
+                          <div style="display: none" class="col-1 idPreguntaRes">${LaPregunta.id}</div>
+                          <div style="display: none"  class="col-1 idRespuestaRes">${respuestas.id}</div>
+                         <div class="col-1" id="check-comment"><i class="far fa-check-square bestAnswer"></i></div>
                     </c:when>
                     <c:otherwise>
-                      <div class="col-1" id="check-comment"><i class="far"></i></div>
+                      <div class="col-1" id="check-comment"><i class="far fa-check-square"></i></div>
                     </c:otherwise>
                 </c:choose>
         
@@ -745,14 +777,18 @@ $(document).ready(function()
                 <div class="col-2"></div>
                 <div class="col-3">
                     <c:if test = "${NombreUsuario != null}">
-                         <i class="far fa-thumbs-up likeR likeup" name="like"   > ${respuestas.util}</i>
+                        <c:if test = "${EstadoUsuario}">
+                              <i class="far fa-thumbs-up likeR likeup" name="like"   > ${respuestas.util}</i>
+                        </c:if>
                     </c:if>
                     <c:if test = "${NombreUsuario == null}">
                          <i class="far fa-thumbs-up likeup"  > ${LaPregunta.util}</i>
                     </c:if>
                     
                     <c:if test = "${NombreUsuario != null}">
-                        <i class="far fa-thumbs-down likeR likedown" name="dislike"> 0</i>
+                        <c:if test = "${EstadoUsuario}">
+                             <i class="far fa-thumbs-down likeR likedown" name="dislike"> 0</i>
+                        </c:if>
                     </c:if>
                     <c:if test = "${NombreUsuario == null}">
                           <i class="far fa-thumbs-down likedown"></i>
@@ -826,10 +862,12 @@ $(document).ready(function()
             <div class="col-sm-8">
 
                 <c:if test = "${NombreUsuario != null}">
-                    <form action="post_comment.php" method="post" id="commentform">
+                    <c:if test = "${EstadoUsuario}">
+                         <form action="post_comment.php" method="post" id="commentform">
                         <div class="row">
                             <div class="col-sm-12">
                                 <h3>Leave a Comment</h3>
+                                <h3></h3>
                                 <textarea class="form-control" rows="5" id="pregunta" required></textarea>
                                 <h5>Subir Imagenes</h5>
                                 <div class="field" style="align-self:center;">
@@ -842,6 +880,8 @@ $(document).ready(function()
                             <div class="col-sm-4" style="margin-top: 2%; margin-bottom: 4%;"> <button  type="submit"  class="btn btn-primary">Publicar</button></div>     
                         </div>
                     </form>
+                    </c:if>
+                   
                 </c:if>
             </div>
      

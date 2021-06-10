@@ -151,12 +151,15 @@
                     <hr>
                     <form action="/DbConnection/CreatePreguntaController" method="POST" enctype="multipart/form-data">
                         
+                       
                         <label for="titulo" style="  display: inline-block;">Titulo de la pregunta</label>
                         <input id = "qTitulo" class="form-control input" name="pTitulo" required autocomplete="off" /> 
 
                         <label for="pregunta" style="  display: inline-block;">Descripción</label>
                         <textarea class="form-control" rows="5" id="pregunta" name="pContenido" required></textarea>
 
+                        <input id = "pUsername" style="display: none" class="form-control input" name="pUsername" value="${NombreUsuario}" readonly/> 
+                       
                         <!--<label for="tags" style="  display: inline-block;">Tags</label>
 
                         <input class="form-control input" name="tags" required type="text" rel="txtTooltip" title="Tags separados por comas ' , '"  data-toggle="tooltip" data-placement="bottom" /> 

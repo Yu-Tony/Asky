@@ -52,15 +52,23 @@ public class PreguntaModel {
         return editPregunta;
     }
 
+    public int getNoUtil() {
+        return noUtil;
+    }
+
+    public void setNoUtil(int noUtil) {
+        this.noUtil = noUtil;
+    }
+
     public void setEditPregunta(boolean editPregunta) {
         this.editPregunta = editPregunta;
     }
     
-    public PreguntaModel(String titulo, String contenido, String username, int categoria, java.util.Date fecha){
+    public PreguntaModel(String titulo, String contenido, String usuarioPregunta, String categoriaPregunta, java.util.Date fecha){
         this.contenido = titulo;
         this.descripcion = contenido;
-        this.usuarioPregunta = username;
-        this.categoria_id = categoria;
+        this.usuarioPregunta=usuarioPregunta;
+        this.categoriaPregunta = categoriaPregunta;
         this.fecha_Pregunta = (Date) fecha;
     }
     

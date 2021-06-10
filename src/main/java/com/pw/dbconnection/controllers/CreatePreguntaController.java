@@ -39,11 +39,12 @@ public class CreatePreguntaController extends HttpServlet{
         //2
         String Contenido = request.getParameter("pContenido");      
         //7
-        String username = "bernabe4";    
-        //8
-        int categoria = 1;
+        String username = request.getParameter("pUsername");    
+        //8 nombrePersona
+        String categoria = request.getParameter("pCategoria");
         
-        
+        //System.out.println("username en cretePreguntaController " + username);
+        //System.out.println("categoria en cretePreguntaController " + categoria);
         //9
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/uuuu");
         LocalDate localDate = LocalDate.now();

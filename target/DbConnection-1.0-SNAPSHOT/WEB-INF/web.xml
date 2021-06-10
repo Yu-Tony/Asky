@@ -23,6 +23,16 @@
         <servlet-class>com.pw.dbconnection.controllers.LikeController</servlet-class>
     </servlet>
     
+        <servlet>
+        <servlet-name>DeletePreguntaController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.DeletePreguntaController</servlet-class>
+    </servlet>
+    
+        <servlet>
+        <servlet-name>LikeRespuestaController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.LikeRespuestaController</servlet-class>
+    </servlet>
+    
     <servlet>
         <servlet-name>FavController</servlet-name>
         <servlet-class>com.pw.dbconnection.controllers.FavController</servlet-class>

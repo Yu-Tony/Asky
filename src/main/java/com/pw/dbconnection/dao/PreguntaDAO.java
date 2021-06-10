@@ -34,7 +34,7 @@ public class PreguntaDAO {
            // "select * from student limit "+(start1-1)+","+total1
                     
             con = DbConnection.getConnection();
-            CallableStatement statement = con.prepareCall("SELECT * FROM Pregunta LIMIT ?,10");
+            CallableStatement statement = con.prepareCall("SELECT * FROM Pregunta where eliminar = 0 LIMIT ? ,10 ");
             statement.setInt(1, pageid1);
             ResultSet resultSet = statement.executeQuery();
             // Si el resultSet tiene resultados lo recorremos
@@ -138,7 +138,8 @@ public class PreguntaDAO {
              //System.out.println(aBuscar);
              String pstmt;
             
-            CallableStatement statement = con.prepareCall("select * from pregunta where contenido like ? limit ?,10");
+             //  CallableStatement statement = con.prepareCall("SELECT * FROM Pregunta where eliminar = 0 LIMIT ? ,10 ");
+            CallableStatement statement = con.prepareCall("select * from pregunta where eliminar = 0 AND contenido like ? limit ?,10");
             statement.setString(1,  "%" + aBuscar + "%");
             statement.setInt(2, pageid1);
             ResultSet resultSet = statement.executeQuery();
@@ -321,9 +322,30 @@ public class PreguntaDAO {
           try{
               System.out.println("Lo intentamos ");
             con = DbConnection.getConnection();
+            
+            //select id from Categoria where nombre = "finanzas";
+       
+            int categID=0;
+            CallableStatement statementCateg = con.prepareCall("select id from Categoria where nombre = ?");
+            statementCateg.setString(1,myPregunta.getCategoriaPregunta());
+            ResultSet resultSetUtils = statementCateg.executeQuery();
+             if (resultSetUtils.next()) {
+                int utilResult = resultSetUtils.getInt(1);
+                categID = utilResult;
+            }
+             
+            /* String ProfilePicNewPregunta=null;
+               CallableStatement statementProfilePic = con.prepareCall("SELECT profile_pic FROM Usuario where username = ?");
+                statementProfilePic.setString(1, myPregunta.getUsuarioPregunta());
+                ResultSet resultSetProfilePic = statementProfilePic.executeQuery();
+                if (resultSetProfilePic.next()) {
+                String commentResult = resultSetProfilePic.getString("profile_pic");
+                ProfilePicNewPregunta = commentResult;
+                }*/
+             
             CallableStatement statement = con.prepareCall("insert into Pregunta(contenido, categoria, usuario, descripcion, fecha, edit) values (?,?,?,?,?,?)");
             statement.setString(1, myPregunta.getContenido());
-            statement.setInt(2, myPregunta.getCatId());
+            statement.setInt(2, categID);
             statement.setString(3, myPregunta.getUsuarioPregunta());
             statement.setString(4, myPregunta.getDescripcion());
             statement.setDate(5, myPregunta.getFecha_Pregunta());
@@ -342,6 +364,29 @@ public class PreguntaDAO {
 
 
         return 0;
+      }
+      
+      public static void deletePregunta(int idPregunta)
+      {
+           try{
+            Connection con = DbConnection.getConnection();
+            
+            CallableStatement statement = con.prepareCall("update Pregunta SET eliminar = true where id = ? ");
+            statement.setInt(1, idPregunta);
+            statement.executeUpdate();
+            
+             System.out.println("el id de la pregunta a borrar en DAO " + idPregunta);
+             con.close();
+           }
+            catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        finally{
+
+            //return miPregunta;
+        }
+           
+         
       }
 }
 
