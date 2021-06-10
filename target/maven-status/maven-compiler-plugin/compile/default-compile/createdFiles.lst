@@ -10,6 +10,7 @@ com\pw\dbconnection\models\CategoriaModel.class
 com\pw\dbconnection\controllers\ProfileController.class
 com\pw\dbconnection\dao\UserDAO.class
 com\pw\dbconnection\models\FavModel.class
+com\pw\dbconnection\controllers\CrearRespuestaController.class
 com\pw\dbconnection\controllers\LikeController.class
 com\pw\dbconnection\controllers\ShowPreguntaController.class
 com\pw\dbconnection\models\LikeModel.class

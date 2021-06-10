@@ -70,9 +70,13 @@
 $(document).ready(function() 
     {   
         
-        $(function(){
-           // alert($('#blablabla').text());
-         });
+        
+        
+       $('#btnCrearRespuesta').click(function(){
+            System.out.println("minimo sirve el boton");
+           $.post("./CrearRespuestaController", {IdPregunta : $('#laRespuesta').text()});
+       });
+       
       /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
       $('.like').click(function() 
       {
@@ -933,7 +937,7 @@ $(document).ready(function()
                     <div class="col-sm-12">
 
                       <h5>Editar Texto</h5>
-                      <textarea class="form-control" rows="5" id="pregunta" required></textarea>
+                      <textarea class="form-control" rows="5" id="laRespuesta" required></textarea>
                       <h5>Editar Imagenes</h5>
 
 
@@ -979,7 +983,7 @@ $(document).ready(function()
             <div class="col-sm-8">
 
 
-                <form action="post_comment.php" method="post" id="commentform">
+            <form enctype="multipart/form-data" action="./CrearRespuestaController" method="POST" id="commentform">
             <div class="row">
                 <div class="col-sm-12">
                     <h3>Leave a Comment</h3>
@@ -1003,11 +1007,11 @@ $(document).ready(function()
                 
               <div class="row">
                 <div class="col-sm-4"></div>
-                <div class="col-sm-4" style="margin-top: 2%; margin-bottom: 4%;"> <button  type="submit"  class="btn btn-primary">Publicar</button></div>     
+                <div class="col-sm-4" style="margin-top: 2%; margin-bottom: 4%;"> <button id="btnCrearRespuesta" type="submit"  class="btn btn-primary">Publicar</button></div>     
                </div>
                 
               
-                </form>
+               </form>
 
                 
                 

@@ -49,5 +49,10 @@
         <servlet-class>com.pw.dbconnection.controllers.ShowPreguntaController</servlet-class>
     </servlet>
     
+     <servlet>
+        <servlet-name>CreateRespuestaController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.CreateRespuestaController</servlet-class>
+    </servlet>
+    
     
 </web-app>
