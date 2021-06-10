@@ -39,7 +39,6 @@ public class PreguntaDAO {
             ResultSet resultSet = statement.executeQuery();
             // Si el resultSet tiene resultados lo recorremos
 
-            
              
             while (resultSet.next()) {
                 // Obtenemos el valor del result set en base al nombre de la
@@ -324,6 +323,8 @@ public class PreguntaDAO {
             con = DbConnection.getConnection();
             
             //select id from Categoria where nombre = "finanzas";
+            
+        
        
             int categID=0;
             CallableStatement statementCateg = con.prepareCall("select id from Categoria where nombre = ?");
@@ -387,6 +388,117 @@ public class PreguntaDAO {
         }
            
          
+      }
+      
+      public static List<PreguntaModel> getPreguntasCategoria(String categoria, String start1)
+      {
+          // select * from Pregunta where categoria = 1
+           List<PreguntaModel> preguntas = new ArrayList<>();
+            Connection con =null;
+          try{
+             
+            con = DbConnection.getConnection();
+            
+            int pageid1=Integer.parseInt(start1);  
+            pageid1 = pageid1-1;
+            
+            /*------------------CATEGORIA ID---------------*/
+            int categID=0;
+            CallableStatement statementCateg = con.prepareCall("select id from Categoria where nombre = ?");
+            statementCateg.setString(1,categoria);
+            ResultSet resultSetCategoria = statementCateg.executeQuery();
+             if (resultSetCategoria.next()) {
+                int utilResult = resultSetCategoria.getInt(1);
+                categID = utilResult;
+            }
+            
+              /*------------------QUERY PREGUNTAS---------------*/
+            CallableStatement statement = con.prepareCall("select * from Pregunta where categoria = ? LIMIT ? ,10 ");
+            statement.setInt(1, categID);
+             statement.setInt(2, pageid1);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                // Obtenemos el valor del result set en base al nombre de la
+                // columna
+            
+             
+                String contenido = resultSet.getString("contenido");
+                 //System.out.println("page number DAO " + contenido);
+                int id = resultSet.getInt("id");
+                String descripcion = resultSet.getString("descripcion");
+                String imagenPregunta = resultSet.getString("imagen");
+                String usuarioPregunta = resultSet.getString("usuario");
+                int categoriaPreguntaID = resultSet.getInt("categoria");
+                String categoriaPregunta = null;
+                Date fecha_Pregunta = resultSet.getDate("fecha");
+                int fav=0;
+                int util=0;
+                int comentarios=0;
+                String profilePregunta=null;
+                boolean edit = resultSet.getBoolean("edit");
+            
+                 //http://www.java2s.com/Code/Java/Database-SQL-JDBC/CountRecordsUsingPreparedStatement.htm
+                CallableStatement statementFavs = con.prepareCall("SELECT COUNT(*) AS FavRowCount FROM fav_pregunta WHERE pregunta = ?");
+                statementFavs.setInt(1, id);
+                ResultSet resultSetFavs = statementFavs.executeQuery();
+                if (resultSetFavs.next()) {
+                int favResult = resultSetFavs.getInt(1);
+                fav=favResult;
+                }
+                
+                CallableStatement statementUtils = con.prepareCall("SELECT COUNT(*) AS UtilRowCount FROM util_pregunta WHERE pregunta = ?");
+                statementUtils.setInt(1, id);
+                ResultSet resultSetUtils = statementUtils.executeQuery();
+                if (resultSetUtils.next()) {
+                int utilResult = resultSetUtils.getInt(1);
+                util = utilResult;
+                }
+                
+               /* CallableStatement statementCateg = con.prepareCall("SELECT nombre FROM Categoria WHERE id = ?");
+                statementCateg.setInt(1, categoriaPreguntaID);
+                ResultSet resultSetCateg = statementCateg.executeQuery();
+                if (resultSetCateg.next()) {
+                String CategResult = resultSetCateg.getString("nombre");
+                //System.out.println(CategResult);
+               
+                }*/
+               // System.out.println(contenido);
+                categoriaPregunta = categoria;
+                
+              CallableStatement statementComment = con.prepareCall("SELECT COUNT(*) AS CommentRowCount FROM Respuesta WHERE pregunta = ?");
+                statementComment.setInt(1, id);
+                ResultSet resultSetComment = statementComment.executeQuery();
+                if (resultSetComment.next()) {
+                int commentResult = resultSetComment.getInt(1);
+                comentarios = commentResult;
+                }
+                
+                CallableStatement statementProfilePic = con.prepareCall("SELECT profile_pic FROM Usuario where username = ?");
+                statementProfilePic.setString(1, usuarioPregunta);
+                ResultSet resultSetProfilePic = statementProfilePic.executeQuery();
+                if (resultSetProfilePic.next()) {
+                String commentResult = resultSetProfilePic.getString("profile_pic");
+                profilePregunta = commentResult;
+                //System.out.println(ProfilePic);
+                }
+                
+                // Agregamos el usuario a la lista
+                preguntas.add(new PreguntaModel(profilePregunta, contenido, id, descripcion, imagenPregunta, usuarioPregunta, categoriaPregunta, fecha_Pregunta, fav, util,comentarios, edit));
+            
+               
+            }
+               con.close();
+            
+          }
+          catch (SQLException ex) {
+              
+            System.out.println(ex.getMessage());
+           
+          } finally {
+              return preguntas;
+          }
+          
       }
 }
 

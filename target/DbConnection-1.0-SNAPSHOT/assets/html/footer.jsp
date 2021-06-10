@@ -1,5 +1,43 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
+<script>
+   /* function callMe(count){
+    $.ajax({
+      type: "POST",
+      url: "/NewServlet?count=" + count,
+      data: { methodToInvoke: "sayHello" , data: "4" }
+    }).done(function( msg ) {
+      alert( "Data Saved: " + msg );
+    });
+    }  */
+    
+    $(document).on("click", "a", function(){
+      var val1 = $(this).text();
+        //alert(val1);
+        
+          $.post(
+                 "././CategoriasController", 
+                 {categoriaSelected: val1} 
+                 );
+         
+         setTimeout(function () {
+            window.location.href = '/DbConnection/CategoriasController'; //will redirect to your blog page (an ex: blog.html)
+           }, 1000);
+        });
+
+    
+    /*$('.categoriaSelected').click(function() 
+    {
+        //var val1 = $(this).text();
+        alert("val1");
+        
+         $.post(
+                 "/DbConnection/CategoriasController", 
+                 {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: true, tipoLike:1} 
+                 );
+    }*/
+</script>
+
 <body>
     <!--FOOTER-->
     <footer class="text-center text-white" style="background-color: #1C1C1C;">
@@ -15,7 +53,7 @@
                           
                         <c:forEach var="categ" items="${categorias}">
                             <li>
-                                <a href="#!" class="text-white">${categ.nombre}</a>
+                                <a href="javascript:void(0)" class="text-white categoriaSelected">${categ.nombre}</a>
                             </li>
                         </c:forEach>
  

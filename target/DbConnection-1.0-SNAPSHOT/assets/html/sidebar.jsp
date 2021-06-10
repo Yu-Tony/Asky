@@ -22,8 +22,8 @@
 
                   
                   <c:forEach var="categ" items="${categorias}">
-                       <a href="#" class="list-group-item" data-parent="#menu2">${categ.nombre}</a>
-                  </c:forEach>
+                        <a name="categoriaSelected"  class="list-group-item" data-parent="#menu2">${categ.nombre}</a>
+                     </c:forEach>
 
               </div>
 

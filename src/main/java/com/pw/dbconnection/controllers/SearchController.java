@@ -37,14 +37,9 @@ public class SearchController extends HttpServlet {
         if(MomoSession!=null){
           a = (String)MomoSession.getAttribute("srchString");
          // request.setAttribute("srchResult", a);
-
         }
         else{
-            MomoSession = request.getSession(true);
- 
-
-           //System.out.println("session == null " + a);
-           
+            MomoSession = request.getSession(true);  
         }
         
  

@@ -38,6 +38,11 @@
         <servlet-class>com.pw.dbconnection.controllers.FavController</servlet-class>
     </servlet>
     
+    <servlet>
+        <servlet-name>CategoriasController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.CategoriasController</servlet-class>
+    </servlet>
+    
     
     <servlet>
         <servlet-name>ProfileController</servlet-name>
