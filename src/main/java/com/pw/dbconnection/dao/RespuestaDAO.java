@@ -27,6 +27,7 @@ public class RespuestaDAO {
          
         try 
         {
+             System.out.println("entra al dao respuestas ");
             con = DbConnection.getConnection();
             CallableStatement statement = con.prepareCall("select * from Respuesta where pregunta = ?");
             statement.setInt(1, idPregunta);
@@ -48,13 +49,24 @@ public class RespuestaDAO {
                 String profileRespuesta = null;
                 boolean edit = resultSet.getBoolean("edit");
                 int util=0;
+                int noUtil=0;
                  
-                CallableStatement statementUtils = con.prepareCall("SELECT COUNT(*) AS RUtilRowCount FROM util_respuesta WHERE respuesta = ?");
+                CallableStatement statementUtils = con.prepareCall("SELECT COUNT(*) AS RUtilRowCount FROM util_respuesta WHERE respuesta = ? AND util=true");
                 statementUtils.setInt(1, id);
                 ResultSet resultSetUtils = statementUtils.executeQuery();
                 if (resultSetUtils.next()) {
                 int utilResult = resultSetUtils.getInt(1);
                 util = utilResult;
+               
+                }
+                
+                CallableStatement statementNoUtils = con.prepareCall("SELECT COUNT(*) AS RNoUtilRowCount FROM util_respuesta WHERE respuesta = ? AND util=false");
+                statementNoUtils.setInt(1, id);
+                ResultSet resultSetNoUtils = statementNoUtils.executeQuery();
+                if (resultSetNoUtils.next()) {
+                int utilResult = resultSetNoUtils.getInt(1);
+                noUtil = utilResult;
+               System.out.println("No util de respuestas " + noUtil);
                 }
                 
                  CallableStatement statementProfilePic = con.prepareCall("SELECT profile_pic FROM Usuario where username = ?");
@@ -63,13 +75,14 @@ public class RespuestaDAO {
                 if (resultSetProfilePic.next()) {
                 String commentResult = resultSetProfilePic.getString("profile_pic");
                 profileRespuesta = commentResult;
+                
                 //System.out.println(ProfilePic);
                 }
                 
                 // Agregamos el usuario a la lista
                 //  respuestas 
                 //String contenido, int id, String imagen, String usuario, Boolean mejor, Date fecha, int util, boolean editRespuesta , String profileRespuesta
-                respuestas.add(new RespuestaModel(contenido, id, imagenRes, usuarioRes, mejor, fecha_Res,util,edit, profileRespuesta));
+                respuestas.add(new RespuestaModel(contenido, id, imagenRes, usuarioRes, mejor, fecha_Res,util, noUtil,edit, profileRespuesta));
                
             }
             
@@ -91,12 +104,16 @@ public class RespuestaDAO {
           try{
               System.out.println("Lo intentamos ");
             con = DbConnection.getConnection();
-            CallableStatement statement = con.prepareCall("insert into Respuesta(contenido, usuario, pregunta, fecha, imagen, mejor) values (?,?,?,?,?, false)");
+            ////id, contenido, imagen, mejor, usuario, pregunta, fecha, edit
+            CallableStatement statement = con.prepareCall("insert into Respuesta(contenido, imagen, mejor, usuario, pregunta, fecha, edit, eliminar) values (?,?,?,?,?,?,?,?)");
             statement.setString(1, myRespuesta.getContenido());
-            statement.setString(2, myRespuesta.getUsuario());
-            statement.setInt(3, myRespuesta.getPreguntaId());  
-            statement.setDate(4, myRespuesta.getFecha_Respuesta());
-            statement.setString(5, myRespuesta.getImagen());
+            statement.setString(2, myRespuesta.getImagen());
+            statement.setBoolean(3, myRespuesta.isMejor());
+            statement.setString(4, myRespuesta.getUsuario());  
+            statement.setInt(5, myRespuesta.getPregunta());
+            statement.setDate(6, myRespuesta.getFecha_Respuesta());
+             statement.setBoolean(7, myRespuesta.isEditRespuesta());
+              statement.setBoolean(8, myRespuesta.isEliminarRespuesta());
             return statement.executeUpdate();
           }catch (SQLException ex) {
             System.out.println(ex.getMessage());

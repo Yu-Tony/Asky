@@ -631,7 +631,7 @@ $(document).ready(function()
                            <c:if test = "${NombreUsuario != null}">
                                 <c:if test = "${EstadoUsuario}">
                                     <c:choose>
-                                        <c:when test ="${respuestas.usuario eq NombreUsuario}">
+                                        <c:when test ="${LaPregunta.usuarioPregunta eq NombreUsuario}">
                                             <i class="far fa-thumbs-down like likedown" name="dislike"> ${LaPregunta.noUtil}</i>
                                         </c:when>
                                         <c:otherwise>
@@ -814,7 +814,8 @@ $(document).ready(function()
                     <c:if test = "${NombreUsuario == null}">
                          <i class="far fa-thumbs-up likeup"  > ${respuestas.util}</i>
                     </c:if>
-                    
+              
+                               
                     <c:if test = "${NombreUsuario != null}">
                         <c:if test = "${EstadoUsuario}">
                             <c:choose>
@@ -828,6 +829,8 @@ $(document).ready(function()
                              
                         </c:if>
                     </c:if>
+                                    
+                                    
                     <c:if test = "${NombreUsuario == null}">
                           <i class="far fa-thumbs-down likedown"></i>
                     </c:if>
@@ -901,23 +904,27 @@ $(document).ready(function()
 
                 <c:if test = "${NombreUsuario != null}">
                     <c:if test = "${EstadoUsuario}">
-                         <form action="post_comment.php" method="post" id="commentform">
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <h3>Leave a Comment</h3>
-                                <h3></h3>
-                                <textarea class="form-control" rows="5" id="pregunta" required></textarea>
-                                <h5>Subir Imagenes</h5>
-                                <div class="field" style="align-self:center;">
-                                    <input type="file" id="files" name="files[]" multiple accept="image/*" />
-                                </div>   
+                        <form enctype="multipart/form-data" action="/DbConnection/CrearRespuestaController" method="POST" id="commentform">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <h3>Escribe una respuesta</h3>
+                                    <!--insert into Respuesta(contenido, usuario, pregunta, fecha, mejor)-->
+                                     <input type="text" style="display: none" id="fname" name="nombrePersona" value="${NombreUsuario}">
+                                     <input type="text" style="display: none" id="fname" name="idPreguntaRes" value="${LaPregunta.id}">
+                                    <textarea class="form-control" rows="5" name="Respuesta" required></textarea>
+                                    <h5>Subir Imagenes</h5>
+                                    <div class="field" style="align-self:center;">
+                                        <input type="file" id="files" name="files[]" multiple accept="image/*" />
+                                    </div>   
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-4"></div>
-                            <div class="col-sm-4" style="margin-top: 2%; margin-bottom: 4%;"> <button  type="submit"  class="btn btn-primary">Publicar</button></div>     
-                        </div>
-                    </form>
+                            <div class="row">
+                               <div class="col-sm-4"></div>
+                               <div class="col-sm-4" style="margin-top: 2%; margin-bottom: 4%;"> <button id="btnCrearRespuesta" type="submit"  class="btn btn-primary">Publicar</button></div>     
+                            </div>
+
+
+                        </form>
                     </c:if>
                    
                 </c:if>

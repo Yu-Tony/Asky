@@ -39,7 +39,7 @@ public class PreguntaModel {
        this.imagenPregunta=imagenPregunta;
        this.usuarioPregunta=usuarioPregunta;
        this.categoriaPregunta=categoriaPregunta;
-       this.fecha_Pregunta=fecha_Pregunta;
+       this.fecha_Pregunta=(Date)fecha_Pregunta;
        this.fav=fav;
        this.util=util;
        this.comentarios = comentarios;

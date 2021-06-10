@@ -70,7 +70,7 @@ public class PreguntaDAO {
                 fav=favResult;
                 }
                 
-                CallableStatement statementUtils = con.prepareCall("SELECT COUNT(*) AS UtilRowCount FROM util_pregunta WHERE pregunta = ?");
+                CallableStatement statementUtils = con.prepareCall("SELECT COUNT(*) AS UtilRowCount FROM util_pregunta WHERE pregunta = ? AND util = true");
                 statementUtils.setInt(1, id);
                 ResultSet resultSetUtils = statementUtils.executeQuery();
                 if (resultSetUtils.next()) {
@@ -78,7 +78,7 @@ public class PreguntaDAO {
                 util = utilResult;
                 }
                 
-                CallableStatement statementNoUtils = con.prepareCall("SELECT COUNT(*) AS UtilRowCount FROM util_respuesta WHERE respuesta = ?");
+                CallableStatement statementNoUtils = con.prepareCall("SELECT COUNT(*) AS UtilRowCount FROM util_pregunta WHERE pregunta = ? AND util = false");
                 statementNoUtils.setInt(1, id);
                 ResultSet resultSetNoUtils = statementNoUtils.executeQuery();
                 if (resultSetNoUtils.next()) {
@@ -264,7 +264,7 @@ public class PreguntaDAO {
                 String profilePregunta=null;
                 boolean edit = resultSet.getBoolean("edit");
                 
-                  System.out.println(edit);
+                  //System.out.println(edit);
 
                  //http://www.java2s.com/Code/Java/Database-SQL-JDBC/CountRecordsUsingPreparedStatement.htm
                 CallableStatement statementFavs = con.prepareCall("SELECT COUNT(*) AS FavRowCount FROM fav_pregunta WHERE pregunta = ?");
@@ -328,7 +328,7 @@ public class PreguntaDAO {
       public static int insertPregunta(PreguntaModel myPregunta){
             Connection con =null;
           try{
-              System.out.println("Lo intentamos ");
+              //System.out.println("Lo intentamos ");
             con = DbConnection.getConnection();
             
             //select id from Categoria where nombre = "finanzas";
@@ -364,7 +364,7 @@ public class PreguntaDAO {
             return statement.executeUpdate();
           }catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            System.out.println("pero no pudo funcionar");
+            //System.out.println("pero no pudo funcionar");
           } finally {
               try{
               con.close();
@@ -386,7 +386,7 @@ public class PreguntaDAO {
             statement.setInt(1, idPregunta);
             statement.executeUpdate();
             
-             System.out.println("el id de la pregunta a borrar en DAO " + idPregunta);
+             //System.out.println("el id de la pregunta a borrar en DAO " + idPregunta);
              con.close();
            }
             catch (SQLException ex) {
