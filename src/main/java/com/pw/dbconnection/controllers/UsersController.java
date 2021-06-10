@@ -128,13 +128,13 @@ public class UsersController extends HttpServlet
         
         HttpSession MomoSession = request.getSession();
         if(MomoSession!=null){
-            MomoSession.setAttribute("correo", correo);
+            MomoSession.setAttribute("correo", username);
             MomoSession.setAttribute("contraseña", contrasena);
            // System.out.println("dopost session !=null");
           
         }else{
             MomoSession = request.getSession(true);
-            MomoSession.setAttribute("correo", correo);
+            MomoSession.setAttribute("correo", username);
             MomoSession.setAttribute("contraseña", contrasena);
             //System.out.println("dopost session==null");
            

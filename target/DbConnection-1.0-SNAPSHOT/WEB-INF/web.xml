@@ -54,5 +54,9 @@
         <servlet-class>com.pw.dbconnection.controllers.CreateRespuestaController</servlet-class>
     </servlet>
     
+     <servlet>
+        <servlet-name>ShowStuffController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.ShowStuffController</servlet-class>
+    </servlet>
     
 </web-app>

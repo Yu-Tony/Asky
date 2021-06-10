@@ -23,6 +23,11 @@ public class UserModel
     private String username;
     private String contrasena;
     private Date fecha_crea;
+    private int favs;
+    private int utils;
+    private int noutils;
+    private int preguntas;
+    private int respuestas;
 
 
     public UserModel(String nombre, String apellidos, java.util.Date fecha_nac, String correo, boolean estado, String profile_pic, String username, String contrasena) {
@@ -34,6 +39,7 @@ public class UserModel
         this.profile_pic = profile_pic;
         this.username = username;
         this.contrasena = contrasena;
+        
     }
 
  
@@ -50,6 +56,24 @@ public class UserModel
         this.contrasena = contrasena;
         this.fecha_crea = (Date) fecha_crea;
     }
+    
+     public UserModel(String nombre, String apellidos, java.util.Date fecha_nac, String correo, Boolean estado,  String profile_pic, String username, String contrasena, int favs, int utils, int noutils, int preguntas, int respuestas) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.fecha_nac = (Date) fecha_nac;
+        this.correo = correo;
+        this.estado = estado;
+        this.profile_pic = profile_pic;
+        this.username = username;
+        this.contrasena = contrasena;
+       
+        this.favs = favs;
+        this.utils = utils;
+        this.noutils = noutils;
+        this.preguntas = preguntas;
+        this.respuestas = respuestas;
+    }
+    
 
     public UserModel(String nombre, String apellidos, String profile_pic) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -59,6 +83,8 @@ public class UserModel
         this.correo=emailLogin;
         this.contrasena=passLogin;
     }
+
+ 
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
@@ -131,6 +157,40 @@ public class UserModel
     public void setFecha_crea(Date fecha_crea) {
         this.fecha_crea = fecha_crea;
     }
+    public void setfavs(int myfavs){
+        this.favs =myfavs;
+    }
+    public int getFavs(){
+        return favs;
+    }
+    
+     public void setUtils(int myfavs){
+        this.utils =myfavs;
+    }
+    public int getUtils(){
+        return utils;
+    }
+    
+     public void setNoUtils(int myfavs){
+        this.noutils =myfavs;
+    }
+    public int getNoUtils(){
+        return noutils;
+    }
+    
+     public void setPreguntas(int myfavs){
+        this.preguntas =myfavs;
+    }
+    public int getPreguntas(){
+        return preguntas;
+    }
+    public void setRespuestas(int myfavs){
+        this.respuestas =myfavs;
+    }
+    public int getRespuestas(){
+        return respuestas;
+    }
+    
    
 
 
