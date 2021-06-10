@@ -12,6 +12,8 @@ import java.sql.Date;
  * @author teb
  */
 public class RespuestaModel {
+
+    public int getPregunta;
     
     
      public RespuestaModel(String contenido, int id, String imagen, String usuario, Boolean mejor, Date fecha, int util, boolean editRespuesta , String profileRespuesta){
@@ -107,8 +109,17 @@ public class RespuestaModel {
         this.fecha_Respuesta = fecha_Respuesta;
     }
     
+    public int getPreguntaId(){
+        return pregunta;
+    }
+    
+    public void setPreguntaId(int idPreg){
+        this.pregunta = idPreg;
+    }
+    
       private int id;
       private String contenido;
+      private int pregunta;
       private String usuario;
       private String imagen;
       private boolean mejor;

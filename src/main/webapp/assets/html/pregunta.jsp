@@ -68,9 +68,13 @@
 $(document).ready(function() 
     {   
         
-        $(function(){
-           // alert($('#blablabla').text());
-         });
+        
+        
+       $('#btnCrearRespuesta').click(function(){
+            System.out.println("minimo sirve el boton");
+           $.post("./CrearRespuestaController", {IdPregunta : $('#laRespuesta').text()});
+       });
+       
       /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
         $('.like').click(function() 
       {
@@ -813,7 +817,7 @@ $(document).ready(function()
                     <div class="col-sm-12">
 
                       <h5>Editar Texto</h5>
-                      <textarea class="form-control" rows="5" id="pregunta" required></textarea>
+                      <textarea class="form-control" rows="5" id="laRespuesta" required></textarea>
                       <h5>Editar Imagenes</h5>
 
 

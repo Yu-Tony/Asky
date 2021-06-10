@@ -86,4 +86,29 @@ public class RespuestaDAO {
         }
     }
     
+    public static int insertRespuesta(RespuestaModel myRespuesta){
+                    Connection con =null;
+          try{
+              System.out.println("Lo intentamos ");
+            con = DbConnection.getConnection();
+            CallableStatement statement = con.prepareCall("insert into Respuesta(contenido, usuario, pregunta, fecha, imagen, mejor) values (?,?,?,?,?, false)");
+            statement.setString(1, myRespuesta.getContenido());
+            statement.setString(2, myRespuesta.getUsuario());
+            statement.setInt(3, myRespuesta.getPreguntaId());  
+            statement.setDate(4, myRespuesta.getFecha_Respuesta());
+            statement.setString(5, myRespuesta.getImagen());
+            return statement.executeUpdate();
+          }catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("pero no pudo funcionar");
+          } finally {
+              try{
+              con.close();
+              }catch(SQLException ex){}
+              
+              
+          }
+        return 0;
+    }
+    
 }
