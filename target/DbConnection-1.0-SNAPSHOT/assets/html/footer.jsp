@@ -11,19 +11,22 @@
     });
     }  */
     
-    $(document).on("click", "a", function(){
-      var val1 = $(this).text();
+    $(".categorySelected").on('click', function(event){
+         var val1 = $(this).text();
         //alert(val1);
         
-          $.post(
+         /*$.post(
                  "././CategoriasController", 
                  {categoriaSelected: val1} 
-                 );
-         
+                 );*/
+
          setTimeout(function () {
-            window.location.href = '/DbConnection/CategoriasController'; //will redirect to your blog page (an ex: blog.html)
-           }, 1000);
-        });
+            window.location.href = '/DbConnection/CategoriasController?categ='+val1; //will redirect to your blog page (an ex: blog.html)
+           }, 500);
+    });
+
+    
+ 
 
     
     /*$('.categoriaSelected').click(function() 
@@ -53,7 +56,7 @@
                           
                         <c:forEach var="categ" items="${categorias}">
                             <li>
-                                <a href="javascript:void(0)" class="text-white categoriaSelected">${categ.nombre}</a>
+                                <a href="javascript:void(0)" name="categoriaSelected" class="text-white categorySelected">${categ.nombre}</a>
                             </li>
                         </c:forEach>
  

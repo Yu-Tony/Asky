@@ -38,12 +38,7 @@
         <servlet-class>com.pw.dbconnection.controllers.FavController</servlet-class>
     </servlet>
     
-    <servlet>
-        <servlet-name>CategoriasController</servlet-name>
-        <servlet-class>com.pw.dbconnection.controllers.CategoriasController</servlet-class>
-    </servlet>
-    
-    
+  
     <servlet>
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>com.pw.dbconnection.controllers.ProfileController</servlet-class>
@@ -63,6 +58,13 @@
         <servlet-name>ShowPreguntaController</servlet-name>
         <servlet-class>com.pw.dbconnection.controllers.ShowPreguntaController</servlet-class>
     </servlet>
+    
+      <servlet>
+        <servlet-name>CategoriasController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.CategoriasController</servlet-class>
+    </servlet>
+    
+    
     
     
 </web-app>

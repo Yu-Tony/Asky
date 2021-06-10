@@ -31,27 +31,30 @@ public class CategoriasController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
        
-  HttpSession MomoSession = request.getSession(false);
-        String a=null;
-
-        if(MomoSession!=null){
-          a = (String)MomoSession.getAttribute("srchString");
-         // request.setAttribute("categResult", a);
-        }
-        else{
-            MomoSession = request.getSession(true);  
+        HttpSession MomoSession = request.getSession(false);
+        String categoria = request.getParameter("categ");
+        
+        if(categoria==null)
+        {
+            
+            if(MomoSession!=null){
+              categoria = (String)MomoSession.getAttribute("srchString");
+             // request.setAttribute("categResult", a);
+            }
+            else{
+                MomoSession = request.getSession(true);  
+            }
         }
         
- 
-          
-       // System.out.println("idk por que se imprime esto" +nombre);
-        
-          String spageid1=request.getParameter("page"); 
+        /*---------------pagina-----------*/
+         String spageid1=request.getParameter("pages"); 
+         System.out.println("pagina numero " +spageid1);  
+            
          if(spageid1==null)
          {
              spageid1 = "1";
                
-  System.out.println("pagina numero " +spageid1);  
+     
          }
 
         int pageid1=Integer.parseInt(spageid1);  
@@ -63,33 +66,28 @@ public class CategoriasController extends HttpServlet {
             pageid1=pageid1*total1+1;  
         }  
         spageid1 = Integer.toString(pageid1);
-       
-        spageid1 = Integer.toString(pageid1);
+        /*---------------pagina-----------*/
      
-        List<PreguntaModel> Preguntas = PreguntaDAO.getPreguntasCategoria(a,spageid1);
-        
-        if(Preguntas!=null)
-        {
-               if(MomoSession!=null){
+      List<PreguntaModel> Preguntas = PreguntaDAO.getPreguntasCategoria(categoria,spageid1);
+      
+ 
+      if(MomoSession!=null){
  
             MomoSession.setAttribute("categResult", Preguntas);
-            System.out.println("chica " + Preguntas.get(0).getContenido());
+             MomoSession.setAttribute("srchString", categoria);
+           // System.out.println("chica " + Preguntas.get(0).getContenido());
             }
             else{
                 MomoSession = request.getSession(true);
-                MomoSession.setAttribute("categResult", Preguntas);  
-              System.out.println("bom " + Preguntas.get(0).getContenido());
+                MomoSession.setAttribute("categResult", Preguntas); 
+                 MomoSession.setAttribute("srchString", categoria);
+             // System.out.println("bom " + Preguntas.get(0).getContenido());
         }
-        }
-        // System.out.println("cosa a buscar en doget de categorias " + Preguntas.get(0).getContenido());
-         
-    
-
-       //response.sendRedirect("success.jsp");
-         RequestDispatcher aDispatcher = request.getRequestDispatcher("assets/html/categorias.jsp");
+     
+      RequestDispatcher aDispatcher = request.getRequestDispatcher("assets/html/categorias.jsp");
          aDispatcher.forward(request,response);
-          // request.getRequestDispatcher("categorias.jsp").forward(request, response);
-      
+      //System.out.println("doGET categ " + categoria);
+      //doPost(request,response);
     }
 
   /*System.out.println("entro a categ controller doPost");
@@ -99,30 +97,13 @@ public class CategoriasController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        
-        String nombreCategoria = request.getParameter("categoriaSelected");
-        //String nombre = request.getParameter("busqueda");
-        // System.out.println("cosa a buscar en dopost " + nombreCategoria);
-
- 
-        List<PreguntaModel> Preguntas = PreguntaDAO.getPreguntasCategoria(nombreCategoria, "1");
-         
-       
-        //request.setAttribute("categResult", Preguntas);
-        HttpSession MomoSession = request.getSession(false);
-        if(MomoSession!=null){
-            MomoSession.setAttribute("srchString", nombreCategoria);
-            MomoSession.setAttribute("categResult", Preguntas);
-          
-        }
-        else{
-            MomoSession = request.getSession(true);
-            MomoSession.setAttribute("srchString", nombreCategoria);
-            MomoSession.setAttribute("categResult", Preguntas);  
-        }
-        
-        response.sendRedirect("CategoriasController");
+ System.out.println("doPost categ ");
+   
+            /*String categoria = request.getParameter("categoriaSelected");
             
+            
+          
+             response.setHeader("Refresh", "1; URL=UsersController");*/
     }
 
    

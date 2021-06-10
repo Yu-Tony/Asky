@@ -80,7 +80,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
       
-    <a class="navbar-brand" href="/DbConnection" style="color: whitesmoke;">  <img src = '/DbConnection/assets/Images/conversation.png' style="height: 30px; margin-right: 5px;" /> ASKY</a>
+    <a class="navbar-brand" href="/DbConnection/UsersController" style="color: whitesmoke;">  <img src = '/DbConnection/assets/Images/conversation.png' style="height: 30px; margin-right: 5px;" /> ASKY</a>
   
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">

@@ -370,12 +370,12 @@
     <div class="text-center">
         <ul class="pagination">
             <li><a href="">«</a></li>
-            <li><a class="active" href="/DbConnection/CategoriasController?page=1">1</a></li>
-            <li><a href="/DbConnection/CategoriasController?page=2">2</a></li>
-            <li><a href="/DbConnection/CategoriasController?page=3">3</a></li>
-            <li><a href="/DbConnection/CategoriasController?page=4">4</a></li>
-            <li><a href="/DbConnection/CategoriasController?page=5">5</a></li>
-            <li><a href="/DbConnection/CategoriasController?page=6">6</a></li>
+            <li><a class="active" href="/DbConnection/CategoriasController?pages=1">1</a></li>
+            <li><a href="/DbConnection/CategoriasController?pages=2">2</a></li>
+            <li><a href="/DbConnection/CategoriasController?pages=3">3</a></li>
+            <li><a href="/DbConnection/CategoriasController?pages=4">4</a></li>
+            <li><a href="/DbConnection/CategoriasController?pages=5">5</a></li>
+            <li><a href="/DbConnection/CategoriasController?pages=6">6</a></li>
             <li><a href="#">»</a></li>
           </ul>
     </div>

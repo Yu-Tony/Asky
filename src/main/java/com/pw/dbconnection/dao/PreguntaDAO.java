@@ -344,13 +344,14 @@ public class PreguntaDAO {
                 ProfilePicNewPregunta = commentResult;
                 }*/
              
-            CallableStatement statement = con.prepareCall("insert into Pregunta(contenido, categoria, usuario, descripcion, fecha, edit) values (?,?,?,?,?,?)");
+            CallableStatement statement = con.prepareCall("insert into Pregunta(contenido, categoria, usuario, descripcion, fecha, edit, eliminar) values (?,?,?,?,?,?,?)");
             statement.setString(1, myPregunta.getContenido());
             statement.setInt(2, categID);
             statement.setString(3, myPregunta.getUsuarioPregunta());
             statement.setString(4, myPregunta.getDescripcion());
             statement.setDate(5, myPregunta.getFecha_Pregunta());
             statement.setBoolean(6, false);
+            statement.setBoolean(7, false);
             return statement.executeUpdate();
           }catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -392,16 +393,17 @@ public class PreguntaDAO {
       
       public static List<PreguntaModel> getPreguntasCategoria(String categoria, String start1)
       {
+        
           // select * from Pregunta where categoria = 1
            List<PreguntaModel> preguntas = new ArrayList<>();
             Connection con =null;
           try{
-             
+              // System.out.println("start1 " + start1);
             con = DbConnection.getConnection();
             
             int pageid1=Integer.parseInt(start1);  
             pageid1 = pageid1-1;
-            
+       
             /*------------------CATEGORIA ID---------------*/
             int categID=0;
             CallableStatement statementCateg = con.prepareCall("select id from Categoria where nombre = ?");
@@ -413,7 +415,8 @@ public class PreguntaDAO {
             }
             
               /*------------------QUERY PREGUNTAS---------------*/
-            CallableStatement statement = con.prepareCall("select * from Pregunta where categoria = ? LIMIT ? ,10 ");
+              // select * from Pregunta where categoria = 5 AND eliminar =  false LIMIT 0 ,10 
+            CallableStatement statement = con.prepareCall("select * from Pregunta where categoria = ? AND eliminar = false LIMIT ? ,10 ");
             statement.setInt(1, categID);
              statement.setInt(2, pageid1);
             ResultSet resultSet = statement.executeQuery();
@@ -421,8 +424,7 @@ public class PreguntaDAO {
             while (resultSet.next()) {
                 // Obtenemos el valor del result set en base al nombre de la
                 // columna
-            
-             
+                         
                 String contenido = resultSet.getString("contenido");
                  //System.out.println("page number DAO " + contenido);
                 int id = resultSet.getInt("id");
@@ -463,7 +465,7 @@ public class PreguntaDAO {
                 //System.out.println(CategResult);
                
                 }*/
-               // System.out.println(contenido);
+                //System.out.println(contenido);
                 categoriaPregunta = categoria;
                 
               CallableStatement statementComment = con.prepareCall("SELECT COUNT(*) AS CommentRowCount FROM Respuesta WHERE pregunta = ?");

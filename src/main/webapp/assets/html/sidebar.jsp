@@ -6,6 +6,24 @@
 
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
+<script>
+
+        
+    $(".categorySelected").on('click', function(event){
+         var val1 = $(this).text();
+        //alert(val1);
+        
+         /*$.post(
+                 "././CategoriasController", 
+                 {categoriaSelected: val1} 
+                 );*/
+
+         setTimeout(function () {
+            window.location.href = '/DbConnection/CategoriasController?categ='+val1; //will redirect to your blog page (an ex: blog.html)
+           }, 500);
+    });
+    
+</script>
 
 <body>
 
@@ -22,7 +40,8 @@
 
                   
                   <c:forEach var="categ" items="${categorias}">
-                        <a name="categoriaSelected"  class="list-group-item" data-parent="#menu2">${categ.nombre}</a>
+                        <a href="javascript:void(0)" name="categoriaSelected"  class="list-group-item categorySelected" data-parent="#menu2">${categ.nombre}</a>
+    
                      </c:forEach>
 
               </div>
