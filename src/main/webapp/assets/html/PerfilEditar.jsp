@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<%-- 
+    Document   : PerfilEditar
+    Created on : 10 jun. 2021, 0:06:48
+    Author     : molec
+--%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +13,8 @@
     <title>Document</title>
 </head>
 <body>
+    
+    <c:set var = "datos" value = "${DatosUsuario}"/>
     <div class="tab-content">
         <div class="tab-pane active" id="home">
             <hr>
@@ -15,11 +23,11 @@
                       <div class="row">
                         <div class="col-6" style="display: block;">
                             <label for="first_name"><h4>First name</h4></label>
-                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
+                            <input type="text" class="form-control" name="first_name" id="first_name" placeholder="${datos.nombre}" title="enter your first name if any.">
                         </div>
                         <div class="col-6" style="display: block;">
                           <label for="last_name"><h4>Last name</h4></label>
-                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
+                            <input type="text" class="form-control" name="last_name" id="last_name" placeholder="${datos.apellidos}" title="enter your last name if any.">
                         </div>
                       </div>
                      
@@ -28,14 +36,14 @@
                  <div class="row">
                     <div class="col-6" style="display: block;">
                           <label for="email"><h4>Email</h4></label>
-                          <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
+                          <input type="email" class="form-control" name="email" id="email" placeholder="${datos.correo}" title="enter your email.">
                       </div>
                 
                  
                       
                       <div class="col-6" style="display: block;">
                           <label for="email"><h4>Username</h4></label>
-                          <input type="email" class="form-control" id="location" placeholder="username" title="enter your usermail">
+                          <input type="email" class="form-control" id="location" placeholder="${datos.username}" title="enter your usermail">
                       </div>
                  
                  </div>

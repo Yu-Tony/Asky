@@ -44,6 +44,15 @@ public class RespuestaModel {
         
     }
 
+    public RespuestaModel(String contenido, int id, String imagenRes, String usuarioRes, Boolean mejor, Date fecha_Res) {
+        this.contenido=contenido;
+        this.id=id;
+        this.imagen=imagenRes;
+        this.usuario=usuarioRes;
+        this.mejor=mejor;
+        this.fecha_Respuesta=fecha_Res;
+    }
+
     public boolean isEliminarRespuesta() {
         return eliminarRespuesta;
     }

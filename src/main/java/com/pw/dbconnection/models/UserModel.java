@@ -23,6 +23,52 @@ public class UserModel
     private String username;
     private String contrasena;
     private Date fecha_crea;
+    
+    private int favs;
+    private int utils;
+    private int noutils;
+    private int preguntas;
+    private int respuestas;
+
+    public int getFavs() {
+        return favs;
+    }
+
+    public void setFavs(int favs) {
+        this.favs = favs;
+    }
+
+    public int getUtils() {
+        return utils;
+    }
+
+    public void setUtils(int utils) {
+        this.utils = utils;
+    }
+
+    public int getNoutils() {
+        return noutils;
+    }
+
+    public void setNoutils(int noutils) {
+        this.noutils = noutils;
+    }
+
+    public int getPreguntas() {
+        return preguntas;
+    }
+
+    public void setPreguntas(int preguntas) {
+        this.preguntas = preguntas;
+    }
+
+    public int getRespuestas() {
+        return respuestas;
+    }
+
+    public void setRespuestas(int respuestas) {
+        this.respuestas = respuestas;
+    }
 
 
     public UserModel(String nombre, String apellidos, java.util.Date fecha_nac, String correo, boolean estado, String profile_pic, String username, String contrasena) {
@@ -50,6 +96,23 @@ public class UserModel
         this.contrasena = contrasena;
         this.fecha_crea = (Date) fecha_crea;
     }
+    
+    public UserModel(String nombre, String apellidos, java.util.Date fecha_nac, String correo, Boolean estado,  String profile_pic, String username, String contrasena, int favs, int utils, int noutils, int preguntas, int respuestas) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.fecha_nac = (Date) fecha_nac;
+        this.correo = correo;
+        this.estado = estado;
+        this.profile_pic = profile_pic;
+        this.username = username;
+        this.contrasena = contrasena;
+
+        this.favs = favs;
+        this.utils = utils;
+        this.noutils = noutils;
+        this.preguntas = preguntas;
+        this.respuestas = respuestas;
+    }
 
     public UserModel(String nombre, String apellidos, String profile_pic) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -58,6 +121,10 @@ public class UserModel
     public UserModel(String emailLogin, String passLogin) {
         this.correo=emailLogin;
         this.contrasena=passLogin;
+    }
+
+    public UserModel(String nombre, String apellidos, Date fecha_nac, String correo, Boolean estado, String profile_pic, String username, String contrasena, int fav, int util, int noutil, int preguntas, int respuestas) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public void setNombre(String nombre) {

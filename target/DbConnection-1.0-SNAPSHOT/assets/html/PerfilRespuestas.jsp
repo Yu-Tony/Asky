@@ -1,3 +1,10 @@
+<%-- 
+    Document   : PerfilRespuestas
+    Created on : 10 jun. 2021, 0:06:29
+    Author     : molec
+--%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +14,8 @@
   <title>Document</title>
 </head>
 <body>
+    
+<c:forEach var ="respuestas" items="${UserAnswers}">
   <div class="row MainRow" >
 
     <div class="col-sm-3">
@@ -20,8 +29,8 @@
         <!--NAME-->
         <div class="row">
             <div class="col-2"> <img src="https://www.edmundsgovtech.com/wp-content/uploads/2020/01/default-picture_0_0.png" alt="Avatar" style="max-width: 100%;" /></div>
-            <div class="col-4"> <h6 style="padding-top: 10%;">Nombre del Usuario</h6></div>
-            <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> Fecha</div>
+            <div class="col-4"> <h6 style="padding-top: 10%;">${respuestas.usuario}</h6></div>
+            <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> ${respuestas.fecha_Respuesta}</div>
             
             <div class="col-1" id="check-comment"><i class="far fa-check-square"></i></div>
             <div class="col-1" id="delete-comment">
@@ -67,7 +76,7 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-8">
-            <h6>Respuesta</h6>
+            <h6>${respuestas.contenido}</h6>
             </div>
             <div class="col-2">
                 <h6>Editado</h6>
@@ -149,6 +158,6 @@
     <div id="includeRightSideBar"></div>
     </div>
 </div>
-
+  </c:forEach>
 </body>
 </html>

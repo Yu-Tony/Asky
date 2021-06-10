@@ -294,7 +294,7 @@
                 <!--NAME-->
                 <div class="row">
                   <div class="col-2"> <img src="${preguntas.profilePregunta}" alt="Avatar" style="max-width: 100%;" /></div>
-                  <div class="col-4"> <h6 style="padding-top: 10%;">${preguntas.usuarioPregunta}</h6></div>
+                 <div  class="col-4"> <a href="ProfileController?user=${preguntas.usuarioPregunta}"  style="padding-top: 10%;">${preguntas.usuarioPregunta}</a></div>
                   <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i>  ${preguntas.fecha_Pregunta}</div>
                   <c:if test = "${NombreUsuario != null}">
                     <div class="col-1"> <i class="far fa-star fav">${preguntas.fav}</i></div>
@@ -307,7 +307,8 @@
                 <!--TITLE-->
                 <div class="row">
                   <div class="col-2"></div>
-                  <div class="col-10">
+                    <div id = "cont" class="col-10">
+                    <div class="IdMyPreg" style="display: none">${preguntas.id}</div>
                     <h3> ${preguntas.contenido}</h3>
                   </div>
                 </div>

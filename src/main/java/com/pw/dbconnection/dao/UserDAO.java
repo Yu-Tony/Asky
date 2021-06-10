@@ -147,6 +147,85 @@ public class UserDAO {
         
     }
     
+     public static UserModel getUserById(String user){
+    
+              UserModel userLogin = null;
+         try 
+        {
+            Connection con = DbConnection.getConnection();
+            CallableStatement statement = con.prepareCall("SELECT * FROM Usuario WHERE username = ?");
+            statement.setString(1, user);
+          
+            ResultSet resultSet = statement.executeQuery();
+            // Si el resultSet tiene resultados lo recorremos
+            while (resultSet.next()) {
+                // Obtenemos el valor del result set en base al nombre de la
+                // columna
+                String nombre = resultSet.getString("nombre");
+                String apellidos = resultSet.getString("apellidos");
+                Date fecha_nac = resultSet.getDate("fecha_nac");
+                String correo = resultSet.getString("correo");
+                Boolean estado = resultSet.getBoolean("estado");
+                String profile_pic = resultSet.getString("profile_pic");
+                String username = resultSet.getString("username");
+                String contrasena = resultSet.getString("contraseña");
+                int fav=0;
+                int util=0;
+                int noutil = 0;
+                int preguntas = 0;
+                int respuestas = 0;
+                
+                CallableStatement statementFavs = con.prepareCall("SELECT COUNT(*) AS FavRowCount FROM fav_pregunta WHERE usuario = ?");
+                statementFavs.setString(1, username);
+                ResultSet resultSetFavs = statementFavs.executeQuery();
+                if (resultSetFavs.next()) {
+                int favResult = resultSetFavs.getInt(1);
+                fav=favResult;
+                }
+                System.out.println(fav);
+                CallableStatement statementUtils = con.prepareCall("select * from util_pregunta WHERE usuario = ?");
+                statementUtils.setString(1, user);
+                ResultSet resultSetUtils = statementUtils.executeQuery();
+                while (resultSetUtils.next()) {
+                    Boolean utilResult = resultSetUtils.getBoolean("util");
+                    if(utilResult){
+                        util++;
+                    }else{
+                        noutil++;
+                    }
+                }
+                 System.out.println(util + "  " +noutil);
+                CallableStatement statementPregs = con.prepareCall("SELECT COUNT(*) AS FavRowCount FROM Pregunta WHERE usuario = ?");
+                statementPregs.setString(1, user);
+                ResultSet resultPregs = statementPregs.executeQuery();
+                if (resultPregs.next()) {
+                int favResult = resultPregs.getInt(1);
+                preguntas=favResult;
+                }
+                 System.out.println(preguntas);
+                CallableStatement statementRes = con.prepareCall("SELECT COUNT(*) AS FavRowCount FROM Respuesta WHERE usuario = ?");
+                statementRes.setString(1, user);
+                ResultSet resultRes= statementRes.executeQuery();
+                if (resultRes.next()) {
+                int favResult = resultRes.getInt(1);
+                     respuestas=favResult;
+                }
+                 System.out.println(respuestas);
+                
+                // Agregamos el usuario a la lista
+                userLogin = new UserModel(nombre, apellidos, fecha_nac, correo, estado, profile_pic, username, contrasena, fav, util, noutil,preguntas, respuestas);
+                
+            }
+            con.close();
+        } catch (SQLException ex) 
+        {
+            System.out.println(ex.getMessage());
+        } finally 
+        {
+            return userLogin;
+        }
+    }
+    
     public static void closeCon()
     {
         

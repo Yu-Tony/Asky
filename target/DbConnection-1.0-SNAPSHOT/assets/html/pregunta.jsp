@@ -711,6 +711,7 @@ $(document).ready(function()
                     </c:otherwise>
                 </c:choose>
         
+                  <i class="idPregunta" style="display: none">${respuestas.id}</i>
                   <div class="col-1" id="delete-comment">
 
                        <c:choose>

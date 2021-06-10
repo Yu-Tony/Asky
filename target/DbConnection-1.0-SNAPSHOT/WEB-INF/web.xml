@@ -64,6 +64,11 @@
         <servlet-class>com.pw.dbconnection.controllers.CategoriasController</servlet-class>
     </servlet>
     
+      <servlet>
+        <servlet-name>ShowStuffController</servlet-name>
+        <servlet-class>com.pw.dbconnection.controllers.ShowStuffController</servlet-class>
+    </servlet>
+    
        <servlet>
         <servlet-name>CrearRespuestaController</servlet-name>
         <servlet-class>com.pw.dbconnection.controllers.CrearRespuestaController</servlet-class>

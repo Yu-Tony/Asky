@@ -7,6 +7,20 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <script>
+    
+    $(document).ready(function(){
+         System.out.println( "valio");
+         $('.navbar-nav mr-auto').on('click', '#btnProfile', function() {
+            System.out.println( "valio");
+            $.post("./ProfileController", {name : "Message from jsp"});
+            setTimeout(function () {
+                //onclick="location.href = '/DbConnection/assets/html/perfil.jsp';"
+                window.location.href = '/DbConnection/assets/html/perfil.jsp';
+           }, 500);
+         });
+    });
+    
+    
     function daysInMonth(month, year) {
   return new Date(year, month, 0).getDate();
 }
@@ -326,7 +340,7 @@
               <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="menu1">
                   
                   <a onclick="location.href = '/DbConnection/assets/html/perfil.jsp';"  id="leEstaCosa" href="#" class="dropdown-item"><i class="fas fa-user"></i> Profile</a>             
-                <a href="#" class="dropdown-item"><i class="fa fa-sliders"></i> Settings</a>
+      
                 <div class="divider dropdown-divider"></div>
                 <a href="/DbConnection/LoginController"  class="dropdown-item"><i class="fas fa-sign-out-alt"></i>Logout</a>
               </ul>

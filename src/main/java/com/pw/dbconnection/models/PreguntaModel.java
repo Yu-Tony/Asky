@@ -48,6 +48,20 @@ public class PreguntaModel {
        //System.out.println("pregunta model " + ProfilePic);
     }
 
+    public PreguntaModel(String contenido, int id, String descripcion, String imagenPregunta, String usuarioPregunta, String categoriaPregunta, Date fecha_Pregunta, int fav, int util, int comentarios) {
+       this.contenido=contenido;
+       this.id=id;
+       this.descripcion=descripcion;
+       this.imagenPregunta=imagenPregunta;
+       this.usuarioPregunta=usuarioPregunta;
+       this.categoriaPregunta=categoriaPregunta;
+       this.fecha_Pregunta=fecha_Pregunta;
+       this.fav=fav;
+       this.util=util;
+       this.comentarios=comentarios;
+              
+    }
+
     public boolean isEditPregunta() {
         return editPregunta;
     }
