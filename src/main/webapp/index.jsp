@@ -336,6 +336,7 @@
                             <div class="idPregunta" style="display: none">${preguntas.id}</div>
                            <div class="nombrePersona" name="nombrePersona" style="display: none">${NombreUsuario}</div>
                            <div class="IDthisPregunta" name="preguntaID" style="display: none" ></div>
+                           
                            <c:if test = "${NombreUsuario != null}">
                                 <i class="far fa-thumbs-up like likeup" name="like"   > ${preguntas.util}</i>
                            </c:if>
@@ -343,14 +344,27 @@
                                 <i class="far fa-thumbs-up likeup"  > ${preguntas.util}</i>
                            </c:if>
                            
+                                <!--DISLIKE-->
+                                <c:if test = "${NombreUsuario != null}">
+                                <c:if test = "${EstadoUsuario}">
+                                    <c:choose>
+                                        <c:when test ="${preguntas.usuarioPregunta eq NombreUsuario}">
+                                            <i class="far fa-thumbs-down like likedown" name="dislike"> ${preguntas.noUtil}</i>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <i class="far fa-thumbs-down like likedown" name="dislike"></i>
+                                        </c:otherwise>
+                                    </c:choose>
+                             
+                                </c:if>
+                            </c:if>
+                            <c:if test = "${NombreUsuario == null}">
+                                       <i class="far fa-thumbs-down likedown"></i>
+                            </c:if>     
+                                     
                           
                     
-                           <c:if test = "${NombreUsuario != null}">
-                               <i class="far fa-thumbs-down like likedown" name="dislike"> 0</i>
-                           </c:if>
-                           <c:if test = "${NombreUsuario == null}">
-                                 <i class="far fa-thumbs-down likedown"></i>
-                           </c:if>
+                  
                      
                
                   </div>

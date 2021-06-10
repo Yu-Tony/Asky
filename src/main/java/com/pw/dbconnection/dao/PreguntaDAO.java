@@ -56,6 +56,7 @@ public class PreguntaDAO {
                 Date fecha_Pregunta = resultSet.getDate("fecha");
                 int fav=0;
                 int util=0;
+                int noUtil=0;
                 int comentarios=0;
                 String profilePregunta=null;
                 boolean edit = resultSet.getBoolean("edit");
@@ -75,6 +76,14 @@ public class PreguntaDAO {
                 if (resultSetUtils.next()) {
                 int utilResult = resultSetUtils.getInt(1);
                 util = utilResult;
+                }
+                
+                CallableStatement statementNoUtils = con.prepareCall("SELECT COUNT(*) AS UtilRowCount FROM util_respuesta WHERE respuesta = ?");
+                statementNoUtils.setInt(1, id);
+                ResultSet resultSetNoUtils = statementNoUtils.executeQuery();
+                if (resultSetNoUtils.next()) {
+                int noUtilResult = resultSetNoUtils.getInt(1);
+                noUtil = noUtilResult;
                 }
                 
                 CallableStatement statementCateg = con.prepareCall("SELECT nombre FROM Categoria WHERE id = ?");
@@ -231,7 +240,7 @@ public class PreguntaDAO {
             Connection con = DbConnection.getConnection();
 
 
-            CallableStatement statement = con.prepareCall("select * from Pregunta where id = ?");
+            CallableStatement statement = con.prepareCall("select * from Pregunta where id = ? AND eliminar = false");
             statement.setInt(1, myid);
             ResultSet resultSet = statement.executeQuery();
 

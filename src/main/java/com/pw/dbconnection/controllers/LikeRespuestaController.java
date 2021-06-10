@@ -46,29 +46,41 @@ public class LikeRespuestaController extends HttpServlet {
             if(tipoLike==1)
             {
   
-                /* System.out.println("user que le da like "  + like.getUsuario());
+                 /*System.out.println("user "  + like.getUsuario());
                 System.out.println(like.getPregunta());
-                System.out.println(like.isUtil());*/
+                System.out.println(like.isUtil());
+                 System.out.println("Like");*/
                 LikeRespuestaDAO.insertLikeRespuesta(like);
-                System.out.println("Like");
+               
             }
             
             if(tipoLike==2)
             {
+                 /*System.out.println("user "  + like.getUsuario());
+                System.out.println(like.getPregunta());
+                System.out.println(like.isUtil());
+                System.out.println("NotLike");*/
                 LikeRespuestaDAO.deleteLikeRespuesta(like);
-                System.out.println("NotLike");
+                
             }
             
             if(tipoLike==3)
             {
+                /* System.out.println("user "  + like.getUsuario());
+                System.out.println(like.getPregunta());
+                System.out.println(like.isUtil());
+                 System.out.println("Dislike");*/
                 LikeRespuestaDAO.insertLikeRespuesta(like);
-                System.out.println("Dislike");
+               
             }
              
             if(tipoLike==4)
             {
+                /*System.out.println("user "  + like.getUsuario());
+                System.out.println(like.getPregunta());
+                System.out.println(like.isUtil());
+                System.out.println("Nor Dislike");*/
                 LikeRespuestaDAO.deleteLikeRespuesta(like);
-                System.out.println("Nor Dislike");
             }
          
         } 

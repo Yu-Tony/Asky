@@ -68,13 +68,9 @@
 $(document).ready(function() 
     {   
         
-        
-        
-       $('#btnCrearRespuesta').click(function(){
-            System.out.println("minimo sirve el boton");
-           $.post("./CrearRespuestaController", {IdPregunta : $('#laRespuesta').text()});
-       });
-       
+        $(function(){
+           // alert($('#blablabla').text());
+         });
       /*------------TOGGLE LIKE/DISLIKE CON NUMERO---------------*/
         $('.like').click(function() 
       {
@@ -189,18 +185,21 @@ $(document).ready(function()
        /*------------TOGGLE LIKE/DISLIKE CON NUMERO RESPUESTA---------------*/
         $('.likeR').click(function() 
       {
+          //alert("like/dislike respuesta");
         var val = parseInt($(this).text(), 10);
-        var val3 =  parseInt($(this).parent().parent().find(".idPregunta").text(), 10); 
-    
-        $(this).parent().parent().find(".IDthisPregunta").text(val3);
-        var val4 =  parseInt($(this).parent().parent().find(".IDthisPregunta").text(), 10);
-         var val5 =  $(this).parent().parent().find(".nombrePersona").text(); 
+        var val3 =  parseInt($(this).parent().parent().parent().find(".idRespuesta").text(), 10); 
+       
+        $(this).parent().parent().find(".IDthisRespuesta").text(val3);
+        var val4 =  parseInt($(this).parent().parent().find(".IDthisRespuesta").text(), 10);
+        
+       var val5 =  $(this).parent().parent().find(".nombrePersona").text(); 
+        // alert(val5);
   
         /*REVISA SI ALGO MÁS YA ESTÁ SELECCIONADO*/
         if (($(this).hasClass('likeup'))) 
         {
             var val2= parseInt( $(this).parent().parent().find(".likedown").text(), 10);
-           
+          
          if(($(this).parent().parent().find(".likedown").hasClass('is-liked')))
 
           {
@@ -262,8 +261,9 @@ $(document).ready(function()
         {
              if($(this).hasClass('is-liked'))
             {
+               
                 $.post(
-                 "./LikeRespuestaController", 
+                 "/DbConnection/LikeRespuestaController", 
                  {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: true, tipoLike:1} 
                  );
             }
@@ -272,7 +272,7 @@ $(document).ready(function()
               //https://stackoverflow.com/questions/31168646/how-to-send-data-to-servlet-using-ajax-without-a-submitting-form/31175969
           
                 $.post(
-                 "./LikeRespuestaController", 
+                 "/DbConnection/LikeRespuestaController", 
                  {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: true, tipoLike:2}
                  );
             }
@@ -281,14 +281,14 @@ $(document).ready(function()
         {         
             if($(this).hasClass('is-liked'))
             {
-              $.post(
-                 "./LikeRespuestaController", 
+            $.post(
+                 "/DbConnection/LikeRespuestaController", 
                  {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: false, tipoLike:3});
             }
             else
             {
-                $.post(
-                 "./LikeRespuestaController", 
+               $.post(
+                 "/DbConnection/LikeRespuestaController", 
                  {usuarioPreguntaLike: val5, idPreguntaLike:val4, utilPreguntaLike: false, tipoLike:4});
             }
         }
@@ -514,7 +514,13 @@ $(document).ready(function()
               <div class="col-2 "> <img src="/DbConnection/${LaPregunta.profilePregunta}" alt="Avatar" style="max-width: 100%;" /></div>
               <div  id="blablabla"class="col-4"> <h6 style="padding-top: 10%;">${LaPregunta.usuarioPregunta}</h6></div>
               <div class="col-3"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> ${LaPregunta.fecha_Pregunta}</div>
-              <div class="col-1"> <i class="far fa-star fav">${LaPregunta.fav}</i></div>
+              <c:if test = "${NombreUsuario != null}">
+                  <div class="col-1"> <i class="far fa-star fav">${LaPregunta.fav}</i></div>
+              </c:if>
+              <c:if test = "${NombreUsuario == null}">
+                <div class="col-1"> <i class="far fa-star">${LaPregunta.fav}</i></div>
+              </c:if>
+              
               <i class="idPregunta" style="display: none">${LaPregunta.id}</i>
               <div class="col-1" id="delete-post">
 
@@ -610,21 +616,35 @@ $(document).ready(function()
                            <div class="nombrePersona" name="nombrePersona" style="display: none">${NombreUsuario}</div>
                            <div class="IDthisPregunta" name="preguntaID" style="display: none" ></div>
                            <c:if test = "${NombreUsuario != null}">
-                                <i class="far fa-thumbs-up like likeup" name="like"   > ${LaPregunta.util}</i>
+                                <c:if test = "${EstadoUsuario}">
+                                    <i class="far fa-thumbs-up like likeup" name="like"> ${LaPregunta.util}</i>
+                                </c:if> 
+                               <c:if test = "${not EstadoUsuario}">
+                                    <i class="far fa-thumbs-up likeup"> ${LaPregunta.util}</i>
+                                </c:if>
                            </c:if>
                            <c:if test = "${NombreUsuario == null}">
-                                <i class="far fa-thumbs-up likeup"  > ${LaPregunta.util}</i>
+                                <i class="far fa-thumbs-up likeup"> ${LaPregunta.util}</i>
                            </c:if>
                            
-                          
-                    
+                                
                            <c:if test = "${NombreUsuario != null}">
-                               <i class="far fa-thumbs-down like likedown" name="dislike"> 0</i>
-                           </c:if>
-                           <c:if test = "${NombreUsuario == null}">
-                                 <i class="far fa-thumbs-down likedown"></i>
-                           </c:if>
-                                 
+                                <c:if test = "${EstadoUsuario}">
+                                    <c:choose>
+                                        <c:when test ="${respuestas.usuario eq NombreUsuario}">
+                                            <i class="far fa-thumbs-down like likedown" name="dislike"> ${LaPregunta.noUtil}</i>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <i class="far fa-thumbs-down like likedown" name="dislike"></i>
+                                        </c:otherwise>
+                                    </c:choose>
+                             
+                                </c:if>
+                            </c:if>
+                            <c:if test = "${NombreUsuario == null}">
+                                     <i class="far fa-thumbs-down likedown"></i>
+                            </c:if>     
+         
               </div>
               <div class="col-3">
                 <i class="far fa-comment"></i>
@@ -678,7 +698,7 @@ $(document).ready(function()
                     <div class="col-2"> <img src="/DbConnection/${respuestas.profileRespuesta}" alt="Avatar" style="max-width: 100%;" /></div>
                     <div class="col-4"> <h6 style="padding-top: 10%;">${respuestas.usuario}</h6></div>
                     <div class="col-4"><i class="far fa-calendar-alt" style="padding-top: 7%;"></i> ${respuestas.fecha_Respuesta}</div>
-
+                    
                     <!--  -->
                    <c:choose>
                       <c:when test ="${LaPregunta.usuarioPregunta eq NombreUsuario}">
@@ -780,18 +800,32 @@ $(document).ready(function()
                 <div class="row">
                 <div class="col-2"></div>
                 <div class="col-3">
+                    <i class="idRespuesta" style="display: none">${respuestas.id}</i>
+                      <div class="nombrePersona" name="nombrePersona" style="display: none">${NombreUsuario}</div>
+                       <div class="IDthisRespuesta" name="respuestaID" style="display: none" ></div>
                     <c:if test = "${NombreUsuario != null}">
                         <c:if test = "${EstadoUsuario}">
                               <i class="far fa-thumbs-up likeR likeup" name="like"   > ${respuestas.util}</i>
                         </c:if>
+                        <c:if test = "${not EstadoUsuario}">
+                               <i class="far fa-thumbs-up likeup"  > ${respuestas.util}</i>
+                        </c:if>
                     </c:if>
                     <c:if test = "${NombreUsuario == null}">
-                         <i class="far fa-thumbs-up likeup"  > ${LaPregunta.util}</i>
+                         <i class="far fa-thumbs-up likeup"  > ${respuestas.util}</i>
                     </c:if>
                     
                     <c:if test = "${NombreUsuario != null}">
                         <c:if test = "${EstadoUsuario}">
-                             <i class="far fa-thumbs-down likeR likedown" name="dislike"> 0</i>
+                            <c:choose>
+                                <c:when test ="${respuestas.usuario eq NombreUsuario}">
+                                    <i class="far fa-thumbs-down likeR likedown" name="dislike"> ${respuestas.noUtil}</i>
+                                </c:when>
+                                 <c:otherwise>
+                                    <i class="far fa-thumbs-down likeR likedown" name="dislike"></i>
+                                </c:otherwise>
+                            </c:choose>
+                             
                         </c:if>
                     </c:if>
                     <c:if test = "${NombreUsuario == null}">
@@ -817,7 +851,7 @@ $(document).ready(function()
                     <div class="col-sm-12">
 
                       <h5>Editar Texto</h5>
-                      <textarea class="form-control" rows="5" id="laRespuesta" required></textarea>
+                      <textarea class="form-control" rows="5" id="pregunta" required></textarea>
                       <h5>Editar Imagenes</h5>
 
 
@@ -915,4 +949,3 @@ $(document).ready(function()
 </body>
 
 </html>
-
